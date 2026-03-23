@@ -310,7 +310,6 @@ table td,table th{border-bottom-color:var(--border)!important;}
 
 <!-- ── sticky tab nav ── -->
 <nav id="top-nav">
-  <button class="nav-tab" onclick="switchTab('intro')">はしがき・目次</button>
   <button class="nav-tab" onclick="switchTab('intro')">はしがき／目次</button>
   <button class="nav-tab active" onclick="switchTab('kihon')">基本例文</button>
   <button class="nav-tab" onclick="switchTab('a')">〔A〕文法</button>
@@ -582,7 +581,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
       </div>
       <span class="ap-label">🔊 基本例文 朗読</span>
     </div>
-    <input type="hidden" id="_kihon_audio_src" value="https://drive.google.com/uc?export=download&id=1aLtNohEjSYqFpSLqNqf6EcA76MLYubiN">
+    <input type="hidden" id="_kihon_audio_src" value="ch1_kihon.mp3">
 
     <div class="ctrl">
       <button class="tog on" id="tog-hl" onclick="toggleHighlight()">構造ハイライト ON</button>
@@ -1227,13 +1226,13 @@ function buildToken(tok){
 
 
 const PASSAGE_AUDIO = {
-  'b1': 'https://drive.google.com/uc?export=download&id=10gLWnSk0QSKBBLL50T3RjUCI00_x0ohp',
-  'b2': 'https://drive.google.com/uc?export=download&id=1iagVVkniZKS-Pgbj4zKxjV-93fmQ7hMJ',
-  'b3': 'https://drive.google.com/uc?export=download&id=1orwJ5QjrADvQgK9ldbftPHdEPnkRZoNG',
-  'b4': 'https://drive.google.com/uc?export=download&id=1_W-B3UD7K2ebu8pd9lgU7rukW7NKy8sS',
-  'b5': 'https://drive.google.com/uc?export=download&id=1TuJ_MsPFcxlaA2ip1s5AHG6uDcGJh7RN',
-  'b6': 'https://drive.google.com/uc?export=download&id=1bFrETa00zsCRUJjYUfHLq9kGWC-Cjshm',
-  'b7': 'https://drive.google.com/uc?export=download&id=1s44tblGw7kGVioyeRYbws-4fpYxrW4GI',
+  'b1': 'ch1_b1.mp3',
+  'b2': 'ch1_b2.mp3',
+  'b3': 'ch1_b3.mp3',
+  'b4': 'ch1_b4.mp3',
+  'b5': 'ch1_b5.mp3',
+  'b6': 'ch1_b6.mp3',
+  'b7': 'ch1_b7.mp3',
 };
 const viewedB=new Set();
 function renderPassages(){
