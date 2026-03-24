@@ -133,6 +133,10 @@ h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
 .kh-inf{color:var(--C);font-style:italic;}
 .kh-ger{color:var(--rel);font-style:italic;}
 .kh-that{color:var(--conj);}
+/* O優先ルール：目的語クラスと組み合わせた場合は金色 */
+.kh-o.kh-inf,.kh-o.kh-ger,.kh-o.kh-that{color:var(--O);font-weight:700;}
+/* S優先ルール：主語クラスと組み合わせた場合はオレンジ */
+.kh-s.kh-inf,.kh-s.kh-ger,.kh-s.kh-that{color:var(--S);font-weight:700;}
 .highlight-off .kh-s,.highlight-off .kh-v,.highlight-off .kh-o,
 .highlight-off .kh-c,.highlight-off .kh-inf,.highlight-off .kh-ger,.highlight-off .kh-that{
   color:inherit;font-weight:inherit;font-style:inherit;}
