@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>第4章　動詞と前置詞</title>
+<style>
+:root{
+  /* ── 文法カラー（ライトモードと同値 ── アクセントは明るめに調整） */
+  --S:#FF8C5A;--V:#42A5F5;--O:#FFD54F;--C:#66BB6A;
+  --adv:#CE93D8;--adj-c:#F48FB1;--conj:#26A69A;--rel:#AB47BC;
+
+  /* ── UI カラー */
+  --bg:#0f1117;--card:#1a1d27;--border:#2e3245;
+  --text:#e8eaf0;--muted:#7a82a0;--tag-bg:#22263a;
+  --green:#4caf7d;--green-bg:#0d2b1e;
+  --red:#ef5350;--red-bg:#2b0d0d;
+  --blue:#64b5f6;--blue-bg:#0d1f35;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Times New Roman","游明朝","YuMincho","Hiragino Mincho ProN",Georgia,serif;
+  background:var(--bg);color:var(--text);font-size:15px;}
+
+/* ══ sticky nav ══ */
+#top-nav{
+  position:sticky;top:0;z-index:300;
+  background:var(--card);border-bottom:1.5px solid var(--border);
+  display:flex;align-items:stretch;gap:0;
+}
+.nav-tab{
+  flex:1;padding:.55rem .4rem;
+  font-size:12px;font-weight:600;letter-spacing:.03em;text-align:center;
+  border:none;background:none;cursor:pointer;color:var(--muted);
+  border-bottom:3px solid transparent;transition:all .15s;
+  font-family:inherit;
+}
+.nav-tab.active{color:var(--text);border-bottom-color:var(--text);}
+.nav-tab:hover:not(.active){background:var(--bg);}
+#prog-label{font-size:11px;color:var(--muted);padding:.35rem .8rem;
+  white-space:nowrap;border-left:1px solid var(--border);}
+
+/* ══ layout ══ */
+.app{max-width:900px;margin:0 auto;padding:1.5rem 1rem 5rem;}
+.section-panel{display:none;}
+.section-panel.active{display:block;}
+
+/* ══ headings ══ */
+h1{font-size:20px;font-weight:700;border-bottom:2px solid var(--text);
+   padding-bottom:.5rem;margin-bottom:1.5rem;}
+h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
+   padding-left:.7rem;border-left:3px solid var(--O);}
+
+/* ══ legend / controls ══ */
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.2rem;align-items:center;}
+.tog{padding:5px 14px;border-radius:99px;border:1.5px solid var(--border);
+     background:var(--card);font-size:13px;cursor:pointer;transition:all .15s;
+     font-weight:500;color:var(--text);font-family:inherit;}
+.tog.on{background:var(--text);color:#fff;border-color:var(--text);}
+.tog:hover{border-color:#999;}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:1.5rem;
+  padding:.75rem 1rem;background:var(--card);border:0.5px solid var(--border);border-radius:10px;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.ul-swatch{width:28px;height:4px;border-radius:2px;flex-shrink:0;}
+
+/* ══ passage card ══ */
+.pcard{background:var(--card);border:0.5px solid var(--border);
+  border-radius:12px;margin-bottom:1.5rem;overflow:hidden;}
+.phead{display:flex;align-items:center;gap:10px;padding:.85rem 1.1rem;
+  border-bottom:0.5px solid var(--border);}
+.pnum{font-size:13px;font-weight:700;color:var(--muted);min-width:24px;}
+.play-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid #aaa;
+  background:var(--card);cursor:pointer;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;font-family:inherit;}
+.play-btn:hover{border-color:var(--text);background:var(--tag-bg);}
+.play-btn.playing{background:var(--text);border-color:var(--text);}
+.play-btn svg{width:12px;height:12px;fill:#555;}
+.play-btn.playing svg{fill:#fff;}
+.prog-wrap{flex:1;height:3px;background:var(--border);border-radius:2px;cursor:pointer;}
+.prog-fill{height:3px;background:var(--text);border-radius:2px;width:0%;transition:width .1s linear;}
+.ptopic{font-size:13px;font-weight:600;color:var(--text);flex:1;display:none;}
+.pbody{padding:1rem 1.1rem;}
+
+/* ══ sentences ══ */
+.sent{margin-bottom:1.2rem;}
+.sent-pattern{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;
+  margin-bottom:.55rem;padding:3px 8px;background:var(--tag-bg);border-radius:4px;display:inline-block;}
+.sent-plain{font-size:15px;line-height:2.1;display:none;}
+.sent-anal{font-size:15px;line-height:2.6;display:none;flex-wrap:wrap;gap:2px 0;align-items:baseline;}
+
+/* ══ token ══ */
+.tok{display:inline;position:relative;cursor:default;padding:0 1px;white-space:pre-wrap;}
+.tok .tip{display:none;position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+  background:#222;color:#fff;font-size:11px;padding:3px 7px;border-radius:5px;
+  white-space:nowrap;z-index:100;pointer-events:none;}
+.tok:hover .tip{display:block;}
+.r-S{color:var(--S);font-weight:700;} .r-V{color:var(--V);font-weight:700;}
+.r-O{color:var(--O);font-weight:700;} .r-C{color:var(--C);font-weight:700;}
+.r-adv{color:var(--adv);} .r-adj{color:var(--adj-c);}
+.r-conj{color:var(--conj);font-style:italic;} .r-rel{color:var(--rel);}
+.r-plain{color:var(--text);}
+.ul-s-clause{text-decoration:underline;text-decoration-color:var(--S);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+.ul-o-clause{text-decoration:underline;text-decoration-color:var(--O);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+.ul-adj-clause{text-decoration:underline;text-decoration-color:var(--adj-c);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+.ul-adv-clause{text-decoration:underline;text-decoration-color:var(--adv);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+
+/* ══ vocab / topic ══ */
+.vocab-block{display:none;border-top:0.5px solid var(--border);padding:.75rem 1.1rem;}
+.vocab-title{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em;margin-bottom:.5rem;}
+.vocab-list{display:flex;flex-wrap:wrap;gap:6px;}
+.vocab-item{background:var(--tag-bg);border-radius:6px;padding:4px 10px;font-size:13px;}
+.vocab-item strong{color:var(--V);}
+.topic-bar{display:none;border-top:0.5px solid var(--border);padding:.6rem 1.1rem;font-size:13px;}
+.topic-bar span{font-weight:600;color:var(--rel);}
+
+/* ══ 基本例文 ══ */
+.kihon-card{background:var(--card);border:0.5px solid var(--border);
+  border-radius:12px;margin-bottom:1.2rem;overflow:hidden;}
+.kihon-head{padding:.65rem 1.1rem;background:var(--tag-bg);
+  border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:8px;}
+.kihon-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;}
+.kihon-body{padding:.9rem 1.1rem;}
+.kihon-row{display:flex;gap:.8rem;align-items:baseline;margin-bottom:.5rem;}
+.kihon-row:last-child{margin-bottom:0;}
+.kihon-id{font-size:12px;font-weight:700;color:var(--O);min-width:1.6rem;flex-shrink:0;}
+.kihon-en{font-size:15px;line-height:1.8;flex:1;}
+.kihon-note{font-size:12px;color:var(--muted);margin-top:.15rem;}
+.kh-o{color:var(--O);font-weight:700;}
+.kh-v{color:var(--V);font-weight:700;}
+.kh-s{color:var(--S);font-weight:700;}
+.kh-prep{color:var(--conj);font-weight:700;}
+.kh-c{color:var(--C);font-weight:700;}
+.struct-note{display:inline-block;background:var(--tag-bg);border-radius:4px;
+  padding:2px 6px;font-size:11px;color:var(--muted);margin-top:.3rem;}
+.highlight-off .kh-o,.highlight-off .kh-v,.highlight-off .kh-s,
+.highlight-off .kh-prep,.highlight-off .kh-c{color:inherit;font-weight:inherit;}
+
+/* ══ [A] 問題 ══ */
+.a-card{background:var(--card);border:0.5px solid var(--border);border-radius:10px;margin-bottom:1rem;overflow:hidden;}
+.a-head{display:flex;gap:.7rem;align-items:baseline;padding:.75rem 1.1rem;border-bottom:0.5px solid var(--border);background:var(--tag-bg);}
+.a-num{font-size:13px;font-weight:700;color:var(--muted);min-width:1.4rem;flex-shrink:0;}
+.a-sent{font-size:14px;line-height:1.7;flex:1;}
+.a-sent em{font-style:italic;}
+.inst-badge{font-size:11px;background:var(--blue-bg);color:var(--blue);border-radius:4px;padding:2px 6px;font-style:normal;white-space:nowrap;}
+.a-body{padding:.7rem 1.1rem;}
+.a-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.4rem;}
+.a-fb{font-size:12px;min-height:1.2rem;margin-top:.35rem;}
+.fb-ok{color:var(--green);font-weight:600;}
+.fb-ng{color:var(--red);}
+.hint-tog{padding:3px 10px;border-radius:99px;border:1px solid var(--border);background:none;font-size:12px;cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;}
+.hint-tog:hover{background:var(--tag-bg);}
+.btn{padding:5px 14px;border-radius:99px;border:1.5px solid var(--border);
+  background:var(--card);font-size:12px;cursor:pointer;font-family:inherit;
+  font-weight:500;color:var(--text);transition:all .15s;}
+.btn:hover{border-color:#999;background:var(--tag-bg);}
+.btn-check{background:var(--text);color:#fff;border-color:var(--text);}
+.btn-check:hover{background:#333;}
+.btn-reveal{border-color:var(--V);color:var(--V);}
+.btn-reveal:hover{background:var(--blue-bg);}
+.btn-reset{color:var(--muted);}
+
+/* blank inputs */
+.blank-inp{border:none;border-bottom:2px solid var(--border);background:transparent;font-family:inherit;font-size:14px;color:var(--text);width:72px;padding:1px 4px;outline:none;text-align:center;transition:border-color .15s;}
+.blank-inp:focus{border-color:var(--V);}
+.blank-inp.blank-ok{border-color:var(--green);color:var(--green);}
+.blank-inp.blank-ng{border-color:var(--red);color:var(--red);}
+
+/* rewrite textarea */
+.rw-textarea{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:.5rem .75rem;font-family:inherit;font-size:14px;color:var(--text);background:var(--bg);resize:vertical;min-height:48px;outline:none;transition:border-color .15s;margin-bottom:.5rem;}
+.rw-textarea:focus{border-color:var(--V);}
+.rw-textarea.rw-revealed{border-color:#aaa;background:#f5f5f5;color:#555;}
+
+/* ══ [C] 英訳 ══ */
+.c-card{background:var(--card);border:0.5px solid var(--border);border-radius:12px;margin-bottom:1.2rem;overflow:hidden;}
+.c-head{display:flex;align-items:center;gap:10px;padding:.75rem 1.1rem;border-bottom:0.5px solid var(--border);background:var(--tag-bg);}
+.c-num{font-size:13px;font-weight:700;color:var(--muted);min-width:20px;}
+.c-ja{font-size:14px;color:var(--text);flex:1;line-height:1.6;}
+.c-hint-badge{font-size:11px;color:var(--V);background:var(--blue-bg);border-radius:4px;padding:2px 7px;white-space:nowrap;flex-shrink:0;}
+.c-body{padding:.85rem 1.1rem;}
+.c-textarea{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:.55rem .8rem;font-family:inherit;font-size:14px;color:var(--text);background:var(--bg);resize:vertical;min-height:52px;outline:none;transition:border-color .15s;}
+.c-textarea:focus{border-color:var(--V);}
+.c-textarea.revealed{border-color:#aaa;background:#f5f5f5;color:#555;}
+.c-actions{display:flex;gap:8px;margin-top:.6rem;flex-wrap:wrap;align-items:center;}
+.c-fb{font-size:12px;margin-top:.4rem;min-height:1rem;color:var(--muted);font-style:italic;}
+.c-fb.hint{color:var(--blue);}
+
+/* ══ dark mode extras ══ */
+.blank-inp{color:var(--text);}
+.blank-inp.blank-ok{color:var(--green);}
+.blank-inp.blank-ng{color:var(--red);}
+.rw-textarea,.c-textarea{color:var(--text);background:var(--bg);}
+.rw-textarea.rw-revealed,.c-textarea.revealed{background:#111318;color:#555;border-color:#333;}
+.kihon-card,.pcard,.a-card,.c-card{box-shadow:0 2px 12px rgba(0,0,0,.4);}
+input::placeholder,textarea::placeholder{color:var(--muted);}
+.choice-btn{background:var(--bg);}
+.choice-btn:hover:not(:disabled){background:var(--tag-bg);}
+.choice-btn.c-correct{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+.choice-btn.c-wrong{background:var(--red-bg);border-color:var(--red);color:var(--red);}
+.play-btn svg{fill:#aab;}
+.play-btn.playing svg{fill:#fff;}
+
+</style>
+</head>
+<body>
+
+<!-- ── sticky tab nav ── -->
+<nav id="top-nav">
+  <button class="nav-tab active" onclick="switchTab('kihon')">基本例文</button>
+  <button class="nav-tab" onclick="switchTab('a')">〔A〕文法</button>
+  <button class="nav-tab" onclick="switchTab('b')">〔B〕読解</button>
+  <button class="nav-tab" onclick="switchTab('c')">〔C〕英訳</button>
+  <span id="prog-label">進捗 0%</span>
+</nav>
+
+<div class="app">
+
+  <!-- ════════════════ 基本例文 ════════════════ -->
+  <div id="panel-kihon" class="section-panel active">
+    <h1>第4章　動詞と前置詞 ― 基本例文</h1>
+
+    <div class="ctrl" style="margin-bottom:.8rem;">
+      <button class="play-btn" id="pbtn-bs" onclick="togglePlay('bs')" style="width:36px;height:36px;flex-shrink:0;">
+        <svg viewBox="0 0 14 12"><polygon points="2,1 12,6 2,11"/></svg>
+      </button>
+      <div class="prog-wrap" onclick="seekAudio('bs',event)" style="height:4px;flex:1;max-width:300px;cursor:pointer;">
+        <div class="prog-fill" id="prog-bs" style="height:4px;"></div>
+      </div>
+      <span style="font-size:12px;color:var(--muted);font-style:italic;">基本例文　音声再生</span>
+    </div>
+    <div class="ctrl">
+      <button class="tog on" id="tog-hl" onclick="toggleHighlight()">構造ハイライト ON</button>
+    </div>
+
+    <div id="kihon-wrap">
+      <div class="kihon-card">
+        <div class="kihon-head">
+          <span class="kihon-label">例文１ — 前置詞句が述語を構成する（SVC 型）</span>
+        </div>
+        <div class="kihon-body" id="kihon-body">
+          <div class="kihon-row">
+            <span class="kihon-id">１</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">The house</span> <span class="kh-v">is</span> <span class="kh-prep">on</span> fire.
+              </div>
+              <div class="kihon-note">be on fire = 燃えている（前置詞句が補語として機能）</div>
+              <span class="struct-note">SVC　第2文型</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kihon-card">
+        <div class="kihon-head">
+          <span class="kihon-label">例文２ — 自動詞＋前置詞（SV＋前置詞＋O）</span>
+        </div>
+        <div class="kihon-body" id="kihon-body2">
+          <div class="kihon-row">
+            <span class="kihon-id">２</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">You</span> <span class="kh-v">can depend</span> <span class="kh-prep">upon</span> him.
+              </div>
+              <div class="kihon-note">depend upon/on ～ = ～を頼りにする（自動詞＋前置詞で他動詞的意味）</div>
+              <span class="struct-note">SV＋前置詞句</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kihon-card">
+        <div class="kihon-head">
+          <span class="kihon-label">例文３ — be＋過去分詞＋前置詞（受動態＋前置詞）</span>
+        </div>
+        <div class="kihon-body" id="kihon-body3">
+          <div class="kihon-row">
+            <span class="kihon-id">３</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">We</span> <span class="kh-v">were disappointed</span> <span class="kh-prep">at</span> the news.
+              </div>
+              <div class="kihon-note">be disappointed at ～ = ～にがっかりする（感情の形容詞＋前置詞）</div>
+              <span class="struct-note">SVC＋前置詞句　第2文型</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kihon-card">
+        <div class="kihon-head">
+          <span class="kihon-label">例文４ — 他動詞＋O＋前置詞＋O（SVOO型準拠）</span>
+        </div>
+        <div class="kihon-body" id="kihon-body4">
+          <div class="kihon-row">
+            <span class="kihon-id">４</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">We</span> <span class="kh-v">prevented</span> <span class="kh-o">the fire</span> <span class="kh-prep">from</span> spreading.
+              </div>
+              <div class="kihon-note">prevent A from doing = Aが〜するのを妨げる（他動詞＋O＋from＋動名詞）</div>
+              <span class="struct-note">SVO＋前置詞句　第3文型</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /panel-kihon -->
+
+
+  <!-- ════════════════ [A] 文法問題 ════════════════ -->
+  <div id="panel-a" class="section-panel">
+    <h1>第4章　〔A〕文法問題</h1>
+
+    <h2>[1] カッコの中に適当な前置詞（または語）を入れよ</h2>
+    <div id="a1-wrap"></div>
+
+    <h2>[2] カッコの中の指示に従って書き換えよ</h2>
+    <div id="a2-wrap"></div>
+
+    <div id="a-score-bar" style="margin-top:1.5rem;padding:1rem 1.2rem;background:var(--card);border:0.5px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:1rem;font-size:13px;">
+      <span style="font-weight:700;">採点結果</span>
+      <span id="a-score-text" style="color:var(--muted);">未採点</span>
+      <button class="tog" style="margin-left:auto;" onclick="gradeAll()">全問採点</button>
+      <button class="tog" onclick="resetAll()">リセット</button>
+    </div>
+  </div>
+
+
+  <!-- ════════════════ [B] 読解 ════════════════ -->
+  <div id="panel-b" class="section-panel">
+    <h1>第4章　〔B〕読解 ― 動詞と前置詞ビジュアル解析</h1>
+    <div class="ctrl">
+      <button class="tog" id="tog-plain" onclick="setMode('plain')">白文</button>
+      <button class="tog on" id="tog-anal" onclick="setMode('anal')">5文型解析</button>
+      <button class="tog" id="tog-vocab" onclick="toggleAll('vocab')">Vocabulary</button>
+      <button class="tog" id="tog-topic" onclick="toggleAll('topic')">Main Topic</button>
+    </div>
+    <div class="legend" id="legend">
+      <div class="legend-item"><div class="dot" style="background:var(--S)"></div>S 主語</div>
+      <div class="legend-item"><div class="dot" style="background:var(--V)"></div>V 動詞</div>
+      <div class="legend-item"><div class="dot" style="background:var(--O)"></div>O 目的語</div>
+      <div class="legend-item"><div class="dot" style="background:var(--C)"></div>C 補語</div>
+      <div class="legend-item"><div class="dot" style="background:var(--adv)"></div>副詞句</div>
+      <div class="legend-item"><div class="dot" style="background:var(--adj-c)"></div>形容詞句</div>
+      <div class="legend-item"><div class="dot" style="background:var(--conj)"></div>接続詞</div>
+      <div class="legend-item"><div class="dot" style="background:var(--rel)"></div>関係詞</div>
+      <div style="width:100%;height:0;border-top:0.5px solid var(--border);margin:2px 0;"></div>
+      <div class="legend-item"><div class="ul-swatch" style="background:var(--S)"></div>主語節</div>
+      <div class="legend-item"><div class="ul-swatch" style="background:var(--O)"></div>目的語節</div>
+      <div class="legend-item"><div class="ul-swatch" style="background:var(--adj-c)"></div>形容詞節</div>
+      <div class="legend-item"><div class="ul-swatch" style="background:var(--adv);height:3px;"></div>副詞節</div>
+    </div>
+    <div id="passages"></div>
+  </div><!-- /panel-b -->
+
+
+  <!-- ════════════════ [C] 英訳 ════════════════ -->
+  <div id="panel-c" class="section-panel">
+    <h1>第4章　〔C〕英訳練習</h1>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1.4rem;font-style:italic;">
+      カッコの動詞を用いて日本語を英訳せよ。「模範訳を見る」で答えを確認できます。
+    </p>
+    <div id="c-wrap"></div>
+  </div>
+
+</div><!-- /app -->
+
+<script>
+/* ═══════════════════════════════════════════
+   TAB NAVIGATION
+═══════════════════════════════════════════ */
+const TABS = ['kihon','a','b','c'];
+function switchTab(id){
+  TABS.forEach(t=>{
+    document.getElementById('panel-'+t).classList.toggle('active', t===id);
+  });
+  document.querySelectorAll('.nav-tab').forEach((btn,i)=>{
+    btn.classList.toggle('active', TABS[i]===id);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+  updateProgLabel();
+}
+
+/* ═══════════════════════════════════════════
+   基本例文 — highlight toggle
+═══════════════════════════════════════════ */
+let hlOn = true;
+function toggleHighlight(){
+  hlOn = !hlOn;
+  const btn = document.getElementById('tog-hl');
+  btn.classList.toggle('on', hlOn);
+  btn.textContent = '構造ハイライト ' + (hlOn ? 'ON' : 'OFF');
+  ['kihon-body','kihon-body2','kihon-body3','kihon-body4'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.classList.toggle('highlight-off', !hlOn);
+  });
+}
+
+/* ═══════════════════════════════════════════
+   [A]-1  FILL-IN DATA (前置詞穴埋め)
+═══════════════════════════════════════════ */
+const A1_DATA = [
+  {num:1,  template:"I was {0} a loss for an answer.（私は返事に困りました）",
+   blanks:[{ph:"前置詞",ans:["at"]}], hint:"at a loss = 途方に暮れて、困って。"},
+  {num:2,  template:"He was beside {0} with anger.",
+   blanks:[{ph:"代名詞",ans:["himself"]}], hint:"beside oneself with ～ = ～で我を忘れて。"},
+  {num:3,  template:"Its beauty is {0} description.（その美しさは言葉では表せない）",
+   blanks:[{ph:"前置詞",ans:["beyond"]}], hint:"beyond description = 言葉では言い表せないほど。"},
+  {num:4,  template:"I am not {0} your opinion.",
+   blanks:[{ph:"前置詞",ans:["for"]}], hint:"be for ～ = ～に賛成である（⇔ be against）。"},
+  {num:5,  template:"He is {0} very good terms with his friend.",
+   blanks:[{ph:"前置詞",ans:["on"]}], hint:"be on good terms with ～ = ～と仲が良い。"},
+  {num:6,  template:"The door will not open; the lock must be {0} {1} order.",
+   blanks:[{ph:"①",ans:["out"]},{ph:"②",ans:["of"]}], hint:"out of order = 故障して（= broken）。"},
+  {num:7,  template:"That accounts {0} his dislike for sandwiches.",
+   blanks:[{ph:"前置詞",ans:["for"]}], hint:"account for ～ = ～を説明する、～の原因となる。"},
+  {num:8,  template:"No one knows what has become {0} him.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"become of ～ = ～はどうなる（What has become of ～?）。"},
+  {num:9,  template:"I don't care {0} such a novel.",
+   blanks:[{ph:"前置詞",ans:["for"]}], hint:"care for ～ = ～が好きである（否定・疑問でよく使う）。"},
+  {num:10, template:"He insisted {0} driving us to the station.",
+   blanks:[{ph:"前置詞",ans:["on"]}], hint:"insist on doing = ～することを主張する（on＋動名詞）。"},
+  {num:11, template:"You can live {0} what you earn, can't you?",
+   blanks:[{ph:"前置詞",ans:["on"]}], hint:"live on ～ = ～を収入として生活する。"},
+  {num:12, template:"They looked {0} him as a great judge.",
+   blanks:[{ph:"前置詞",ans:["upon","on"]}], hint:"look upon/on A as B = AをBとみなす（= regard A as B）。"},
+  {num:13, template:"A good idea occurred {0} me.",
+   blanks:[{ph:"前置詞",ans:["to"]}], hint:"occur to ～ = ～の心に浮かぶ（= strike ～）。主語は「人」ではなく「考え」。"},
+  {num:14, template:"Leave it to me; I'll see {0} it.",
+   blanks:[{ph:"前置詞",ans:["to"]}], hint:"see to ～ = ～の面倒を見る、～を処理する。"},
+  {num:15, template:"The letters U.N. stand {0} the United Nations.",
+   blanks:[{ph:"前置詞",ans:["for"]}], hint:"stand for ～ = ～を表す、～の略である。"},
+  {num:16, template:"We should do away {0} such a system.（= put an end to）",
+   blanks:[{ph:"前置詞",ans:["with"]}], hint:"do away with ～ = ～を廃止する（= abolish）。"},
+  {num:17, template:"We must not look down {0} those unhappy people.",
+   blanks:[{ph:"前置詞",ans:["on","upon"]}], hint:"look down on ～ = ～を見下す（⇔ look up to ～）。"},
+  {num:18, template:"She is looking forward {0} her birthday party.",
+   blanks:[{ph:"前置詞",ans:["to"]}], hint:"look forward to ～ = ～を楽しみに待つ（to＋名詞・動名詞）。"},
+  {num:19, template:"We must make up {0} lost time.",
+   blanks:[{ph:"前置詞",ans:["for"]}], hint:"make up for ～ = ～を埋め合わせる（= compensate for）。"},
+  {num:20, template:"I cannot put up {0} his carelessness any longer.",
+   blanks:[{ph:"前置詞",ans:["with"]}], hint:"put up with ～ = ～を我慢する（= tolerate）。"},
+  {num:21, template:"I am not acquainted {0} the subject.",
+   blanks:[{ph:"前置詞",ans:["with"]}], hint:"be acquainted with ～ = ～をよく知っている、～に精通している。"},
+  {num:22, template:"The committee is composed {0} five members.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"be composed of ～ = ～から成る（= consist of / be made up of）。"},
+  {num:23, template:"He is quite satisfied {0} his new assistant.",
+   blanks:[{ph:"前置詞",ans:["with"]}], hint:"be satisfied with ～ = ～に満足している。"},
+  {num:24, template:"You should not ask such a question {0} her.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"ask A of B = BにAを求める（ask of は目上・フォーマルな表現）。"},
+  {num:25, template:"We congratulated her {0} her success.",
+   blanks:[{ph:"前置詞",ans:["on"]}], hint:"congratulate A on B = AのBを祝う（onに注意）。"},
+  {num:26, template:"I convinced him {0} the truth of the story.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"convince A of B = AにBを確信させる。"},
+  {num:27, template:"Too much worry often deprives us {0} our appetite.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"deprive A of B = AからBを奪う（rob A of B と同じ構造）。"},
+  {num:28, template:"My mother often helps me {0} my homework.",
+   blanks:[{ph:"前置詞",ans:["with"]}], hint:"help A with B = AのBを手伝う。"},
+  {num:29, template:"I'll inform you {0} the result of the exam.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"inform A of B = AにBを知らせる（= tell A about B）。"},
+  {num:30, template:"Urgent business kept me {0} coming yesterday.",
+   blanks:[{ph:"前置詞",ans:["from"]}], hint:"keep A from doing = Aが〜するのを妨げる（= prevent A from doing）。"},
+  {num:31, template:"I will make a true professional {0} you.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"make A of B / make B into A = BをAにする。"},
+  {num:32, template:"I mistook him {0} his brother.",
+   blanks:[{ph:"前置詞",ans:["for"]}], hint:"mistake A for B = AをBと間違える（= take A for B）。"},
+  {num:33, template:"We ordered some new books {0} abroad.",
+   blanks:[{ph:"前置詞",ans:["from"]}], hint:"order ～ from … = …から〜を注文する。"},
+  {num:34, template:"I owe my success {0} hard work and a little luck.",
+   blanks:[{ph:"前置詞",ans:["to"]}], hint:"owe A to B = AはBのおかげだ（= attribute A to B）。"},
+  {num:35, template:"The photo reminded me {0} our school days.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"remind A of B = AにBを思い出させる。"},
+  {num:36, template:"What do you require {0} me?（私に何をせよというのか）",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"require A of B = BにAを求める（ask A of B に同じ）。"},
+  {num:37, template:"He robbed her {0} her bag.",
+   blanks:[{ph:"前置詞",ans:["of"]}], hint:"rob A of B = AからBを奪う。★ steal B from A と混同しないこと。"},
+  {num:38, template:"The cow supplies us {0} milk.",
+   blanks:[{ph:"前置詞",ans:["with"]}], hint:"supply A with B = AにBを供給する（= provide A with B）。"},
+  {num:39, template:"He took the child {0} the hand.（彼は子どもの手をとった）",
+   blanks:[{ph:"前置詞",ans:["by"]}], hint:"take A by the B（体の部位） = AのBをつかむ。"},
+  {num:40, template:"Can you tell a goat {0} a sheep?",
+   blanks:[{ph:"前置詞",ans:["from"]}], hint:"tell A from B = AとBを区別する（= distinguish A from B）。"},
+  {num:41, template:"The magician turned water {0} wine.",
+   blanks:[{ph:"前置詞",ans:["into"]}], hint:"turn A into B = AをBに変える（= change A into B）。"},
+  {num:42, template:"We took it {0} granted that he would join us.",
+   blanks:[{ph:"前置詞",ans:["for"]}], hint:"take ～ for granted = 〜を当然のことと思う。"},
+  {num:43, template:"He found fault {0} my work.",
+   blanks:[{ph:"前置詞",ans:["with"]}], hint:"find fault with ～ = ～のあら探しをする、～を非難する。"},
+  {num:44, template:"Please help yourself {0} some cookies.",
+   blanks:[{ph:"前置詞",ans:["to"]}], hint:"help oneself to ～ = 〜を自分で取って食べる・飲む。"},
+];
+
+/* ═══════════════════════════════════════════
+   [A]-2  REWRITE DATA
+═══════════════════════════════════════════ */
+const A2_DATA = [
+  {num:1, src:"I insisted that he should go to school.",
+   inst:"動名詞を用いて",
+   answer:"I insisted on his going to school.",
+   hint:"insist on doing の形。that節の主語は所有格（his）＋動名詞にする。"},
+  {num:2, src:"He complained that the room was too cold.",
+   inst:"動名詞を用いて",
+   answer:"He complained of the room being too cold.",
+   hint:"complain of/about ～ = 〜について不満を言う。節の内容を動名詞句に変換する。"},
+  {num:3, src:"I am ashamed that I have done such a thing.",
+   inst:"動名詞を用いて",
+   answer:"I am ashamed of having done such a thing.",
+   hint:"be ashamed of ～ = 〜を恥じている。完了動名詞（having done）で過去の行為を表す。"},
+  {num:4, src:"I reminded him that he had promised me.",
+   inst:"動名詞を用いて",
+   answer:"I reminded him of his having promised me.",
+   hint:"remind A of B。his = 所有格（動名詞の意味上の主語）＋ having promised（完了動名詞）。"},
+];
+
+/* ═══════════════════════════════════════════
+   RENDER [A]-1
+═══════════════════════════════════════════ */
+function renderA1(){
+  const wrap = document.getElementById('a1-wrap');
+  A1_DATA.forEach((q,i)=>{
+    const id = 'a1-'+i;
+    let tpl = q.template;
+    q.blanks.forEach((b,bi)=>{
+      tpl = tpl.replace(`{${bi}}`,
+        `<input class="blank-inp" id="blank-${id}-${bi}" placeholder="${b.ph}" data-idx="${bi}" data-answers='${JSON.stringify(b.ans)}' onkeydown="if(event.key==='Enter'){event.preventDefault();gradeA1('${id}',${i})}">`
+      );
+    });
+    wrap.innerHTML += `
+    <div class="a-card" id="${id}">
+      <div class="a-head">
+        <span class="a-num">${q.num}.</span>
+        <span class="a-sent">${tpl}</span>
+      </div>
+      <div class="a-body">
+        <div class="a-actions">
+          <button class="hint-tog btn-check" onclick="gradeA1('${id}',${i})">採点</button>
+          <button class="hint-tog btn-reveal" onclick="revealA1('${id}',${i})">答えを見る</button>
+          <button class="hint-tog" onclick="resetA1('${id}',${i})">リセット</button>
+        </div>
+        <div class="a-fb" id="fb-${id}"></div>
+        <button class="hint-tog" onclick="showHint('${id}','${q.hint}')">💡 ヒント</button>
+      </div>
+    </div>`;
+  });
+}
+
+function gradeA1(id, idx){
+  const q = A1_DATA[idx];
+  const card = document.getElementById(id);
+  if(card.dataset.done) return;
+  let allOk = true;
+  q.blanks.forEach((b,bi)=>{
+    const inp = document.getElementById(`blank-${id}-${bi}`);
+    if(!inp) return;
+    const val = inp.value.trim().toLowerCase();
+    const ok = b.ans.map(a=>a.toLowerCase()).includes(val);
+    inp.classList.toggle('blank-ok', ok);
+    inp.classList.toggle('blank-ng', !ok);
+    inp.readOnly = true;
+    if(!ok) allOk = false;
+  });
+  const fb = document.getElementById('fb-'+id);
+  if(allOk){
+    fb.innerHTML = '<span class="fb-ok">✓ 正解！</span>';
+    card.dataset.done = '1'; card.dataset.correct = '1';
+  } else {
+    fb.innerHTML = `<span class="fb-ng">✗ 不正解。</span>`;
+    card.dataset.done = '1'; card.dataset.correct = '0';
+  }
+  updateAScore();
+}
+
+function revealA1(id, idx){
+  const q = A1_DATA[idx];
+  const card = document.getElementById(id);
+  q.blanks.forEach((b,bi)=>{
+    const inp = document.getElementById(`blank-${id}-${bi}`);
+    if(!inp) return;
+    inp.value = b.ans[0];
+    inp.classList.remove('blank-ok','blank-ng');
+    inp.readOnly = true;
+  });
+  document.getElementById('fb-'+id).innerHTML = '<span style="color:var(--blue)">答えを表示しました。</span>';
+  card.dataset.done = '1';
+  updateAScore();
+}
+
+function resetA1(id, idx){
+  const q = A1_DATA[idx];
+  const card = document.getElementById(id);
+  q.blanks.forEach((b,bi)=>{
+    const inp = document.getElementById(`blank-${id}-${bi}`);
+    if(!inp) return;
+    inp.value = ''; inp.readOnly = false;
+    inp.classList.remove('blank-ok','blank-ng');
+  });
+  document.getElementById('fb-'+id).innerHTML = '';
+  delete card.dataset.done; delete card.dataset.correct;
+  updateAScore();
+}
+
+/* ═══════════════════════════════════════════
+   RENDER [A]-2
+═══════════════════════════════════════════ */
+function renderA2(){
+  const wrap = document.getElementById('a2-wrap');
+  A2_DATA.forEach((q,i)=>{
+    const id = 'a2-'+i;
+    wrap.innerHTML += `
+    <div class="a-card" id="${id}">
+      <div class="a-head">
+        <span class="a-num">${q.num}.</span>
+        <span class="a-sent">${q.src} <em class="inst-badge">${q.inst}</em></span>
+      </div>
+      <div class="a-body">
+        <textarea class="rw-textarea" id="rw-${id}" placeholder="書き換えた英文を入力…" rows="2"></textarea>
+        <div class="a-fb" id="fb-${id}"></div>
+        <div class="a-actions">
+          <button class="btn btn-reveal" onclick="revealA2('${id}',${i})">模範解答を見る</button>
+          <button class="btn btn-reset" onclick="resetA2('${id}')">リセット</button>
+        </div>
+        <div style="margin-top:.5rem;font-size:12px;color:var(--muted);font-style:italic;">💡 ${q.hint}</div>
+      </div>
+    </div>`;
+  });
+}
+
+function revealA2(id, idx){
+  const ta = document.getElementById('rw-'+id);
+  ta.value = A2_DATA[idx].answer;
+  ta.classList.add('rw-revealed'); ta.readOnly = true;
+  document.getElementById('fb-'+id).innerHTML = '<span style="color:var(--blue)">模範解答を表示しました。</span>';
+  document.getElementById(id).dataset.done = '1';
+  updateAScore();
+}
+
+function resetA2(id){
+  const ta = document.getElementById('rw-'+id);
+  ta.value = ''; ta.readOnly = false; ta.classList.remove('rw-revealed');
+  document.getElementById('fb-'+id).innerHTML = '';
+  delete document.getElementById(id).dataset.done;
+  updateAScore();
+}
+
+function showHint(id, msg){
+  const fb = document.getElementById('fb-'+id);
+  fb.innerHTML = `<span style="color:var(--blue)">💡 ${msg}</span>`;
+}
+
+/* ═══════════════════════════════════════════
+   SCORE
+═══════════════════════════════════════════ */
+function updateAScore(){
+  const total = A1_DATA.length + A2_DATA.length;
+  const done1 = document.querySelectorAll('#a1-wrap .a-card[data-done]').length;
+  const done2 = document.querySelectorAll('#a2-wrap .a-card[data-done]').length;
+  const correct = document.querySelectorAll('#a1-wrap .a-card[data-correct="1"]').length;
+  const el = document.getElementById('a-score-text');
+  if(el) el.textContent = `${done1+done2} / ${total} 問回答済み　正解 ${correct} / ${A1_DATA.length} 問`;
+  updateProgLabel();
+}
+
+function gradeAll(){
+  A1_DATA.forEach((_,i)=>{ const id='a1-'+i; const c=document.getElementById(id); if(!c.dataset.done) gradeA1(id,i); });
+}
+function resetAll(){
+  A1_DATA.forEach((_,i)=>resetA1('a1-'+i,i));
+  A2_DATA.forEach((_,i)=>resetA2('a2-'+i));
+}
+
+/* ═══════════════════════════════════════════
+   [B] PASSAGES DATA
+═══════════════════════════════════════════ */
+const PASSAGES = [
+  {id:'p1', num:'1', audio:'up401mp3.mp3',
+   topic:'恋人たちの独占欲 ― rob A of B の用法',
+   sentences:[
+     {pattern:'第3文型 SVO（目的語節）',
+      tokens:[
+        {t:'The lovers',r:'S',l:'S 主語'},
+        {t:'could not bear',r:'V',l:'V 動詞（耐えられなかった）'},
+        {t:'that',r:'conj',ul:'o-clause',l:'接続詞（目的語節を導く）'},
+        {t:'the company of others',r:'S',ul:'o-clause',l:'S（節内の主語）'},
+        {t:'should rob',r:'V',ul:'o-clause',l:'V（節内の動詞）'},
+        {t:'them',r:'O',ul:'o-clause',l:'O rob A of B の A'},
+        {t:'for an instant',r:'adv',ul:'o-clause',l:'副詞句（一瞬の間）'},
+        {t:'of the delight of being together',r:'O',ul:'o-clause',l:'rob A of B の B'},
+        {t:'.',r:'plain',l:''},
+      ]
+     }
+   ],
+   vocab:[
+     {word:'bear（他動詞）',meaning:'～を我慢する（= tolerate, stand）'},
+     {word:'rob A of B',meaning:'AからBを奪う　★前置詞 of に注意'},
+     {word:'for an instant',meaning:'一瞬の間（= for a moment）'},
+     {word:'delight',meaning:'喜び・楽しみ（名詞）'},
+   ]
+  },
+  {id:'p2', num:'2', audio:'up402mp3.mp3',
+   topic:'学習の成否と環境 ― depend on の用法',
+   sentences:[
+     {pattern:'第1文型 SV（前置詞句＋関係代名詞節）',
+      tokens:[
+        {t:'The extent of your success in studying',r:'S',l:'S 主語（長い名詞句）'},
+        {t:'will depend',r:'V',l:'V 動詞（depend on ～）'},
+        {t:'in considerable measure',r:'adv',l:'副詞句（かなりの程度まで）'},
+        {t:'on the conditions',r:'adv',l:'前置詞句（depend on ～）'},
+        {t:'under which',r:'rel',ul:'adj-clause',l:'前置詞＋関係代名詞（形容詞節を導く）'},
+        {t:'you',r:'S',ul:'adj-clause',l:'S（節内の主語）'},
+        {t:'do',r:'V',ul:'adj-clause',l:'V（節内の動詞）'},
+        {t:'your work',r:'O',ul:'adj-clause',l:'O（節内の目的語）'},
+        {t:'.',r:'plain',l:''},
+      ]
+     }
+   ],
+   vocab:[
+     {word:'extent',meaning:'程度・範囲'},
+     {word:'depend on ～',meaning:'～によって決まる・～次第である'},
+     {word:'in considerable measure',meaning:'かなりの程度まで（= to a great extent）'},
+     {word:'conditions under which',meaning:'前置詞＋関係代名詞の形（重要構文）'},
+   ]
+  },
+  {id:'p3', num:'3', audio:'up403mp3.mp3',
+   topic:'犠牲を求める権利 ― confer/demand/resolve の前置詞',
+   sentences:[
+     {pattern:'第2文型 SVC（That which … / not only A but B）',
+      tokens:[
+        {t:'That which',r:'rel',ul:'s-clause',l:'S節を導く関係詞（= The thing that）'},
+        {t:'confers',r:'V',ul:'s-clause',l:'V（節内の動詞）'},
+        {t:'upon a man',r:'adv',ul:'s-clause',l:'副詞句（confer upon A B）'},
+        {t:'the right to demand of another the sacrifice of his time, his money, his passions, even his life,',r:'O',ul:'s-clause',l:'O（confer の目的語）'},
+        {t:'is',r:'V',l:'V 主節の動詞'},
+        {t:'not only',r:'conj',l:'相関接続詞 not only A but B'},
+        {t:'that he is resolved upon all these sacrifices himself,',r:'C',ul:'o-clause',l:'C補語節①（be resolved upon = 固く決意している）'},
+        {t:'but',r:'conj',l:'相関接続詞'},
+        {t:'that he has made them in advance',r:'C',ul:'o-clause',l:'C補語節②（in advance = あらかじめ）'},
+        {t:'.',r:'plain',l:''},
+      ]
+     }
+   ],
+   vocab:[
+     {word:'confer upon A B',meaning:'AにBを与える（= give A B）'},
+     {word:'demand of A B',meaning:'AにBを要求する'},
+     {word:'be resolved upon ～',meaning:'～を固く決意している'},
+     {word:'not only A but B',meaning:'AだけでなくBも（相関接続詞）'},
+     {word:'in advance',meaning:'あらかじめ・事前に（= beforehand）'},
+   ]
+  },
+  {id:'p4', num:'4', audio:'up404mp3.mp3',
+   topic:'東西対立と自己のアイデンティティ ― be for / neither A nor B',
+   sentences:[
+     {pattern:'第3文型 SVO（受動態＋目的語節）＋分詞構文',
+      tokens:[
+        {t:'Today,',r:'adv',l:'副詞（時を表す）'},
+        {t:'we',r:'S',l:'S 主語'},
+        {t:'are constantly told',r:'V',l:'V 受動態（常に言われる）'},
+        {t:'that we must choose between the West and the East.',r:'O',ul:'o-clause',l:'O 目的語節'},
+        {t:'Confronted by such a choice,',r:'adv',l:'副詞句（分詞構文 = When confronted by …）'},
+        {t:'I',r:'S',l:'S 主語'},
+        {t:'can only say',r:'V',l:'V 動詞'},
+        {t:'that,',r:'conj',ul:'o-clause',l:'接続詞（目的語節）'},
+        {t:'first and foremost,',r:'adv',ul:'o-clause',l:'副詞句（何よりもまず）'},
+        {t:'I',r:'S',ul:'o-clause',l:'S（節内の主語）'},
+        {t:'am',r:'V',ul:'o-clause',l:'V（節内の動詞）'},
+        {t:'for neither West nor East,',r:'adv',ul:'o-clause',l:'前置詞句（be for ～ = ～の味方）'},
+        {t:'but for myself —',r:'adv',ul:'o-clause',l:'前置詞句（but for = ～のために）'},
+        {t:'one of the millions who inhabit the earth.',r:'adj',l:'同格（millions を修飾）'},
+        {t:'.',r:'plain',l:''},
+      ]
+     }
+   ],
+   vocab:[
+     {word:'be confronted by ～',meaning:'～に直面する（= face）'},
+     {word:'first and foremost',meaning:'何よりもまず・第一に（= above all）'},
+     {word:'neither A nor B',meaning:'AもBもどちらでもない（相関接続詞）'},
+     {word:'be for ～',meaning:'～の味方である・～を支持する'},
+     {word:'inhabit（他動詞）',meaning:'～に住む（前置詞不要）'},
+   ]
+  },
+  {id:'p5', num:'5', audio:'up405mp3.mp3',
+   topic:'アメリカ開拓史と労働観の変遷 ― it is ～ who … 強調構文',
+   sentences:[
+     {pattern:'第2文型 SVC × 複数文（強調構文含む）',
+      tokens:[
+        {t:'Most of the people',r:'S',l:'S 主語'},
+        {t:'who settled the United States',r:'adj',ul:'adj-clause',l:'形容詞節（主語を修飾）'},
+        {t:'were',r:'V',l:'V 動詞'},
+        {t:'poor.',r:'C',l:'C 補語'},
+        {t:'The country',r:'S',l:'S 主語'},
+        {t:'they came to',r:'adj',ul:'adj-clause',l:'形容詞節（目的格の関係代名詞省略）'},
+        {t:'was',r:'V',l:'V 動詞'},
+        {t:'a wilderness.',r:'C',l:'C 補語'},
+        {t:'Land',r:'S',l:'S 主語'},
+        {t:'had to be cleared of trees',r:'V',l:'V 受動態（clear A of B = AからBを除く）'},
+        {t:'in order to make farms;',r:'adv',l:'副詞句（目的）'},
+        {t:'houses, shops and public buildings',r:'S',l:'S 主語'},
+        {t:'had to be built.',r:'V',l:'V 受動態'},
+        {t:'Everyone',r:'S',l:'S 主語'},
+        {t:'had to help build',r:'V',l:'V 動詞（help＋原形不定詞）'},
+        {t:'them.',r:'O',l:'O 目的語'},
+        {t:'Manual labour',r:'S',l:'S 主語'},
+        {t:'was highly valued.',r:'V',l:'V 受動態（be valued = 評価される）'},
+        {t:'Later',r:'adv',l:'副詞'},
+        {t:'it was',r:'V',l:'強調構文 it is ～ who …'},
+        {t:'the man who worked with his head to achieve success in business and industry',r:'S',l:'強調される主語（強調構文）'},
+        {t:'who',r:'rel',ul:'adj-clause',l:'関係詞（強調構文の that/who）'},
+        {t:'was looked up to.',r:'V',ul:'adj-clause',l:'V（look up to ～ = ～を尊敬する）'},
+      ]
+     }
+   ],
+   vocab:[
+     {word:'settle（他動詞）',meaning:'～に入植する・定住する'},
+     {word:'wilderness',meaning:'荒野・未開の地'},
+     {word:'clear A of B',meaning:'AからBを取り除く'},
+     {word:'manual labour',meaning:'肉体労働（= physical work）'},
+     {word:'work with one\'s head',meaning:'頭脳労働をする'},
+     {word:'look up to ～',meaning:'～を尊敬する（⇔ look down on）'},
+     {word:'It is ～ who … （強調構文）',meaning:'…するのは他ならぬ～だ'},
+   ]
+  },
+];
+
+/* ═══════════════════════════════════════════
+   [C] DATA
+═══════════════════════════════════════════ */
+const C_DATA = [
+  {num:1,
+   ja:"彼はその仕事をつづけました。",
+   hint:"go on を用いて",
+   point:"go on doing = 〜し続ける（= continue doing）。",
+   answer:"He went on with his work. / He went on doing the work."},
+  {num:2,
+   ja:"もちろん学生には予習が必要だ。",
+   hint:"require を用いて",
+   point:"require A of B = BにAを求める。of students の形で。",
+   answer:"Of course, preparation is required of students. / Students are required to prepare their lessons."},
+  {num:3,
+   ja:"見知らぬ人が後ろから私の肩をたたいた。",
+   hint:"pat を用いて",
+   point:"pat A on the B（体の部位） = AのBをたたく。take A by the B と同じ構造。",
+   answer:"A stranger patted me on the shoulder from behind."},
+  {num:4,
+   ja:"テレビの普及は、われわれの読書時間をかなり奪っています。",
+   hint:"deprive を用いて",
+   point:"deprive A of B = AからBを奪う。the spread of television が主語。",
+   answer:"The spread of television has deprived us of much of our reading time."},
+];
+
+/* ═══════════════════════════════════════════
+   RENDER [B] PASSAGES
+═══════════════════════════════════════════ */
+function renderPassages(){
+  const wrap = document.getElementById('passages');
+  wrap.innerHTML = '';
+  PASSAGES.forEach(p=>{
+    let sentsHtml = '';
+    p.sentences.forEach((s,si)=>{
+      const plainText = s.tokens.map(t=>t.t).join(' ');
+      const analTokens = s.tokens.map(t=>buildToken(t)).join('');
+      sentsHtml += `<div class="sent"><div class="sent-pattern">${s.pattern}</div><div class="sent-plain" id="plain-${p.id}-${si}">${plainText}</div><div class="sent-anal" id="anal-${p.id}-${si}">${analTokens}</div></div>`;
+    });
+    const vocabItems = p.vocab.map(v=>`<div class="vocab-item"><strong>${v.word}</strong> — ${v.meaning}</div>`).join('');
+    wrap.innerHTML += `<div class="pcard" id="card-${p.id}">
+      <div class="phead">
+        <span class="pnum">${p.num}.</span>
+        <button class="play-btn" id="pbtn-${p.id}" onclick="togglePlay('${p.id}')"><svg viewBox="0 0 14 12"><polygon points="2,1 12,6 2,11"/></svg></button>
+        <div class="prog-wrap" onclick="seekAudio('${p.id}',event)"><div class="prog-fill" id="prog-${p.id}"></div></div>
+        <span class="ptopic" id="ptopic-${p.id}">${p.topic}</span>
+      </div>
+      <div class="pbody">${sentsHtml}</div>
+      <div class="vocab-block" id="vocab-${p.id}"><div class="vocab-title">VOCABULARY</div><div class="vocab-list">${vocabItems}</div></div>
+      <div class="topic-bar" id="topicbar-${p.id}">Main Topic: <span>${p.topic}</span></div>
+    </div>`;
+  });
+  applyMode(currentMode);
+  const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)markViewedB(e.target.id.replace('card-',''));});},{threshold:0.3});
+  PASSAGES.forEach(p=>{const el=document.getElementById('card-'+p.id);if(el)obs.observe(el);});
+}
+
+let currentMode = 'anal'; let vocabOn = false; let topicOn = false;
+function setMode(m){
+  currentMode = m;
+  document.getElementById('tog-plain').classList.toggle('on', m==='plain');
+  document.getElementById('tog-anal').classList.toggle('on', m==='anal');
+  applyMode(m);
+  document.getElementById('legend').style.display = m==='anal' ? 'flex' : 'none';
+}
+function applyMode(m){
+  PASSAGES.forEach(p=>{
+    p.sentences.forEach((_,si)=>{
+      const pl = document.getElementById('plain-'+p.id+'-'+si);
+      const an = document.getElementById('anal-'+p.id+'-'+si);
+      if(pl) pl.style.display = m==='plain' ? 'block' : 'none';
+      if(an) an.style.display = m==='anal' ? 'flex' : 'none';
+    });
+  });
+}
+function toggleAll(type){
+  if(type==='vocab'){
+    vocabOn = !vocabOn;
+    document.getElementById('tog-vocab').classList.toggle('on', vocabOn);
+    PASSAGES.forEach(p=>{const el=document.getElementById('vocab-'+p.id);if(el)el.style.display=vocabOn?'block':'none';});
+  } else {
+    topicOn = !topicOn;
+    document.getElementById('tog-topic').classList.toggle('on', topicOn);
+    PASSAGES.forEach(p=>{
+      const el=document.getElementById('topicbar-'+p.id);if(el)el.style.display=topicOn?'block':'none';
+      const tp=document.getElementById('ptopic-'+p.id);if(tp)tp.style.display=topicOn?'inline':'none';
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════
+   RENDER [C]
+═══════════════════════════════════════════ */
+function renderC(){
+  const wrap = document.getElementById('c-wrap');
+  C_DATA.forEach((q,i)=>{
+    const id = 'c'+i;
+    wrap.innerHTML += `
+    <div class="c-card" id="card-${id}">
+      <div class="c-head">
+        <span class="c-num">${q.num}.</span>
+        <span class="c-ja">${q.ja}</span>
+        <span class="c-hint-badge">${q.hint}</span>
+      </div>
+      <div class="c-body">
+        <textarea class="c-textarea" id="ta-${id}" placeholder="英訳を入力…" rows="2"></textarea>
+        <div class="c-fb" id="fb-${id}"></div>
+        <div class="c-actions">
+          <button class="btn btn-reveal" onclick="revealC('${id}',${i})">模範訳を見る</button>
+          <button class="btn btn-reset" onclick="resetC('${id}')">リセット</button>
+        </div>
+        <div style="margin-top:.5rem;font-size:12px;color:var(--muted);font-style:italic;">
+          💡 ポイント: ${q.point}
+        </div>
+      </div>
+    </div>`;
+  });
+}
+
+function revealC(id, idx){
+  const ta = document.getElementById('ta-'+id);
+  const fb = document.getElementById('fb-'+id);
+  ta.value = C_DATA[idx].answer;
+  ta.classList.add('revealed'); ta.readOnly = true;
+  fb.textContent = '模範訳を表示しました。'; fb.className = 'c-fb hint';
+  document.getElementById('card-'+id).dataset.revealed = '1';
+  const btn = document.querySelector(`#card-${id} .btn-reveal`);
+  if(btn){btn.disabled=true;btn.style.opacity='.4';}
+  updateProgLabel();
+}
+
+function resetC(id){
+  const ta = document.getElementById('ta-'+id);
+  const fb = document.getElementById('fb-'+id);
+  ta.value = ''; ta.readOnly = false; ta.classList.remove('revealed');
+  fb.textContent = ''; fb.className = 'c-fb';
+  delete document.getElementById('card-'+id).dataset.revealed;
+  const btn = document.querySelector(`#card-${id} .btn-reveal`);
+  if(btn){btn.disabled=false;btn.style.opacity='';}
+  updateProgLabel();
+}
+
+/* ═══════════════════════════════════════════
+   AUDIO
+═══════════════════════════════════════════ */
+const AUDIO_DATA = {
+  bs: 'up4bsmp3.mp3',
+  p1: 'up401mp3.mp3',
+  p2: 'up402mp3.mp3',
+  p3: 'up403mp3.mp3',
+  p4: 'up404mp3.mp3',
+  p5: 'up405mp3.mp3',
+};
+const audios = {}; let curKey = null;
+function getAudio(key){
+  if(!audios[key]){
+    audios[key] = new Audio(AUDIO_DATA[key]||'');
+    audios[key].addEventListener('timeupdate',()=>{
+      const p=(audios[key].currentTime/(audios[key].duration||1)*100)||0;
+      const el=document.getElementById('prog-'+key);if(el)el.style.width=p+'%';
+    });
+    audios[key].addEventListener('ended',()=>{
+      setIcon(key,false);
+      const el=document.getElementById('prog-'+key);if(el)el.style.width='0%';
+      curKey=null;
+    });
+  }
+  return audios[key];
+}
+function setIcon(key,playing){
+  const btn=document.getElementById('pbtn-'+key);if(!btn)return;
+  btn.classList.toggle('playing',playing);
+  btn.querySelector('svg').innerHTML=playing?'<rect x="2" y="1" width="4" height="10"/><rect x="8" y="1" width="4" height="10"/>':'<polygon points="2,1 12,6 2,11"/>';
+}
+function togglePlay(key){
+  if(curKey&&curKey!==key){getAudio(curKey).pause();setIcon(curKey,false);}
+  const a=getAudio(key);
+  if(a.paused){a.play().catch(()=>{});setIcon(key,true);curKey=key;}
+  else{a.pause();setIcon(key,false);curKey=null;}
+}
+function seekAudio(key,e){
+  const bar=e.currentTarget;const a=getAudio(key);
+  if(a.duration)a.currentTime=(e.offsetX/bar.offsetWidth)*a.duration;
+}
+
+/* ═══════════════════════════════════════════
+   TOKEN BUILDER
+═══════════════════════════════════════════ */
+const roleClass={S:'r-S',V:'r-V',O:'r-O',C:'r-C',adv:'r-adv',adj:'r-adj',conj:'r-conj',rel:'r-rel',plain:'r-plain'};
+const ulClass={'s-clause':'ul-s-clause','o-clause':'ul-o-clause','adj-clause':'ul-adj-clause','adv-clause':'ul-adv-clause'};
+function buildToken(tok){
+  const rc=roleClass[tok.r]||'r-plain';
+  const uc=tok.ul?ulClass[tok.ul]||'':'';
+  return `<span class="tok ${rc} ${uc}">${tok.t}<span class="tip">${tok.l||''}</span></span> `;
+}
+
+/* ═══════════════════════════════════════════
+   PROGRESS
+═══════════════════════════════════════════ */
+const viewedB = new Set();
+function markViewedB(id){viewedB.add(id);updateProgLabel();}
+function updateProgLabel(){
+  const tab=document.querySelector('.nav-tab.active');if(!tab)return;
+  const tabId=TABS[Array.from(document.querySelectorAll('.nav-tab')).indexOf(tab)];
+  let pct=0;
+  if(tabId==='b'){pct=Math.round(viewedB.size/PASSAGES.length*100);}
+  else if(tabId==='a'){
+    const total=A1_DATA.length;
+    const done=document.querySelectorAll('#a1-wrap .a-card[data-done]').length;
+    pct=total>0?Math.round(done/total*100):0;
+  } else if(tabId==='c'){
+    const total=C_DATA.length;
+    const done=document.querySelectorAll('#c-wrap .c-card[data-revealed="1"]').length;
+    pct=total?Math.round(done/total*100):0;
+  } else {pct=100;}
+  document.getElementById('prog-label').textContent='進捗 '+pct+'%';
+}
+
+/* ═══════════════════════════════════════════
+   INJECT PROGRESS BAR INTO NAV
+═══════════════════════════════════════════ */
+(function(){
+  const nav=document.getElementById('top-nav');
+  const div=document.createElement('div');
+  div.style.cssText='position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border);pointer-events:none;';
+  const fill=document.createElement('div');
+  fill.id='prog-bar-fill';fill.style.cssText='height:3px;background:var(--S);width:0%;transition:width .4s;';
+  div.appendChild(fill);
+  nav.style.position='sticky';nav.style.top='0';nav.style.zIndex='300';
+  nav.appendChild(div);
+})();
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+renderA1();
+renderA2();
+renderPassages();
+renderC();
+updateProgLabel();
+</script>
+</body>
+</html>
