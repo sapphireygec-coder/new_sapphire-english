@@ -296,6 +296,31 @@ table td,table th{border-bottom-color:var(--border)!important;}
   font-size:12px;color:var(--muted);letter-spacing:.05em;
 }
 
+
+/* ══ guide panel ══ */
+.guide-section{margin-bottom:2rem;}
+.guide-section h2{font-size:15px;font-weight:700;margin:1.5rem 0 .8rem;
+  padding-left:.7rem;border-left:3px solid var(--V);color:var(--text);}
+.guide-card{background:var(--card);border:0.5px solid var(--border);
+  border-radius:12px;padding:1.1rem 1.4rem;margin-bottom:1rem;}
+.guide-card h3{font-size:14px;font-weight:700;color:var(--O);margin-bottom:.6rem;
+  padding-bottom:.4rem;border-bottom:1px solid var(--border);}
+.guide-card p{font-size:14px;line-height:1.9;color:var(--text);margin-bottom:.7rem;}
+.guide-card p:last-child{margin-bottom:0;}
+.guide-card ul{padding-left:1.4rem;margin:.4rem 0;}
+.guide-card li{font-size:14px;line-height:1.9;color:var(--text);margin-bottom:.3rem;}
+.guide-step{display:flex;gap:12px;align-items:flex-start;margin-bottom:.9rem;}
+.guide-step:last-child{margin-bottom:0;}
+.step-num{width:26px;height:26px;border-radius:50%;background:var(--S);
+  color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;margin-top:.1rem;}
+.step-body{flex:1;}
+.step-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:.2rem;}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.8;}
+.legend-guide{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:.6rem;}
+.lg-item{display:flex;align-items:center;gap:6px;font-size:13px;}
+.lg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+
 /* ══ warn badge ══ */
 .warn-badge{display:inline-block;font-size:10px;background:#2a2000;border:1px solid #7a5000;
   color:#f0ad4e;border-radius:3px;padding:1px 5px;margin-left:4px;vertical-align:middle;}
@@ -310,6 +335,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
 
 <!-- ── sticky tab nav ── -->
 <nav id="top-nav">
+  <button class="nav-tab" onclick="switchTab('guide')">取扱説明</button>
   <button class="nav-tab" onclick="switchTab('intro')">はしがき／目次</button>
   <button class="nav-tab active" onclick="switchTab('kihon')">基本例文</button>
   <button class="nav-tab" onclick="switchTab('a')">〔A〕文法</button>
@@ -497,6 +523,177 @@ table td,table th{border-bottom-color:var(--border)!important;}
     </div>
   </div>
 
+
+
+  <!-- ════════════════ 取扱説明 ════════════════ -->
+  <div id="panel-guide" class="section-panel">
+    <h1>『現代総合英語問題選』デジタル版　取扱説明書</h1>
+
+    <div class="guide-section">
+      <h2>📖 この教材について</h2>
+      <div class="guide-card">
+        <p>本教材は高校英語の文法・読解・作文を一体的に学習するデジタル問題集です。各章は以下の4つのセクションで構成されています。スマートフォン・タブレット・PCのブラウザで動作します。インターネット接続が必要です（音声再生のため）。</p>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <h2>🗂️ 各タブの使い方</h2>
+      <div class="guide-card">
+        <h3>📘 基本例文</h3>
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">音声を聞く</div>
+            <div class="step-desc">▶ボタンを押して基本例文の朗読を聞きます。シークバーで任意の位置に移動できます。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">構造ハイライトで確認</div>
+            <div class="step-desc">「構造ハイライト ON/OFF」ボタンで文法カラーを切り替えながら各例文の構造を確認します。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">一覧表で整理</div>
+            <div class="step-desc">章末の重要ルール一覧表で知識を体系的に整理します。</div>
+          </div>
+        </div>
+        <div class="legend-guide">
+          <div class="lg-item"><div class="lg-dot" style="background:#FF6B35;"></div>主語（S）</div>
+          <div class="lg-item"><div class="lg-dot" style="background:#42A5F5;"></div>動詞（V）</div>
+          <div class="lg-item"><div class="lg-dot" style="background:#FFC107;"></div>目的語（O）</div>
+          <div class="lg-item"><div class="lg-dot" style="background:#66BB6A;"></div>補語（C）</div>
+          <div class="lg-item"><div class="lg-dot" style="background:#CE93D8;"></div>副詞句・節</div>
+          <div class="lg-item"><div class="lg-dot" style="background:#F48FB1;"></div>形容詞句・節</div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3>✏️ 〔A〕文法問題</h3>
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">選択問題に答える</div>
+            <div class="step-desc">選択肢をタップして解答します。正解は緑、不正解は赤で表示され、解説が表示されます。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">穴埋め・記述問題</div>
+            <div class="step-desc">空欄に入力して「確認」ボタンで採点します。わからない場合は「答え表示」で確認できます。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">全問採点・リセット</div>
+            <div class="step-desc">「全問採点」で一括採点、「リセット」でやり直しができます。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3>📗 〔B〕読解</h3>
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">音声で英文を聞く</div>
+            <div class="step-desc">各パッセージの▶ボタンで朗読音声を再生します。まず音声だけで内容を把握しましょう。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">白文モードで読む</div>
+            <div class="step-desc">「白文」ボタンで色なしの英文を表示。自力で構造を分析してみましょう。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">5文型解析で確認</div>
+            <div class="step-desc">「5文型解析」ボタンで各語句の役割をカラーで確認。単語にカーソルを当てると詳細ラベルが表示されます。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">語彙・トピックを確認</div>
+            <div class="step-desc">「語彙」「トピック」ボタンで重要語句とテーマを確認します。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3>🖊️ 〔C〕作文</h3>
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">日本語を見て英作文</div>
+            <div class="step-desc">日本語をヒントに英文を入力します。ヒントバッジがある問題はクリックでヒントが表示されます。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">答え合わせ</div>
+            <div class="step-desc">「答え表示」で正解と解説を確認します。自分の英文と比較して表現の違いを学びましょう。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="guide-section">
+      <h2>🎯 効果的な学習の進め方</h2>
+      <div class="guide-card">
+        <h3>推奨学習フロー（1章あたり60〜90分）</h3>
+        <div class="guide-step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-title">基本例文（15分）</div>
+            <div class="step-desc">音声を聞きながら例文を音読。構造ハイライトで文型を確認し、一覧表で規則を整理する。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-title">〔A〕文法問題（20分）</div>
+            <div class="step-desc">基本例文で学んだ規則を問題で確認。間違えた問題は解説をよく読み、基本例文に戻って復習する。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-title">〔B〕読解（25分）</div>
+            <div class="step-desc">まず白文で自力読解に挑戦。その後5文型解析で答え合わせ。音声で何度も音読して定着させる。</div>
+          </div>
+        </div>
+        <div class="guide-step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-title">〔C〕作文（20分）</div>
+            <div class="step-desc">文法・読解で学んだ構文を使って英作文。答えを見た後も自力で書き直す練習を繰り返す。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-card">
+        <h3>💡 学習のコツ</h3>
+        <ul>
+          <li>音声は必ず活用する。文字と音を結びつけることで記憶が定着しやすくなります。</li>
+          <li>白文モードで自力分析してから5文型解析を見る習慣をつける。答えを先に見ると力がつきません。</li>
+          <li>間違えた問題には印をつけて、翌日もう一度解き直す。</li>
+          <li>〔C〕作文は「書いてから答えを見る」→「もう一度自力で書く」の2回サイクルが効果的。</li>
+          <li>1章を完璧にしてから次の章へ進む。進捗バーが100%になるまで繰り返しましょう。</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 
   <!-- ════════════════ はしがき／目次 ════════════════ -->
   <div id="panel-intro" class="section-panel">
@@ -761,7 +958,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
 /* ═══════════════════════════════════════════
    TAB NAVIGATION
 ═══════════════════════════════════════════ */
-const TABS=['intro','kihon','a','b','c'];
+const TABS=['guide','intro','kihon','a','b','c'];
 function switchTab(id){
   TABS.forEach(t=>{
     document.getElementById('panel-'+t).classList.toggle('active',t===id);
