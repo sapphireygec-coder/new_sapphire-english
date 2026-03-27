@@ -339,8 +339,9 @@ table td,table th{border-bottom-color:var(--border)!important;}
 
 <!-- ── sticky tab nav ── -->
 <nav id="top-nav">
+  <button class="nav-tab" onclick="switchTab('hashi')">はしがき</button>
   <button class="nav-tab" onclick="switchTab('guide')">取扱説明</button>
-  <button class="nav-tab" onclick="switchTab('intro')">はしがき／目次</button>
+  <button class="nav-tab" onclick="switchTab('intro')">目次</button>
   <button class="nav-tab active" onclick="switchTab('kihon')">基本例文</button>
   <button class="nav-tab" onclick="switchTab('a')">〔A〕文法</button>
   <button class="nav-tab" onclick="switchTab('b')">〔B〕読解</button>
@@ -352,180 +353,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
 
 
   <!-- ════════════════ はしがき・目次 ════════════════ -->
-  <div id="panel-intro" class="section-panel">
-    <h1>『現代総合英語問題選』デジタル版</h1>
-
-    <!-- はしがき -->
-    <h2>は し が き</h2>
-    <div class="preface-card">
-      <p>現在の高校英語を取り巻く環境は、50年前とは大きく様変わりしました。かつては「リーダー」「文法」「作文」と科目が細分化され、それぞれの専門教員が深く掘り下げる形態が一般的でした。現在は一冊の教科書で論理表現などを総合的に学ぶスタイルが主流となり、コミュニケーション力や速読力が重視されています。</p>
-      <p>しかし、その一方で英文法や語法に割かれる時間は減少し、読解の基礎となるべき文法体系が、実際の英文解釈に十分に応用しきれていないという課題も浮き彫りになっています。文法が単なる知識に留まり、複雑な英文を構造的に分析する「ドリル」が不足しているのが実情です。</p>
-      <p>今回リニューアルした本問題集は、こうした現代の学習空白を埋め、高2後期から高3にかけての決定版となるよう編集されました。</p>
-
-      <h2>デジタルとアナログの融合による「自習」の革新</h2>
-      <p>本書の最大の特徴は、時代の要請に応えたAI駆使型デジタル自習教材との連携です。</p>
-      <ul>
-        <li><strong>5文型のビジュアル化：</strong>読解問題では、複雑な構造や変則的な構文を視覚的に解析。視覚的な理解により、解釈のスピードを劇的に向上させます。</li>
-        <li><strong>反復練習の最適化：</strong>デジタル版では、生徒個々の習熟度に応じた反復練習が可能であり、紙面では省略せざるを得なかった詳細な解説まで網羅しています。</li>
-      </ul>
-
-      <h2>文法・読解・作文を一本の線でつなぐ</h2>
-      <p>本書は、瑣末な知識の暗記ではなく、英語力の「根本」を鍛えることに主眼を置いています。</p>
-      <ul>
-        <li><strong>体系的な文法配列：</strong>平易な例文から始まり、問題を解き進めることで知識が自然と整理されます。</li>
-        <li><strong>解釈への橋渡し：</strong>文法問題そのものが、複雑な内容を含まない短文による「解釈練習」を兼ねています。</li>
-        <li><strong>総合力の完成：</strong>精選された解釈問題を通じて、文法・語法がどのように読解や表現（英作文）に結びつくかを体感できる構成です。</li>
-      </ul>
-      <p>昨今の大学入試や英語資格試験の重点は、重箱の隅をつつくような知識ではなく、英語の構造を正しく見抜く力へとシフトしています。本書一冊をマスターすれば、入試準備はもちろん、実社会で通用する英語の土台作りはほぼ完了すると言っても過言ではありません。</p>
-      <p>この問題集が、皆さんの英語学習に新しい視野を開き、揺るぎない自信へとつながることを願ってやみません。</p>
-      <div class="preface-sig">２０２６年３月　　編　者</div>
-    </div>
-
-    <!-- 目次 -->
-    <h2>目　次</h2>
-    <div class="toc-wrap">
-      <div class="toc-item toc-current">
-        <span class="toc-num">1</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">主語と動詞<span class="toc-badge">学習中</span></div>
-          <div class="toc-point">名詞・動名詞・不定詞・名詞節が主語になる場合／主語と動詞の一致</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">2</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">目的語</div>
-          <div class="toc-point">他動詞の目的語／名詞節・不定詞・動名詞が目的語になる場合</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">3</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">補語</div>
-          <div class="toc-point">第2文型・第5文型の補語／形容詞・名詞・不定詞が補語になる場合</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">4</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">動詞と前置詞</div>
-          <div class="toc-point">自動詞＋前置詞／群動詞／前置詞の目的語</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">5</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">Itの構文</div>
-          <div class="toc-point">形式主語It／形式目的語It／強調構文</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">6</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">語順</div>
-          <div class="toc-point">倒置・強調・省略／there構文</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">7</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">時制</div>
-          <div class="toc-point">時制の一致／完了形／進行形の用法</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">8</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">仮定法</div>
-          <div class="toc-point">仮定法過去・過去完了／wish／as if</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">9</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">法助動詞</div>
-          <div class="toc-point">must・should・would・can・mayの用法</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">10</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">不定詞</div>
-          <div class="toc-point">to不定詞の名詞的・形容詞的・副詞的用法／独立不定詞</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">11</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">分詞</div>
-          <div class="toc-point">現在分詞・過去分詞の形容詞用法／分詞構文</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">12</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">名詞構文</div>
-          <div class="toc-point">動詞・形容詞から派生した名詞を中心とする構文</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">13</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">関係詞（1）</div>
-          <div class="toc-point">関係代名詞who・which・that／関係副詞</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">14</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">関係詞（2）</div>
-          <div class="toc-point">複合関係詞／関係詞の省略／制限用法と非制限用法</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">15</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">副詞節（1）</div>
-          <div class="toc-point">時・条件・理由を表す副詞節</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">16</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">副詞節（2）</div>
-          <div class="toc-point">譲歩・結果・目的を表す副詞節</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">17</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">比較構文（1）</div>
-          <div class="toc-point">原級・比較級・最上級の基本用法</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">18</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">比較構文（2）</div>
-          <div class="toc-point">比較を用いた慣用表現／比較の強調</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">19</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">否定構文</div>
-          <div class="toc-point">全体否定・部分否定／二重否定／否定の慣用表現</div>
-        </div>
-      </div>
-      <div class="toc-item">
-        <span class="toc-num">20</span>
-        <div class="toc-item-inner">
-          <div class="toc-title">相関語句・共通関係</div>
-          <div class="toc-point">both…and／either…or／not only…but also／共通関係</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 
 
 
@@ -701,66 +529,60 @@ table td,table th{border-bottom-color:var(--border)!important;}
 
   <!-- ════════════════ はしがき／目次 ════════════════ -->
   <div id="panel-intro" class="section-panel">
-    <h1>『現代総合英語問題選』デジタル版</h1>
+    <h1>目 次</h1>
+    <div class="intro-section">
+      <div class="toc-grid">
+        <div class="toc-item current"><span class="toc-num">1</span><div class="toc-info"><div class="toc-title">主語と動詞</div><div class="toc-points">名詞・動名詞・不定詞・名詞節が主語になる場合／主語と動詞の一致</div></div><span class="toc-badge">学習中</span></div>
+        <div class="toc-item"><span class="toc-num">2</span><div class="toc-info"><div class="toc-title">目的語</div><div class="toc-points">名詞節・動名詞・不定詞が目的語になる場合／目的語の位置と語順</div></div></div>
+        <div class="toc-item"><span class="toc-num">3</span><div class="toc-info"><div class="toc-title">補語</div><div class="toc-points">第2文型・第5文型の補語／形容詞・名詞・不定詞・分詞が補語になる場合</div></div></div>
+        <div class="toc-item"><span class="toc-num">4</span><div class="toc-info"><div class="toc-title">動詞と前置詞</div><div class="toc-points">自動詞＋前置詞／群動詞／前置詞の目的語／rob A of B など重要構文</div></div></div>
+        <div class="toc-item"><span class="toc-num">5</span><div class="toc-info"><div class="toc-title">It 構文</div><div class="toc-points">形式主語・形式目的語／It is … that 強調構文</div></div></div>
+        <div class="toc-item"><span class="toc-num">6</span><div class="toc-info"><div class="toc-title">語順</div><div class="toc-points">倒置・省略・挿入／語順に関わる重要表現</div></div></div>
+        <div class="toc-item"><span class="toc-num">7</span><div class="toc-info"><div class="toc-title">時制・一致</div><div class="toc-points">時制の一致／完了形の用法／時を表す副詞節</div></div></div>
+        <div class="toc-item"><span class="toc-num">8</span><div class="toc-info"><div class="toc-title">態</div><div class="toc-points">能動態と受動態／第4・5文型の受動態／受動態になれない動詞</div></div></div>
+        <div class="toc-item"><span class="toc-num">9</span><div class="toc-info"><div class="toc-title">仮定法</div><div class="toc-points">仮定法過去・過去完了／wish・as if／without などを用いた仮定</div></div></div>
+        <div class="toc-item"><span class="toc-num">10</span><div class="toc-info"><div class="toc-title">法助動詞</div><div class="toc-points">must／should／would／can などの意味と用法／推量・義務・許可</div></div></div>
+        <div class="toc-item"><span class="toc-num">11</span><div class="toc-info"><div class="toc-title">準動詞⑴</div><div class="toc-points">不定詞・動名詞の名詞的・形容詞的・副詞的用法／to do vs doing</div></div></div>
+        <div class="toc-item"><span class="toc-num">12</span><div class="toc-info"><div class="toc-title">準動詞⑵</div><div class="toc-points">分詞の形容詞的用法／分詞構文／知覚動詞・使役動詞との結合</div></div></div>
+        <div class="toc-item"><span class="toc-num">13</span><div class="toc-info"><div class="toc-title">名詞構造</div><div class="toc-points">同格表現／名詞節（that節・疑問節・関係節）／抽象名詞の用法</div></div></div>
+        <div class="toc-item"><span class="toc-num">14</span><div class="toc-info"><div class="toc-title">関係詞</div><div class="toc-points">関係代名詞・関係副詞の用法／制限用法と非制限用法／複合関係詞</div></div></div>
+        <div class="toc-item"><span class="toc-num">15</span><div class="toc-info"><div class="toc-title">副詞節</div><div class="toc-points">時・条件・理由・目的・譲歩・結果・様態の副詞節</div></div></div>
+        <div class="toc-item"><span class="toc-num">16</span><div class="toc-info"><div class="toc-title">比較</div><div class="toc-points">原級・比較級・最上級の基本用法／比較を用いた重要表現・強調</div></div></div>
+        <div class="toc-item"><span class="toc-num">17</span><div class="toc-info"><div class="toc-title">否定構文</div><div class="toc-points">全否定・部分否定／二重否定・準否定語／否定を含む慣用表現</div></div></div>
+        <div class="toc-item"><span class="toc-num">18</span><div class="toc-info"><div class="toc-title">強調・倒置・省略</div><div class="toc-points">強調構文／倒置のパターン／省略と代用表現</div></div></div>
+        <div class="toc-item"><span class="toc-num">19</span><div class="toc-info"><div class="toc-title">接続・論理マーカー</div><div class="toc-points">等位接続詞・従属接続詞／論理展開を示す副詞・表現</div></div></div>
+        <div class="toc-item"><span class="toc-num">20</span><div class="toc-info"><div class="toc-title">相関語句</div><div class="toc-points">both…and／either…or／not only…but also／so…that など</div></div></div>
+      </div>
+    </div>
 
+  </div>
+  </div>
+
+  <!-- ════════════ はしがき ════════════ -->
+  <div id="panel-hashi" class="section-panel">
+    <h1>『現代総合英語問題選』デジタル版</h1>
     <div class="intro-section">
       <h2>は し が き</h2>
       <div class="intro-text">
         <p>現在の高校英語を取り巻く環境は、50年前とは大きく様変わりしました。かつては「リーダー」「文法」「作文」と科目が細分化され、それぞれの専門教員が深く掘り下げる形態が一般的でした。現在は一冊の教科書で論理表現などを総合的に学ぶスタイルが主流となり、コミュニケーション力や速読力が重視されています。</p>
         <p>しかし、その一方で英文法や語法に割かれる時間は減少し、読解の基礎となるべき文法体系が、実際の英文解釈に十分に応用しきれていないという課題も浮き彫りになっています。文法が単なる知識に留まり、複雑な英文を構造的に分析する「ドリル」が不足しているのが実情です。</p>
         <p>今回リニューアルした本問題集は、こうした現代の学習空白を埋め、高２後期から高３にかけての決定版となるよう編集されました。</p>
-
         <div class="section-head">デジタルとアナログの融合による「自習」の革新</div>
         <p>本書の最大の特徴は、時代の要請に応えたAI駆使型デジタル自習教材との連携です。</p>
         <ul>
           <li><strong>5文型のビジュアル化：</strong>読解問題では、複雑な構造や変則的な構文を視覚的に解析。視覚的な理解により、解釈のスピードを劇的に向上させます。</li>
           <li><strong>反復練習の最適化：</strong>デジタル版では、生徒個々の習熟度に応じた反復練習が可能であり、紙面では省略せざるを得なかった詳細な解説まで網羅しています。</li>
         </ul>
-
         <div class="section-head">文法・読解・作文を一本の線でつなぐ</div>
         <p>本書は、瑣末な知識の暗記ではなく、英語力の「根本」を鍛えることに主眼を置いています。</p>
         <ul>
           <li><strong>体系的な文法配列：</strong>平易な例文から始まり、問題を解き進めることで知識が自然と整理されます。</li>
-          <li><strong>解釈への橋渡し：</strong>文法問題そのものが、複雑な内容を含まない短文による「解釈練習」を兼ねています。</li>
-          <li><strong>総合力の完成：</strong>精選された解釈問題を通じて、文法・語法がどのように読解や表現（英作文）に結びつくかを体感できる構成です。</li>
+          <li><strong>解釈への橋渡し：</strong>文法問題そのものが「解釈練習」を兼ねています。</li>
+          <li><strong>総合力の完成：</strong>文法・語法がどのように読解や英作文に結びつくかを体感できる構成です。</li>
         </ul>
-
         <p>昨今の大学入試や英語資格試験の重点は、重箱の隅をつつくような知識ではなく、英語の構造を正しく見抜く力へとシフトしています。本書一冊をマスターすれば、入試準備はもちろん、実社会で通用する英語の土台作りはほぼ完了すると言っても過言ではありません。</p>
         <p>この問題集が、皆さんの英語学習に新しい視野を開き、揺るぎない自信へとつながることを願ってやみません。</p>
         <div class="date">２０２６年３月　編 者</div>
-      </div>
-    </div>
-
-    <div class="intro-section">
-      <h2>目 次</h2>
-      <div class="toc-grid">
-        <div class="toc-item current">
-          <span class="toc-num">1</span>
-          <div class="toc-info">
-            <div class="toc-title">主語と動詞</div>
-            <div class="toc-points">名詞・動名詞・不定詞・名詞節が主語になる場合／主語と動詞の一致</div>
-          </div>
-          <span class="toc-badge">学習中</span>
-        </div>
-        <div class="toc-item"><span class="toc-num">2</span><div class="toc-info"><div class="toc-title">目的語</div><div class="toc-points">名詞節・動名詞・不定詞が目的語になる場合</div></div></div>
-        <div class="toc-item"><span class="toc-num">3</span><div class="toc-info"><div class="toc-title">補語</div><div class="toc-points">名詞・形容詞・句・節が補語になる場合</div></div></div>
-        <div class="toc-item"><span class="toc-num">4</span><div class="toc-info"><div class="toc-title">動詞と前置詞</div><div class="toc-points">自動詞・他動詞の区別／前置詞の用法</div></div></div>
-        <div class="toc-item"><span class="toc-num">5</span><div class="toc-info"><div class="toc-title">It の構文</div><div class="toc-points">形式主語・形式目的語／強調構文</div></div></div>
-        <div class="toc-item"><span class="toc-num">6</span><div class="toc-info"><div class="toc-title">語順</div><div class="toc-points">倒置・省略・挿入</div></div></div>
-        <div class="toc-item"><span class="toc-num">7</span><div class="toc-info"><div class="toc-title">時制</div><div class="toc-points">時制の一致／完了形の用法</div></div></div>
-        <div class="toc-item"><span class="toc-num">8</span><div class="toc-info"><div class="toc-title">仮定法</div><div class="toc-points">仮定法過去・過去完了／wish・as if</div></div></div>
-        <div class="toc-item"><span class="toc-num">9</span><div class="toc-info"><div class="toc-title">法助動詞</div><div class="toc-points">must／should／would／can などの意味と用法</div></div></div>
-        <div class="toc-item"><span class="toc-num">10</span><div class="toc-info"><div class="toc-title">不定詞</div><div class="toc-points">名詞的・形容詞的・副詞的用法／独立不定詞</div></div></div>
-        <div class="toc-item"><span class="toc-num">11</span><div class="toc-info"><div class="toc-title">分詞</div><div class="toc-points">分詞構文／知覚動詞・使役動詞との結合</div></div></div>
-        <div class="toc-item"><span class="toc-num">12</span><div class="toc-info"><div class="toc-title">名詞構文</div><div class="toc-points">動詞・形容詞の名詞化／抽象名詞の用法</div></div></div>
-        <div class="toc-item"><span class="toc-num">13</span><div class="toc-info"><div class="toc-title">関係詞 (1)</div><div class="toc-points">関係代名詞の用法／制限用法と非制限用法</div></div></div>
-        <div class="toc-item"><span class="toc-num">14</span><div class="toc-info"><div class="toc-title">関係詞 (2)</div><div class="toc-points">関係副詞／複合関係詞の用法</div></div></div>
-        <div class="toc-item"><span class="toc-num">15</span><div class="toc-info"><div class="toc-title">副詞節 (1)</div><div class="toc-points">時・条件・理由・目的の副詞節</div></div></div>
-        <div class="toc-item"><span class="toc-num">16</span><div class="toc-info"><div class="toc-title">副詞節 (2)</div><div class="toc-points">譲歩・結果・様態の副詞節</div></div></div>
-        <div class="toc-item"><span class="toc-num">17</span><div class="toc-info"><div class="toc-title">比較構文 (1)</div><div class="toc-points">原級・比較級・最上級の基本用法</div></div></div>
-        <div class="toc-item"><span class="toc-num">18</span><div class="toc-info"><div class="toc-title">比較構文 (2)</div><div class="toc-points">比較を用いた重要表現／比較の強調</div></div></div>
-        <div class="toc-item"><span class="toc-num">19</span><div class="toc-info"><div class="toc-title">否定構文</div><div class="toc-points">全否定・部分否定／二重否定・準否定語</div></div></div>
-        <div class="toc-item"><span class="toc-num">20</span><div class="toc-info"><div class="toc-title">相関語句・共通関係</div><div class="toc-points">both…and／either…or／not only…but also など</div></div></div>
       </div>
     </div>
   </div>
@@ -962,7 +784,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
 /* ═══════════════════════════════════════════
    TAB NAVIGATION
 ═══════════════════════════════════════════ */
-const TABS=['guide','intro','kihon','a','b','c'];
+const TABS=['hashi','guide','intro','kihon','a','b','c'];
 function switchTab(id){
   TABS.forEach(t=>{
     document.getElementById('panel-'+t).classList.toggle('active',t===id);
