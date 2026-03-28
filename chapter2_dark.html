@@ -987,7 +987,8 @@ const PASSAGES = [
      {t:"think",r:"V",l:"V（動詞）"},
      {t:"we are all born",r:"plain",ul:"o-clause",l:"O節（第1のthat節内・主節）"},
      {t:"with the gift for enjoying beautiful things,",r:"adv",ul:"o-clause",l:"副詞句（that節内）"},
-     {t:"but that",r:"conj",ul:"o-clause",l:"接続詞（並列のthat節を導く）"},
+     {t:"but",r:"conj",l:"接続詞（逆接）"},
+     {t:"that",r:"conj",ul:"o-clause",l:"接続詞（that節を導く）"},
      {t:"we",r:"S",ul:"o-clause",l:"S（第2のthat節内）"},
      {t:"are indifferent",r:"V",ul:"o-clause",l:"V（第2のthat節内）"},
      {t:"to many of them",r:"adv",ul:"o-clause",l:"副詞句"},
@@ -1068,7 +1069,11 @@ const PASSAGES = [
      {t:"if any of my friends know",r:"O",ul:"o-clause",l:"O節（if節 ― 〜かどうか）"},
      {t:"that I know of their faults.",r:"O",ul:"o-clause",l:"O節（know の目的語 ― that節）"},
    ]},
-     {pattern:"第3文型 SVO（in order that節・目的を示す副詞節）",tokens:[
+     {pattern:"第1文型 SV（In spite of ― 前置詞句）",tokens:[
+     {t:"In spite of the pain",r:"adv",l:"副詞句（前置詞句）"},
+     {t:"that our friends' faults cause us,",r:"adj",ul:"adj-clause",l:"関係詞節（pain修飾）"},
+   ]},
+   {pattern:"第3文型 SVO（in order that節・目的を示す副詞節）",tokens:[
        {t:"we",r:"S",l:"S（主語）"},
        {t:"keep up",r:"V",l:"V（動詞）"},
        {t:"a pretence of blindness",r:"O",l:"O（目的語）"},
