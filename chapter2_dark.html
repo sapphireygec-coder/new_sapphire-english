@@ -987,7 +987,7 @@ const PASSAGES = [
      {t:"think",r:"V",l:"V（動詞）"},
      {t:"we are all born",r:"plain",ul:"o-clause",l:"O節（第1のthat節内・主節）"},
      {t:"with the gift for enjoying beautiful things,",r:"adv",ul:"o-clause",l:"副詞句（that節内）"},
-     {t:"but that",r:"conj",l:"接続詞（並列のthat節を導く）"},
+     {t:"but that",r:"conj",ul:"o-clause",l:"接続詞（並列のthat節を導く）"},
      {t:"we",r:"S",ul:"o-clause",l:"S（第2のthat節内）"},
      {t:"are indifferent",r:"V",ul:"o-clause",l:"V（第2のthat節内）"},
      {t:"to many of them",r:"adv",ul:"o-clause",l:"副詞句"},
@@ -1008,13 +1008,13 @@ const PASSAGES = [
    {pattern:"第3文型 SVO（不定詞句が目的語・3つ並列）",tokens:[
      {t:"I",r:"S",l:"S（主語）"},
      {t:"love",r:"V",l:"V（動詞）"},
-     {t:"to come upon a plant",r:"O",ul:"o-clause",l:"O（不定詞句①）"},
+     {t:"to come upon a plant",r:"O",l:"O（不定詞句①）"},
      {t:"which is unknown to me,",r:"rel",ul:"adj-clause",l:"関係詞節（plant修飾）"},
      {t:"and,",r:"conj",l:"接続詞"},
      {t:"with the help of my book,",r:"adv",l:"副詞句"},
-     {t:"to identify it",r:"O",ul:"o-clause",l:"O（不定詞句②・並列）"},
+     {t:"to identify it",r:"O",l:"O（不定詞句②・並列）"},
      {t:"and",r:"conj",l:"接続詞"},
-     {t:"to greet it by name",r:"O",ul:"o-clause",l:"O（不定詞句③・並列）"},
+     {t:"to greet it by name",r:"O",l:"O（不定詞句③・並列）"},
      {t:"when next it shines beside my path.",r:"adv",ul:"adv-clause",l:"副詞節（時）"}
    ]}]},
   {id:"b4",num:4,topic:"歴史家が首相であることの意義",
@@ -1023,14 +1023,14 @@ const PASSAGES = [
      {t:"It",r:"S",l:"S（形式主語）"},
      {t:"is",r:"V",l:"V（動詞）"},
      {t:"a great thing",r:"C",l:"C（補語）"},
-     {t:"to have a historian as Prime Minister;",r:"S",ul:"s-clause",l:"真主語（不定詞句）"},
-     {t:"since",r:"conj",l:"接続詞（理由）"},
+     {t:"to have a historian as Prime Minister;",r:"S",l:"真主語（不定詞句）"},
+     {t:"since",r:"conj",ul:"adv-clause",l:"接続詞（理由）"},
      {t:"he",r:"S",ul:"adv-clause",l:"S（since節内）"},
      {t:"understands",r:"V",ul:"adv-clause",l:"V（since節内）"},
-     {t:"the state of affairs imposed upon us by our position in Europe and the world,",r:"O",ul:"o-clause",l:"O①（understands の目的語）"},
-     {t:"the tradition of our policy,",r:"O",ul:"o-clause",l:"O②（並列）"},
-     {t:"and our historic role",r:"O",ul:"o-clause",l:"O③（並列）"},
-     {t:"and all that depends upon it.",r:"O",ul:"o-clause",l:"O④（並列・that=関係代名詞）"}
+     {t:"the state of affairs imposed upon us by our position in Europe and the world,",r:"O",l:"O①（understands の目的語）"},
+     {t:"the tradition of our policy,",r:"O",l:"O②（並列）"},
+     {t:"and our historic role",r:"O",l:"O③（並列）"},
+     {t:"and all that depends upon it.",r:"O",l:"O④（並列・that=関係代名詞）"}
    ]}]},
   {id:"b5",num:5,topic:"読書が人生の目的を与える",
    vocab:[{word:"autobiography",meaning:"自伝"},{word:"purpose in life",meaning:"人生の目的"},{word:"turn aside from",meaning:"〜から離れる"},{word:"profession",meaning:"職業（専門的な）"}],
@@ -1040,16 +1040,16 @@ const PASSAGES = [
        {t:"and",r:"conj",l:"接続詞"},
        {t:"note",r:"V",l:"V（命令文・並列）"},
        {t:"how often a man will tell you",r:"O",ul:"o-clause",l:"O節（間接疑問・noteの目的語）"},
-       {t:"how by reading a book",r:"adv",ul:"o-clause",l:"副詞句（how節内）"},
-       {t:"he found his purpose in life.",r:"plain",ul:"o-clause",l:"how節内の主節"}
+       {t:"how by reading a book",r:"adv",l:"副詞句（how節内）"},
+       {t:"he found his purpose in life.",r:"plain",l:"how節内の主節"}
      ]},
      {pattern:"第3文型 SVO（how節が目的語・what節を含む）",tokens:[
        {t:"You",r:"S",l:"S（主語）"},
        {t:"will see",r:"V",l:"V（動詞）"},
        {t:"how he turned aside",r:"O",ul:"o-clause",l:"O節（間接疑問・seeの目的語）"},
-       {t:"from what he was doing",r:"adv",ul:"o-clause",l:"副詞句（what節＝関係代名詞what）"},
-       {t:"and began to study at once",r:"V",ul:"o-clause",l:"V（how節内・並列）"},
-       {t:"for a new profession.",r:"adv",ul:"o-clause",l:"副詞句（how節内）"}
+       {t:"from what he was doing",r:"adv",l:"副詞句（what節＝関係代名詞what）"},
+       {t:"and began to study at once",r:"V",l:"V（how節内・並列）"},
+       {t:"for a new profession.",r:"adv",l:"副詞句（how節内）"}
      ]}
    ]},
   {id:"b6",num:6,topic:"友人の欠点への沈黙と相互寛容",
@@ -1062,6 +1062,12 @@ const PASSAGES = [
        {t:"if I have ever warned even an intimate friend",r:"O",ul:"o-clause",l:"O節（if節＝〜かどうか）"},
        {t:"against one of his minor faults.",r:"adv",ul:"o-clause",l:"副詞句（if節内）"}
      ]},
+   {pattern:"第3文型 SVO（if節が目的語・doubt の用法②）",tokens:[
+     {t:"I",r:"S",l:"S（主語）"},
+     {t:"doubt",r:"V",l:"V（動詞）"},
+     {t:"if any of my friends know",r:"O",ul:"o-clause",l:"O節（if節 ― 〜かどうか）"},
+     {t:"that I know of their faults.",r:"O",ul:"o-clause",l:"O節（know の目的語 ― that節）"},
+   ]},
      {pattern:"第3文型 SVO（in order that節・目的を示す副詞節）",tokens:[
        {t:"we",r:"S",l:"S（主語）"},
        {t:"keep up",r:"V",l:"V（動詞）"},
