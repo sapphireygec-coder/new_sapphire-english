@@ -18,7 +18,6 @@
 body{font-family:"Times New Roman","游明朝","YuMincho","Hiragino Mincho ProN",Georgia,serif;
   background:var(--bg);color:var(--text);font-size:15px;}
 
-/* ══ sticky nav ══ */
 #top-nav{
   position:sticky;top:0;z-index:300;
   background:var(--card);border-bottom:1.5px solid var(--border);
@@ -34,18 +33,15 @@ body{font-family:"Times New Roman","游明朝","YuMincho","Hiragino Mincho ProN"
 .nav-tab.active{color:var(--text);border-bottom-color:var(--S);}
 .nav-tab:hover:not(.active){background:var(--tag-bg);}
 
-/* ══ layout ══ */
 .app{max-width:900px;margin:0 auto;padding:1.5rem 1rem 5rem;}
 .section-panel{display:none;}
 .section-panel.active{display:block;}
 
-/* ══ headings ══ */
 h1{font-size:20px;font-weight:700;border-bottom:2px solid var(--S);
    padding-bottom:.5rem;margin-bottom:1.5rem;color:var(--text);}
 h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
    padding-left:.7rem;border-left:3px solid var(--O);color:var(--text);}
 
-/* ══ legend / controls ══ */
 .ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.2rem;align-items:center;}
 .tog{padding:5px 14px;border-radius:99px;border:1.5px solid var(--border);
      background:var(--card);font-size:13px;cursor:pointer;transition:all .15s;
@@ -58,32 +54,20 @@ h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
 .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 .ul-swatch{width:28px;height:4px;border-radius:2px;flex-shrink:0;}
 
-/* ══ passage card ══ */
 .pcard{background:var(--card);border:0.5px solid var(--border);
   border-radius:12px;margin-bottom:1.5rem;overflow:hidden;}
 .phead{display:flex;align-items:center;gap:10px;padding:.85rem 1.1rem;
   border-bottom:0.5px solid var(--border);}
 .pnum{font-size:13px;font-weight:700;color:var(--muted);min-width:24px;}
-.play-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid #555;
-  background:var(--card);cursor:pointer;display:flex;align-items:center;
-  justify-content:center;flex-shrink:0;font-family:inherit;}
-.play-btn:hover{border-color:var(--text);background:var(--tag-bg);}
-.play-btn.playing{background:var(--S);border-color:var(--S);}
-.play-btn svg{width:12px;height:12px;fill:#888;}
-.play-btn.playing svg{fill:#fff;}
-.prog-wrap{flex:1;height:3px;background:var(--border);border-radius:2px;cursor:pointer;}
-.prog-fill{height:3px;background:var(--S);border-radius:2px;width:0%;transition:width .1s linear;}
 .ptopic{font-size:13px;font-weight:600;color:var(--text);flex:1;display:none;}
 .pbody{padding:1rem 1.1rem;}
 
-/* ══ sentences ══ */
 .sent{margin-bottom:1.2rem;}
 .sent-pattern{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;
   margin-bottom:.55rem;padding:3px 8px;background:var(--tag-bg);border-radius:4px;display:inline-block;}
 .sent-plain{font-size:15px;line-height:2.1;display:none;}
 .sent-anal{font-size:15px;line-height:2.6;display:none;flex-wrap:wrap;gap:2px 0;align-items:baseline;}
 
-/* ══ token ══ */
 .tok{display:inline;position:relative;cursor:default;padding:0 1px;white-space:pre-wrap;}
 .tok .tip{display:none;position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
   background:#333;color:#fff;font-size:11px;padding:3px 7px;border-radius:5px;
@@ -105,16 +89,30 @@ h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
 .ul-adv-clause{text-decoration:underline;text-decoration-color:var(--adv);
   text-decoration-thickness:2.5px;text-underline-offset:2px;}
 
-/* ══ vocab / topic ══ */
 .vocab-block{display:none;border-top:0.5px solid var(--border);padding:.75rem 1.1rem;}
 .vocab-title{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em;margin-bottom:.5rem;}
 .vocab-list{display:flex;flex-wrap:wrap;gap:6px;}
 .vocab-item{background:var(--tag-bg);border-radius:6px;padding:4px 10px;font-size:13px;}
 .vocab-item strong{color:var(--V);}
-.topic-bar{display:none;border-top:0.5px solid var(--border);padding:.6rem 1.1rem;font-size:13px;}
-.topic-bar span{font-weight:600;color:var(--rel);}
 
-/* ══ 基本例文 ══ */
+/* ── 全文訳バー（旧 topic-bar を全文訳に変更） ── */
+.topic-bar{
+  display:none;
+  border-top:0.5px solid var(--border);
+  padding:.75rem 1.1rem;
+  font-size:13px;
+  line-height:1.85;
+  background:rgba(100,181,246,.05);
+}
+.topic-bar .trans-label{
+  font-size:11px;font-weight:700;color:var(--blue);
+  letter-spacing:.06em;display:block;margin-bottom:.35rem;
+}
+.topic-bar .trans-body{
+  color:var(--text);font-weight:normal;
+  font-family:"游明朝","YuMincho","Hiragino Mincho ProN",Georgia,serif;
+}
+
 .kihon-card{background:var(--card);border:0.5px solid var(--border);
   border-radius:12px;margin-bottom:1.2rem;overflow:hidden;}
 .kihon-head{padding:.65rem 1.1rem;background:var(--tag-bg);
@@ -133,9 +131,7 @@ h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
 .kh-inf{color:var(--C);font-style:italic;}
 .kh-ger{color:var(--rel);font-style:italic;}
 .kh-that{color:var(--conj);}
-/* O優先ルール：目的語クラスと組み合わせた場合は金色 */
 .kh-o.kh-inf,.kh-o.kh-ger,.kh-o.kh-that{color:var(--O);font-weight:700;}
-/* S優先ルール：主語クラスと組み合わせた場合はオレンジ */
 .kh-s.kh-inf,.kh-s.kh-ger,.kh-s.kh-that{color:var(--S);font-weight:700;}
 .highlight-off .kh-s,.highlight-off .kh-v,.highlight-off .kh-o,
 .highlight-off .kh-c,.highlight-off .kh-inf,.highlight-off .kh-ger,.highlight-off .kh-that{
@@ -143,7 +139,6 @@ h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
 .struct-note{display:inline-block;background:var(--tag-bg);border-radius:4px;
   padding:2px 6px;font-size:11px;color:var(--muted);margin-top:.3rem;}
 
-/* ══ [A] 文法問題 ══ */
 .a-card{background:var(--card);border:0.5px solid var(--border);border-radius:10px;margin-bottom:1rem;overflow:hidden;}
 .a-head{display:flex;gap:.7rem;align-items:baseline;padding:.75rem 1.1rem;border-bottom:0.5px solid var(--border);background:var(--tag-bg);}
 .a-num{font-size:13px;font-weight:700;color:var(--muted);min-width:1.4rem;flex-shrink:0;}
@@ -176,7 +171,6 @@ h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
 .rw-textarea:focus{border-color:var(--V);}
 .rw-textarea.rw-revealed{border-color:#444;background:#1a1a1a;color:#666;}
 
-/* ══ [C] 作文 ══ */
 .c-card{background:var(--card);border:0.5px solid var(--border);
   border-radius:12px;margin-bottom:1.2rem;overflow:hidden;}
 .c-head{display:flex;align-items:center;gap:10px;padding:.75rem 1.1rem;
@@ -203,17 +197,13 @@ h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
 .c-fb{font-size:12px;margin-top:.4rem;min-height:1rem;color:var(--muted);font-style:italic;}
 .c-fb.hint{color:var(--blue);}
 
-/* ══ progress ══ */
 #prog-label{font-size:11px;color:var(--muted);padding:.35rem .8rem;
   white-space:nowrap;border-left:1px solid var(--border);}
 
-/* ══ table ══ */
 table{color:var(--text);}
 table th{color:var(--muted);background:var(--tag-bg);}
 table td,table th{border-bottom-color:var(--border)!important;}
 
-
-/* ══ audio player ══ */
 .audio-player{display:flex;align-items:center;gap:10px;padding:.6rem 1rem;
   background:var(--tag-bg);border-bottom:0.5px solid var(--border);}
 .ap-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid #555;
@@ -227,8 +217,6 @@ table td,table th{border-bottom-color:var(--border)!important;}
 .ap-time{font-size:11px;color:var(--muted);display:flex;justify-content:space-between;}
 .ap-label{font-size:12px;color:var(--muted);white-space:nowrap;}
 
-
-/* ══ はしがき ══ */
 .preface-card{background:var(--card);border:0.5px solid var(--border);border-radius:12px;
   padding:1.8rem 2rem;margin-bottom:1.5rem;line-height:2.0;font-size:14px;}
 .preface-card h2{border-left:3px solid var(--S);padding-left:.7rem;margin:1.4rem 0 .7rem;font-size:14px;}
@@ -237,7 +225,6 @@ table td,table th{border-bottom-color:var(--border)!important;}
 .preface-card ul{padding-left:1.4rem;margin-bottom:1rem;}
 .preface-card ul li{margin-bottom:.4rem;}
 
-/* ══ 目次 ══ */
 .toc-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:.7rem;margin-bottom:2rem;}
 .toc-item{display:flex;align-items:center;gap:.7rem;padding:.65rem 1rem;
   background:var(--card);border:0.5px solid var(--border);border-radius:10px;
@@ -253,8 +240,6 @@ table td,table th{border-bottom-color:var(--border)!important;}
   border-radius:4px;padding:2px 6px;margin-left:.4rem;white-space:nowrap;flex-shrink:0;}
 .toc-item-inner{flex:1;}
 
-
-/* ══ intro / toc ══ */
 .intro-section{margin-bottom:2rem;}
 .intro-section h2{font-size:15px;font-weight:700;margin:1.5rem 0 .8rem;
   padding-left:.7rem;border-left:3px solid var(--O);color:var(--text);}
@@ -284,24 +269,12 @@ table td,table th{border-bottom-color:var(--border)!important;}
   border-radius:4px;padding:2px 7px;white-space:nowrap;flex-shrink:0;}
 .toc-info{flex:1;}
 
-
-/* ══ footer credit ══ */
 .footer-credit{
   text-align:center;padding:1.5rem 1rem;margin-top:2rem;
   border-top:0.5px solid var(--border);
   font-size:12px;color:var(--muted);letter-spacing:.05em;
 }
 
-
-/* ══ footer credit ══ */
-.footer-credit{
-  text-align:center;padding:1.5rem 1rem;margin-top:2rem;
-  border-top:0.5px solid var(--border);
-  font-size:12px;color:var(--muted);letter-spacing:.05em;
-}
-
-
-/* ══ guide panel ══ */
 .guide-section{margin-bottom:2rem;}
 .guide-section h2{font-size:15px;font-weight:700;margin:1.5rem 0 .8rem;
   padding-left:.7rem;border-left:3px solid var(--V);color:var(--text);}
@@ -325,11 +298,9 @@ table td,table th{border-bottom-color:var(--border)!important;}
 .lg-item{display:flex;align-items:center;gap:6px;font-size:13px;}
 .lg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
 
-/* ══ warn badge ══ */
 .warn-badge{display:inline-block;font-size:10px;background:#2a2000;border:1px solid #7a5000;
   color:#f0ad4e;border-radius:3px;padding:1px 5px;margin-left:4px;vertical-align:middle;}
 
-/* ══ section sub-heading ══ */
 .c-section-title{font-size:13px;font-weight:700;color:var(--O);margin:1.2rem 0 .6rem;
   padding:.3rem .7rem;background:var(--tag-bg);border-radius:6px;
   border-left:3px solid var(--O);}
@@ -337,7 +308,6 @@ table td,table th{border-bottom-color:var(--border)!important;}
 </head>
 <body>
 
-<!-- ── sticky tab nav ── -->
 <nav id="top-nav">
   <button class="nav-tab" onclick="switchTab('hashi')">はしがき</button>
   <button class="nav-tab" onclick="switchTab('guide')">取扱説明</button>
@@ -351,48 +321,22 @@ table td,table th{border-bottom-color:var(--border)!important;}
 
 <div class="app">
 
-
-  <!-- ════════════════ はしがき・目次 ════════════════ -->
-  
-
-
-
-  <!-- ════════════════ 取扱説明 ════════════════ -->
+  <!-- ════ 取扱説明 ════ -->
   <div id="panel-guide" class="section-panel">
     <h1>『現代総合英語問題選』デジタル版　取扱説明書</h1>
-
     <div class="guide-section">
       <h2>📖 この教材について</h2>
       <div class="guide-card">
-        <p>本教材は高校英語の文法・読解・作文を一体的に学習するデジタル問題集です。各章は以下の4つのセクションで構成されています。スマートフォン・タブレット・PCのブラウザで動作します。インターネット接続が必要です（音声再生のため）。</p>
+        <p>本教材は高校英語の文法・読解・作文を一体的に学習するデジタル問題集です。各章は以下の4つのセクションで構成されています。スマートフォン・タブレット・PCのブラウザで動作します。</p>
       </div>
     </div>
-
     <div class="guide-section">
       <h2>🗂️ 各タブの使い方</h2>
       <div class="guide-card">
         <h3>📘 基本例文</h3>
-        <div class="guide-step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">音声を聞く</div>
-            <div class="step-desc">▶ボタンを押して基本例文の朗読を聞きます。シークバーで任意の位置に移動できます。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">構造ハイライトで確認</div>
-            <div class="step-desc">「構造ハイライト ON/OFF」ボタンで文法カラーを切り替えながら各例文の構造を確認します。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">一覧表で整理</div>
-            <div class="step-desc">章末の重要ルール一覧表で知識を体系的に整理します。</div>
-          </div>
-        </div>
+        <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">音声を聞く</div><div class="step-desc">▶ボタンを押して基本例文の朗読を聞きます。</div></div></div>
+        <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">構造ハイライトで確認</div><div class="step-desc">「構造ハイライト ON/OFF」で文法カラーを切り替えて各例文の構造を確認します。</div></div></div>
+        <div class="guide-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">一覧表で整理</div><div class="step-desc">章末の重要ルール一覧表で知識を体系的に整理します。</div></div></div>
         <div class="legend-guide">
           <div class="lg-item"><div class="lg-dot" style="background:#FF6B35;"></div>主語（S）</div>
           <div class="lg-item"><div class="lg-dot" style="background:#42A5F5;"></div>動詞（V）</div>
@@ -402,132 +346,45 @@ table td,table th{border-bottom-color:var(--border)!important;}
           <div class="lg-item"><div class="lg-dot" style="background:#F48FB1;"></div>形容詞句・節</div>
         </div>
       </div>
-
       <div class="guide-card">
         <h3>✏️ 〔A〕文法問題</h3>
-        <div class="guide-step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">選択問題に答える</div>
-            <div class="step-desc">選択肢をタップして解答します。正解は緑、不正解は赤で表示され、解説が表示されます。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">穴埋め・記述問題</div>
-            <div class="step-desc">空欄に入力して「確認」ボタンで採点します。わからない場合は「答え表示」で確認できます。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">全問採点・リセット</div>
-            <div class="step-desc">「全問採点」で一括採点、「リセット」でやり直しができます。</div>
-          </div>
-        </div>
+        <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">選択問題に答える</div><div class="step-desc">選択肢をタップして解答します。正解は緑、不正解は赤で表示されます。</div></div></div>
+        <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">穴埋め・記述問題</div><div class="step-desc">空欄に入力して「確認」ボタンで採点します。</div></div></div>
       </div>
-
       <div class="guide-card">
         <h3>📗 〔B〕読解</h3>
-        <div class="guide-step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">音声で英文を聞く</div>
-            <div class="step-desc">各パッセージの▶ボタンで朗読音声を再生します。まず音声だけで内容を把握しましょう。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">白文モードで読む</div>
-            <div class="step-desc">「白文」ボタンで色なしの英文を表示。自力で構造を分析してみましょう。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">5文型解析で確認</div>
-            <div class="step-desc">「5文型解析」ボタンで各語句の役割をカラーで確認。単語にカーソルを当てると詳細ラベルが表示されます。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <div class="step-title">語彙・トピックを確認</div>
-            <div class="step-desc">「語彙」「トピック」ボタンで重要語句とテーマを確認します。</div>
-          </div>
-        </div>
+        <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">白文モードで読む</div><div class="step-desc">「白文」で色なしの英文を表示。自力で構造を分析してみましょう。</div></div></div>
+        <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">5文型解析で確認</div><div class="step-desc">「5文型解析」で各語句の役割をカラーで確認できます。</div></div></div>
+        <div class="guide-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">全文訳で確認</div><div class="step-desc">「全文訳」ボタンでパッセージ全体の日本語訳を表示します。</div></div></div>
       </div>
-
       <div class="guide-card">
         <h3>🖊️ 〔C〕作文</h3>
-        <div class="guide-step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">日本語を見て英作文</div>
-            <div class="step-desc">日本語をヒントに英文を入力します。ヒントバッジがある問題はクリックでヒントが表示されます。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">答え合わせ</div>
-            <div class="step-desc">「答え表示」で正解と解説を確認します。自分の英文と比較して表現の違いを学びましょう。</div>
-          </div>
-        </div>
+        <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">日本語を見て英作文</div><div class="step-desc">日本語をヒントに英文を入力します。</div></div></div>
+        <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">答え合わせ</div><div class="step-desc">「答え表示」で正解と解説を確認します。</div></div></div>
       </div>
     </div>
-
     <div class="guide-section">
       <h2>🎯 効果的な学習の進め方</h2>
       <div class="guide-card">
         <h3>推奨学習フロー（1章あたり60〜90分）</h3>
-        <div class="guide-step">
-          <div class="step-num">1</div>
-          <div class="step-body">
-            <div class="step-title">基本例文（15分）</div>
-            <div class="step-desc">音声を聞きながら例文を音読。構造ハイライトで文型を確認し、一覧表で規則を整理する。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">2</div>
-          <div class="step-body">
-            <div class="step-title">〔A〕文法問題（20分）</div>
-            <div class="step-desc">基本例文で学んだ規則を問題で確認。間違えた問題は解説をよく読み、基本例文に戻って復習する。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">3</div>
-          <div class="step-body">
-            <div class="step-title">〔B〕読解（25分）</div>
-            <div class="step-desc">まず白文で自力読解に挑戦。その後5文型解析で答え合わせ。音声で何度も音読して定着させる。</div>
-          </div>
-        </div>
-        <div class="guide-step">
-          <div class="step-num">4</div>
-          <div class="step-body">
-            <div class="step-title">〔C〕作文（20分）</div>
-            <div class="step-desc">文法・読解で学んだ構文を使って英作文。答えを見た後も自力で書き直す練習を繰り返す。</div>
-          </div>
-        </div>
+        <div class="guide-step"><div class="step-num">1</div><div class="step-body"><div class="step-title">基本例文（15分）</div><div class="step-desc">音声を聞きながら例文を音読。構造ハイライトで文型を確認し、一覧表で規則を整理する。</div></div></div>
+        <div class="guide-step"><div class="step-num">2</div><div class="step-body"><div class="step-title">〔A〕文法問題（20分）</div><div class="step-desc">基本例文で学んだ規則を問題で確認。間違えた問題は解説をよく読み、復習する。</div></div></div>
+        <div class="guide-step"><div class="step-num">3</div><div class="step-body"><div class="step-title">〔B〕読解（25分）</div><div class="step-desc">まず白文で自力読解に挑戦。5文型解析で答え合わせ。全文訳で理解を確認。</div></div></div>
+        <div class="guide-step"><div class="step-num">4</div><div class="step-body"><div class="step-title">〔C〕作文（20分）</div><div class="step-desc">文法・読解で学んだ構文を使って英作文。答えを見た後も自力で書き直す。</div></div></div>
       </div>
-
       <div class="guide-card">
         <h3>💡 学習のコツ</h3>
         <ul>
-          <li>音声は必ず活用する。文字と音を結びつけることで記憶が定着しやすくなります。</li>
-          <li>白文モードで自力分析してから5文型解析を見る習慣をつける。答えを先に見ると力がつきません。</li>
+          <li>白文モードで自力分析してから5文型解析を見る習慣をつける。</li>
+          <li>全文訳は「安心のための確認」として活用する。最初から見ると力がつきません。</li>
           <li>間違えた問題には印をつけて、翌日もう一度解き直す。</li>
           <li>〔C〕作文は「書いてから答えを見る」→「もう一度自力で書く」の2回サイクルが効果的。</li>
-          <li>1章を完璧にしてから次の章へ進む。進捗バーが100%になるまで繰り返しましょう。</li>
         </ul>
       </div>
     </div>
-
   </div>
 
-  <!-- ════════════════ はしがき／目次 ════════════════ -->
+  <!-- ════ 目次 ════ -->
   <div id="panel-intro" class="section-panel">
     <h1>目 次</h1>
     <div class="intro-section">
@@ -537,7 +394,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
         <div class="toc-item"><span class="toc-num">3</span><div class="toc-info"><div class="toc-title">補語</div><div class="toc-points">第2文型・第5文型の補語／形容詞・名詞・不定詞・分詞が補語になる場合</div></div></div>
         <div class="toc-item"><span class="toc-num">4</span><div class="toc-info"><div class="toc-title">動詞と前置詞</div><div class="toc-points">自動詞＋前置詞／群動詞／前置詞の目的語／rob A of B など重要構文</div></div></div>
         <div class="toc-item"><span class="toc-num">5</span><div class="toc-info"><div class="toc-title">It 構文</div><div class="toc-points">形式主語・形式目的語／It is … that 強調構文</div></div></div>
-        <div class="toc-item"><span class="toc-num">6</span><div class="toc-info"><div class="toc-title">語順</div><div class="toc-points">倒置・省略・挿入／語順に関わる重要表現</div></div></div>
+        <div class="toc-item"><span class="toc-num">6</span><div class="toc-info"><div class="toc-title">語順と情報構造</div><div class="toc-points">倒置・場所句・補語前置／So・Neither構文／There構文／情報の流れ</div></div></div>
         <div class="toc-item"><span class="toc-num">7</span><div class="toc-info"><div class="toc-title">時制・一致</div><div class="toc-points">時制の一致／完了形の用法／時を表す副詞節</div></div></div>
         <div class="toc-item"><span class="toc-num">8</span><div class="toc-info"><div class="toc-title">態</div><div class="toc-points">能動態と受動態／第4・5文型の受動態／受動態になれない動詞</div></div></div>
         <div class="toc-item"><span class="toc-num">9</span><div class="toc-info"><div class="toc-title">仮定法</div><div class="toc-points">仮定法過去・過去完了／wish・as if／without などを用いた仮定</div></div></div>
@@ -549,16 +406,14 @@ table td,table th{border-bottom-color:var(--border)!important;}
         <div class="toc-item"><span class="toc-num">15</span><div class="toc-info"><div class="toc-title">副詞節</div><div class="toc-points">時・条件・理由・目的・譲歩・結果・様態の副詞節</div></div></div>
         <div class="toc-item"><span class="toc-num">16</span><div class="toc-info"><div class="toc-title">比較</div><div class="toc-points">原級・比較級・最上級の基本用法／比較を用いた重要表現・強調</div></div></div>
         <div class="toc-item"><span class="toc-num">17</span><div class="toc-info"><div class="toc-title">否定構文</div><div class="toc-points">全否定・部分否定／二重否定・準否定語／否定を含む慣用表現</div></div></div>
-        <div class="toc-item"><span class="toc-num">18</span><div class="toc-info"><div class="toc-title">強調・倒置・省略</div><div class="toc-points">強調構文／倒置のパターン／省略と代用表現</div></div></div>
-        <div class="toc-item"><span class="toc-num">19</span><div class="toc-info"><div class="toc-title">接続・論理マーカー</div><div class="toc-points">等位接続詞・従属接続詞／論理展開を示す副詞・表現</div></div></div>
-        <div class="toc-item"><span class="toc-num">20</span><div class="toc-info"><div class="toc-title">相関語句</div><div class="toc-points">both…and／either…or／not only…but also／so…that など</div></div></div>
+        <div class="toc-item"><span class="toc-num">18</span><div class="toc-info"><div class="toc-title">接続・論理マーカー</div><div class="toc-points">等位接続詞・従属接続詞／論理展開を示す副詞・表現</div></div></div>
+        <div class="toc-item"><span class="toc-num">19</span><div class="toc-info"><div class="toc-title">相関語句</div><div class="toc-points">both…and／either…or／not only…but also／so…that など</div></div></div>
+        <div class="toc-item"><span class="toc-num">20</span><div class="toc-info"><div class="toc-title">語彙と情報構造</div><div class="toc-points">コロケーション・チャンク／談話構造／旧情報と新情報の流れ</div></div></div>
       </div>
     </div>
-
-  </div>
   </div>
 
-  <!-- ════════════ はしがき ════════════ -->
+  <!-- ════ はしがき ════ -->
   <div id="panel-hashi" class="section-panel">
     <h1>『現代総合英語問題選』デジタル版</h1>
     <div class="intro-section">
@@ -572,6 +427,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
         <ul>
           <li><strong>5文型のビジュアル化：</strong>読解問題では、複雑な構造や変則的な構文を視覚的に解析。視覚的な理解により、解釈のスピードを劇的に向上させます。</li>
           <li><strong>反復練習の最適化：</strong>デジタル版では、生徒個々の習熟度に応じた反復練習が可能であり、紙面では省略せざるを得なかった詳細な解説まで網羅しています。</li>
+          <li><strong>全文訳の活用：</strong>英語力に不安のある学習者には全文訳ボタンで安心感を提供。必要のない学習者は非表示のまま進めることができます。</li>
         </ul>
         <div class="section-head">文法・読解・作文を一本の線でつなぐ</div>
         <p>本書は、瑣末な知識の暗記ではなく、英語力の「根本」を鍛えることに主眼を置いています。</p>
@@ -587,10 +443,9 @@ table td,table th{border-bottom-color:var(--border)!important;}
     </div>
   </div>
 
-  <!-- ════════════════ 基本例文 ════════════════ -->
+  <!-- ════ 基本例文 ════ -->
   <div id="panel-kihon" class="section-panel active">
     <h1>第1章　主語と動詞 ― 基本例文</h1>
-
     <div class="audio-player" id="ap-wrap-kihon">
       <button class="ap-btn" id="apb-kihon" onclick="apToggle('kihon')">▶</button>
       <div class="ap-track">
@@ -605,25 +460,17 @@ table td,table th{border-bottom-color:var(--border)!important;}
       <span class="ap-label">🔊 基本例文 朗読</span>
     </div>
     <input type="hidden" id="_kihon_audio_src" value="ch1_kihon.mp3">
-
     <div class="ctrl">
       <button class="tog on" id="tog-hl" onclick="toggleHighlight()">構造ハイライト ON</button>
     </div>
-
     <div id="kihon-wrap">
-
-      <!-- 例文グループ 1 — 名詞・動名詞・不定詞が主語 -->
       <div class="kihon-card">
-        <div class="kihon-head">
-          <span class="kihon-label">例文１ — 名詞・動名詞・不定詞が主語になる場合</span>
-        </div>
+        <div class="kihon-head"><span class="kihon-label">例文１ — 名詞・動名詞・不定詞が主語になる場合</span></div>
         <div class="kihon-body" id="kihon-body">
           <div class="kihon-row">
             <span class="kihon-id">(a)</span>
             <div>
-              <div class="kihon-en">
-                <span class="kh-s">A man named Wilhelm</span> <span class="kh-v">was staying</span> <span class="kh-c">at an inn</span>.
-              </div>
+              <div class="kihon-en"><span class="kh-s">A man named Wilhelm</span> <span class="kh-v">was staying</span> <span class="kh-c">at an inn</span>.</div>
               <div class="kihon-note">普通名詞句が主語 — 過去進行形（was staying）</div>
               <span class="struct-note">SV　第1文型</span>
             </div>
@@ -631,9 +478,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
           <div class="kihon-row">
             <span class="kihon-id">(b)</span>
             <div>
-              <div class="kihon-en">
-                <span class="kh-s kh-inf">To see you</span> <span class="kh-v">is</span> <span class="kh-c">always a great pleasure</span>.
-              </div>
+              <div class="kihon-en"><span class="kh-s kh-inf">To see you</span> <span class="kh-v">is</span> <span class="kh-c">always a great pleasure</span>.</div>
               <div class="kihon-note">to不定詞句が主語（It is … to do の形に書き換え可）</div>
               <span class="struct-note">SVC　第2文型</span>
             </div>
@@ -641,28 +486,20 @@ table td,table th{border-bottom-color:var(--border)!important;}
           <div class="kihon-row">
             <span class="kihon-id">(c)</span>
             <div>
-              <div class="kihon-en">
-                <span class="kh-s kh-ger">Reading good books</span> <span class="kh-v">develops</span> <span class="kh-o">our taste</span>.
-              </div>
+              <div class="kihon-en"><span class="kh-s kh-ger">Reading good books</span> <span class="kh-v">develops</span> <span class="kh-o">our taste</span>.</div>
               <div class="kihon-note">動名詞句が主語 — 単数扱い</div>
               <span class="struct-note">SVO　第3文型</span>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- 例文グループ 2 — 名詞節が主語 -->
       <div class="kihon-card">
-        <div class="kihon-head">
-          <span class="kihon-label">例文２ — 名詞節（that節・what節・how節）が主語になる場合</span>
-        </div>
+        <div class="kihon-head"><span class="kihon-label">例文２ — 名詞節（that節・what節・how節）が主語になる場合</span></div>
         <div class="kihon-body">
           <div class="kihon-row">
             <span class="kihon-id">(a)</span>
             <div>
-              <div class="kihon-en">
-                <span class="kh-s kh-that"><span class="kh-that">That</span> <span class="kh-s">he</span> <span class="kh-v">is</span> innocent</span> <span class="kh-v">is</span> <span class="kh-c">quite certain</span>.
-              </div>
+              <div class="kihon-en"><span class="kh-s kh-that"><span class="kh-that">That</span> <span class="kh-s">he</span> <span class="kh-v">is</span> innocent</span> <span class="kh-v">is</span> <span class="kh-c">quite certain</span>.</div>
               <div class="kihon-note">that節が主語（接続詞 that — 文頭では省略不可）</div>
               <span class="struct-note">SVC　第2文型</span>
             </div>
@@ -670,9 +507,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
           <div class="kihon-row">
             <span class="kihon-id">(b)</span>
             <div>
-              <div class="kihon-en">
-                <span class="kh-s"><span class="kh-that">What</span> <span class="kh-s">you</span> <span class="kh-v">say</span></span> <span class="kh-v">is</span> <span class="kh-c">quite true</span>.
-              </div>
+              <div class="kihon-en"><span class="kh-s"><span class="kh-that">What</span> <span class="kh-s">you</span> <span class="kh-v">say</span></span> <span class="kh-v">is</span> <span class="kh-c">quite true</span>.</div>
               <div class="kihon-note">what節が主語（関係代名詞 what = the thing which）</div>
               <span class="struct-note">SVC　第2文型</span>
             </div>
@@ -680,30 +515,18 @@ table td,table th{border-bottom-color:var(--border)!important;}
           <div class="kihon-row">
             <span class="kihon-id">(c)</span>
             <div>
-              <div class="kihon-en">
-                <span class="kh-s"><span class="kh-that">How</span> <span class="kh-s">he</span> <span class="kh-v">solved</span> the problem</span> <span class="kh-v">is</span> <span class="kh-c">not known</span>.
-              </div>
+              <div class="kihon-en"><span class="kh-s"><span class="kh-that">How</span> <span class="kh-s">he</span> <span class="kh-v">solved</span> the problem</span> <span class="kh-v">is</span> <span class="kh-c">not known</span>.</div>
               <div class="kihon-note">how節が主語（間接疑問節 — 平叙文語順）</div>
               <span class="struct-note">SVC　第2文型</span>
             </div>
           </div>
         </div>
       </div>
-
-      <!-- 主語と動詞の一致 総覧表 -->
       <div class="kihon-card">
-        <div class="kihon-head">
-          <span class="kihon-label">主語と動詞の一致 — 重要ルール総覧</span>
-        </div>
+        <div class="kihon-head"><span class="kihon-label">主語と動詞の一致 — 重要ルール総覧</span></div>
         <div class="kihon-body">
           <table style="width:100%;border-collapse:collapse;font-size:13px;">
-            <thead>
-              <tr style="background:var(--tag-bg);">
-                <th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);">主語の形</th>
-                <th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);">動詞</th>
-                <th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);">例</th>
-              </tr>
-            </thead>
+            <thead><tr style="background:var(--tag-bg);"><th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);">主語の形</th><th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);">動詞</th><th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);">例</th></tr></thead>
             <tbody>
               <tr><td style="padding:5px 10px;border-bottom:1px solid var(--border);">one of + 複数名詞</td><td style="padding:5px 10px;border-bottom:1px solid var(--border);">単数</td><td style="padding:5px 10px;border-bottom:1px solid var(--border);color:var(--C);font-style:italic;">One of the accidents is…</td></tr>
               <tr><td style="padding:5px 10px;border-bottom:1px solid var(--border);">固有名詞（国家・組織）</td><td style="padding:5px 10px;border-bottom:1px solid var(--border);">単数</td><td style="padding:5px 10px;border-bottom:1px solid var(--border);color:var(--C);font-style:italic;">The United Nations meets…</td></tr>
@@ -719,24 +542,16 @@ table td,table th{border-bottom-color:var(--border)!important;}
           </table>
         </div>
       </div>
+    </div>
+  </div>
 
-    </div><!-- /kihon-wrap -->
-  </div><!-- /panel-kihon -->
-
-
-  <!-- ════════════════ [A] 文法問題 ════════════════ -->
+  <!-- ════ [A] 文法 ════ -->
   <div id="panel-a" class="section-panel">
     <h1>第1章　〔A〕文法問題</h1>
-
-    <!-- ── [1] 選択問題 ── -->
     <h2>[1] カッコの中から適当な語句を選べ</h2>
     <div id="a1-wrap"></div>
-
-    <!-- ── [2] 穴埋め問題 ── -->
     <h2>[2] カッコの中に適当な１語を入れよ</h2>
     <div id="a2-wrap"></div>
-
-    <!-- score footer -->
     <div id="a-score-bar" style="margin-top:1.5rem;padding:1rem 1.2rem;background:var(--card);border:0.5px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:1rem;font-size:13px;">
       <span style="font-weight:700;">採点結果</span>
       <span id="a-score-text" style="color:var(--muted);">未採点</span>
@@ -745,14 +560,14 @@ table td,table th{border-bottom-color:var(--border)!important;}
     </div>
   </div>
 
-  <!-- ════════════════ [B] 読解 ════════════════ -->
+  <!-- ════ [B] 読解 ════ -->
   <div id="panel-b" class="section-panel">
     <h1>第1章　[B] 読解 ― 主語・動詞構造ビジュアル解析</h1>
     <div class="ctrl">
       <button class="tog" id="tog-plain" onclick="setMode('plain')">白文</button>
       <button class="tog on" id="tog-anal" onclick="setMode('anal')">5文型解析</button>
-      <button class="tog" id="tog-vocab" onclick="toggleAll('vocab')">Vocabulary</button>
-      <button class="tog" id="tog-topic" onclick="toggleAll('topic')">Main Topic</button>
+      <button class="tog" id="tog-vocab" onclick="toggleAll('vocab')">語彙</button>
+      <button class="tog" id="tog-topic" onclick="toggleAll('topic')">📖 全文訳</button>
     </div>
     <div class="legend" id="legend">
       <div class="legend-item"><div class="dot" style="background:var(--S)"></div>S 主語</div>
@@ -772,7 +587,7 @@ table td,table th{border-bottom-color:var(--border)!important;}
     <div id="b-wrap"></div>
   </div>
 
-  <!-- ════════════════ [C] 作文 ════════════════ -->
+  <!-- ════ [C] 作文 ════ -->
   <div id="panel-c" class="section-panel">
     <h1>第1章　[C] 作文</h1>
     <div id="c-wrap"></div>
@@ -781,120 +596,55 @@ table td,table th{border-bottom-color:var(--border)!important;}
 </div><!-- /app -->
 
 <script>
-/* ═══════════════════════════════════════════
-   TAB NAVIGATION
-═══════════════════════════════════════════ */
 const TABS=['hashi','guide','intro','kihon','a','b','c'];
 function switchTab(id){
-  TABS.forEach(t=>{
-    document.getElementById('panel-'+t).classList.toggle('active',t===id);
-  });
-  document.querySelectorAll('.nav-tab').forEach((btn,i)=>{
-    btn.classList.toggle('active',TABS[i]===id);
-  });
+  TABS.forEach(t=>{document.getElementById('panel-'+t).classList.toggle('active',t===id);});
+  document.querySelectorAll('.nav-tab').forEach((btn,i)=>{btn.classList.toggle('active',TABS[i]===id);});
   updateProgLabel();
 }
 
-/* ═══════════════════════════════════════════
-   HIGHLIGHT TOGGLE (基本例文)
-═══════════════════════════════════════════ */
 let hlOn=true;
 function toggleHighlight(){
   hlOn=!hlOn;
-  document.getElementById('kihon-body').closest('.app').querySelectorAll('[id^="kihon"]').forEach(el=>{
-    el.classList.toggle('highlight-off',!hlOn);
-  });
   document.getElementById('kihon-wrap').classList.toggle('highlight-off',!hlOn);
   document.getElementById('tog-hl').classList.toggle('on',hlOn);
   document.getElementById('tog-hl').textContent='構造ハイライト '+(hlOn?'ON':'OFF');
 }
 
-/* ═══════════════════════════════════════════
-   [A] DATA
-═══════════════════════════════════════════ */
 const A1_DATA=[
-  {n:1, sent:'One out of three motor-car accidents <em>( )</em> caused by a teenage driver.',
-   choices:['are','has','is','were'], ans:'is',
-   expl:'主語は <strong>One</strong>（単数）。"out of three…" は修飾句。→ <strong>is</strong>'},
-  {n:2, sent:'The United Nations <em>( )</em> in New York City.',
-   choices:['meet','meets'], ans:'meets',
-   expl:'固有名詞の組織名は単数扱い。→ <strong>meets</strong>'},
-  {n:3, sent:'The English <em>( )</em> an honest people.',
-   choices:['is','are'], ans:'are',
-   expl:'「the ＋ 国民を表す形容詞」は複数扱い。→ <strong>are</strong>'},
-  {n:4, sent:'Three weeks, we are afraid, <em>( )</em> too short a time.',
-   choices:['and','are','is','were'], ans:'is',
-   expl:'期間を一まとまりと見なす → 単数扱い。→ <strong>is</strong>'},
-  {n:5, sent:'The crowd <em>( )</em> running in all directions when the police arrived.',
-   choices:['was','were'], ans:'was',
-   expl:'集合名詞 crowd は英米で扱いが異なるが、ここでは一体として行動 → <strong>was</strong>（単数）も正解。両可。'},
-  {n:6, sent:'Two-thirds of the house <em>( )</em> burnt down.',
-   choices:['was','were','have'], ans:'was',
-   expl:'分数 ＋ of ＋ 名詞 → 名詞に一致。house は不可算単数 → <strong>was</strong>'},
-  {n:7, sent:'Either the father or one of his two sons <em>( )</em> at fault in this incident.',
-   choices:['are','is','do'], ans:'is',
-   expl:'Either A or B → Bに一致。B＝one（単数）→ <strong>is</strong>'},
-  {n:8, sent:'One who <em>( )</em> to get on in life <em>( )</em> to work hard.',
-   choices:['wish / has','wants / must','wanting / can','wanted / have'], ans:'wants / must',
-   expl:'主語 One who … は単数 → <strong>wants</strong>。"must … to work hard" が自然。→ <strong>must</strong>'},
-  {n:9, sent:'She <em>( )</em> and always will be beautiful.',
-   choices:['has','has been','had'], ans:'has been',
-   expl:'will be と対応させるため現在完了 → <strong>has been</strong>（She has been and always will be…）'},
-  {n:10, sent:'<em>( )</em> gave me a lot of trouble.',
-   choices:['Your being absent','You are absent','Your being absence'], ans:'Your being absent',
-   expl:'動名詞句が主語。所有格 + 動名詞 → <strong>Your being absent</strong>'},
+  {n:1,sent:'One out of three motor-car accidents <em>( )</em> caused by a teenage driver.',choices:['are','has','is','were'],ans:'is',expl:'主語は <strong>One</strong>（単数）。"out of three…" は修飾句。→ <strong>is</strong>'},
+  {n:2,sent:'The United Nations <em>( )</em> in New York City.',choices:['meet','meets'],ans:'meets',expl:'固有名詞の組織名は単数扱い。→ <strong>meets</strong>'},
+  {n:3,sent:'The English <em>( )</em> an honest people.',choices:['is','are'],ans:'are',expl:'「the ＋ 国民を表す形容詞」は複数扱い。→ <strong>are</strong>'},
+  {n:4,sent:'Three weeks, we are afraid, <em>( )</em> too short a time.',choices:['and','are','is','were'],ans:'is',expl:'期間を一まとまりと見なす → 単数扱い。→ <strong>is</strong>'},
+  {n:5,sent:'The crowd <em>( )</em> running in all directions when the police arrived.',choices:['was','were'],ans:'was',expl:'集合名詞 crowd。一体として行動 → <strong>was</strong>（単数）も正解。両可。'},
+  {n:6,sent:'Two-thirds of the house <em>( )</em> burnt down.',choices:['was','were','have'],ans:'was',expl:'分数 ＋ of ＋ 名詞 → 名詞に一致。house は不可算単数 → <strong>was</strong>'},
+  {n:7,sent:'Either the father or one of his two sons <em>( )</em> at fault in this incident.',choices:['are','is','do'],ans:'is',expl:'Either A or B → Bに一致。B＝one（単数）→ <strong>is</strong>'},
+  {n:8,sent:'One who <em>( )</em> to get on in life <em>( )</em> to work hard.',choices:['wish / has','wants / must','wanting / can','wanted / have'],ans:'wants / must',expl:'主語 One who … は単数 → <strong>wants</strong>。→ <strong>must</strong>'},
+  {n:9,sent:'She <em>( )</em> and always will be beautiful.',choices:['has','has been','had'],ans:'has been',expl:'will be と対応させるため現在完了 → <strong>has been</strong>'},
+  {n:10,sent:'<em>( )</em> gave me a lot of trouble.',choices:['Your being absent','You are absent','Your being absence'],ans:'Your being absent',expl:'動名詞句が主語。所有格 + 動名詞 → <strong>Your being absent</strong>'},
 ];
 
 const A2_DATA=[
-  {n:1, sent:'The number of the people who gathered there <em>( )</em> uncountable.',
-   ans:'was', expl:'"The number of…" の主語は number（単数）→ <strong>was</strong>'},
-  {n:2, sent:'Many a man <em>( )</em> high ambitions but few reach their goal.',
-   ans:'has', expl:'"Many a ＋ 単数名詞" は単数扱い → <strong>has</strong>'},
-  {n:3, sent:'He said that the great poet and novelist <em>( )</em> there.',
-   ans:'was', expl:'同一人物を指す "poet and novelist" → 単数 → <strong>was</strong>'},
-  {n:4, sent:'Neither he nor I <em>( )</em> responsible for this error.',
-   ans:'am', expl:'"Neither A nor B" → Bに一致。B＝I → <strong>am</strong>'},
-  {n:5, sent:'Experience, as well as scholarship, <em>( )</em> necessary to a teacher.',
-   ans:'is', expl:'"A as well as B" → Aに一致。A＝Experience（単数）→ <strong>is</strong>'},
-  {n:6, sent:'<em>( )</em> was once a truth is no longer true.',
-   ans:'What', expl:'関係代名詞 what = the thing which → <strong>What</strong> was once a truth…'},
-  {n:7, sent:'Does he think <em>( )</em> he did was a right thing?',
-   ans:'what', expl:'"think what he did" — what節が think の目的語節中の主語 → <strong>what</strong>'},
-  {n:8, sent:'<em>( )</em> wishes to join our club will be welcome.',
-   ans:'Whoever', expl:'複合関係代名詞 Whoever（= Anyone who）→ <strong>Whoever</strong>'},
-  {n:9, sent:'<em>( )</em> he is a great scholar is quite obvious.',
-   ans:'That', expl:'that節が文の主語（文頭で省略不可）→ <strong>That</strong>'},
-  {n:10, sent:'<em>( )</em> Shakespeare wrote this poem or not has not been decided yet.',
-   ans:'Whether', expl:'whether … or not が主語節 → <strong>Whether</strong>'},
+  {n:1,sent:'The number of the people who gathered there <em>( )</em> uncountable.',ans:'was',expl:'"The number of…" の主語は number（単数）→ <strong>was</strong>'},
+  {n:2,sent:'Many a man <em>( )</em> high ambitions but few reach their goal.',ans:'has',expl:'"Many a ＋ 単数名詞" は単数扱い → <strong>has</strong>'},
+  {n:3,sent:'He said that the great poet and novelist <em>( )</em> there.',ans:'was',expl:'同一人物を指す → 単数 → <strong>was</strong>'},
+  {n:4,sent:'Neither he nor I <em>( )</em> responsible for this error.',ans:'am',expl:'"Neither A nor B" → Bに一致。B＝I → <strong>am</strong>'},
+  {n:5,sent:'Experience, as well as scholarship, <em>( )</em> necessary to a teacher.',ans:'is',expl:'"A as well as B" → Aに一致。A＝Experience（単数）→ <strong>is</strong>'},
+  {n:6,sent:'<em>( )</em> was once a truth is no longer true.',ans:'What',expl:'関係代名詞 what = the thing which → <strong>What</strong>'},
+  {n:7,sent:'Does he think <em>( )</em> he did was a right thing?',ans:'what',expl:'"think what he did" — what節が主語 → <strong>what</strong>'},
+  {n:8,sent:'<em>( )</em> wishes to join our club will be welcome.',ans:'Whoever',expl:'複合関係代名詞 Whoever（= Anyone who）→ <strong>Whoever</strong>'},
+  {n:9,sent:'<em>( )</em> he is a great scholar is quite obvious.',ans:'That',expl:'that節が文の主語（文頭で省略不可）→ <strong>That</strong>'},
+  {n:10,sent:'<em>( )</em> Shakespeare wrote this poem or not has not been decided yet.',ans:'Whether',expl:'whether … or not が主語節 → <strong>Whether</strong>'},
 ];
 
-/* ═══════════════════════════════════════════
-   RENDER [A1] 選択問題
-═══════════════════════════════════════════ */
 function renderA1(){
   const wrap=document.getElementById('a1-wrap');
   A1_DATA.forEach(q=>{
-    const card=document.createElement('div');
-    card.className='a-card';
-    card.innerHTML=`
-      <div class="a-head">
-        <span class="a-num">${q.n}.</span>
-        <span class="a-sent">${q.sent}</span>
-        <span class="inst-badge">選択</span>
-      </div>
-      <div class="a-body">
-        <div class="choice-wrap" id="cw1-${q.n}"></div>
-        <div class="a-fb" id="fb1-${q.n}"></div>
-      </div>`;
+    const card=document.createElement('div');card.className='a-card';
+    card.innerHTML=`<div class="a-head"><span class="a-num">${q.n}.</span><span class="a-sent">${q.sent}</span><span class="inst-badge">選択</span></div><div class="a-body"><div class="choice-wrap" id="cw1-${q.n}"></div><div class="a-fb" id="fb1-${q.n}"></div></div>`;
     wrap.appendChild(card);
     const cw=document.getElementById('cw1-'+q.n);
-    q.choices.forEach(ch=>{
-      const b=document.createElement('button');
-      b.className='choice-btn';
-      b.textContent=ch;
-      b.onclick=()=>checkChoice1(q,ch,b,cw);
-      cw.appendChild(b);
-    });
+    q.choices.forEach(ch=>{const b=document.createElement('button');b.className='choice-btn';b.textContent=ch;b.onclick=()=>checkChoice1(q,ch,b,cw);cw.appendChild(b);});
   });
 }
 
@@ -902,343 +652,120 @@ function checkChoice1(q,ch,btn,cw){
   if(btn.disabled)return;
   const correct=ch===q.ans;
   btn.classList.add(correct?'c-correct':'c-wrong');
-  if(!correct){
-    cw.querySelectorAll('.choice-btn').forEach(b=>{
-      if(b.textContent===q.ans)b.classList.add('c-correct');
-    });
-  }
+  if(!correct)cw.querySelectorAll('.choice-btn').forEach(b=>{if(b.textContent===q.ans)b.classList.add('c-correct');});
   cw.querySelectorAll('.choice-btn').forEach(b=>b.disabled=true);
-  const fb=document.getElementById('fb1-'+q.n);
-  fb.innerHTML=`<span class="${correct?'fb-ok':'fb-ng'}">${correct?'✓ 正解！':'✗ 不正解'}</span>　${q.expl}`;
+  document.getElementById('fb1-'+q.n).innerHTML=`<span class="${correct?'fb-ok':'fb-ng'}">${correct?'✓ 正解！':'✗ 不正解'}</span>　${q.expl}`;
   updateProgLabel();
 }
 
-/* ═══════════════════════════════════════════
-   RENDER [A2] 穴埋め問題
-═══════════════════════════════════════════ */
 function renderA2(){
   const wrap=document.getElementById('a2-wrap');
   A2_DATA.forEach(q=>{
-    const card=document.createElement('div');
-    card.className='a-card';
-    card.innerHTML=`
-      <div class="a-head">
-        <span class="a-num">${q.n}.</span>
-        <span class="a-sent">${q.sent}</span>
-        <span class="inst-badge">記入</span>
-      </div>
-      <div class="a-body">
-        <div class="a-actions">
-          <input class="blank-inp blank-inp-wide" id="bi2-${q.n}" placeholder="解答を入力" autocomplete="off" onkeydown="if(event.key==='Enter')checkBlank2(${q.n})">
-          <button class="hint-tog btn-check" onclick="checkBlank2(${q.n})">確認</button>
-          <button class="hint-tog btn-reveal" onclick="revealBlank2(${q.n})">答え表示</button>
-        </div>
-        <div class="a-fb" id="fb2-${q.n}"></div>
-      </div>`;
+    const card=document.createElement('div');card.className='a-card';
+    card.innerHTML=`<div class="a-head"><span class="a-num">${q.n}.</span><span class="a-sent">${q.sent}</span><span class="inst-badge">記入</span></div><div class="a-body"><div class="a-actions"><input class="blank-inp blank-inp-wide" id="bi2-${q.n}" placeholder="解答を入力" autocomplete="off" onkeydown="if(event.key==='Enter')checkBlank2(${q.n})"><button class="hint-tog btn-check" onclick="checkBlank2(${q.n})">確認</button><button class="hint-tog btn-reveal" onclick="revealBlank2(${q.n})">答え表示</button></div><div class="a-fb" id="fb2-${q.n}"></div></div>`;
     wrap.appendChild(card);
   });
 }
 
 function checkBlank2(n){
-  const q=A2_DATA[n-1];
-  const inp=document.getElementById('bi2-'+n);
-  const val=inp.value.trim();
-  if(!val)return;
+  const q=A2_DATA[n-1];const inp=document.getElementById('bi2-'+n);const val=inp.value.trim();if(!val)return;
   const correct=val.toLowerCase()===q.ans.toLowerCase();
-  inp.classList.toggle('blank-ok',correct);
-  inp.classList.toggle('blank-ng',!correct);
-  const fb=document.getElementById('fb2-'+n);
-  fb.innerHTML=`<span class="${correct?'fb-ok':'fb-ng'}">${correct?'✓ 正解！':'✗ 不正解 — 正答: <strong>'+q.ans+'</strong>'}</span>　${q.expl}`;
+  inp.classList.toggle('blank-ok',correct);inp.classList.toggle('blank-ng',!correct);
+  document.getElementById('fb2-'+n).innerHTML=`<span class="${correct?'fb-ok':'fb-ng'}">${correct?'✓ 正解！':'✗ 不正解 — 正答: <strong>'+q.ans+'</strong>'}</span>　${q.expl}`;
   updateProgLabel();
 }
 
 function revealBlank2(n){
-  const q=A2_DATA[n-1];
-  const inp=document.getElementById('bi2-'+n);
-  inp.value=q.ans;
-  inp.classList.add('blank-ok');
-  inp.disabled=true;
-  const fb=document.getElementById('fb2-'+n);
-  fb.innerHTML=`<span style="color:var(--muted);">答え: <strong>${q.ans}</strong></span>　${q.expl}`;
+  const q=A2_DATA[n-1];const inp=document.getElementById('bi2-'+n);
+  inp.value=q.ans;inp.classList.add('blank-ok');inp.disabled=true;
+  document.getElementById('fb2-'+n).innerHTML=`<span style="color:var(--muted);">答え: <strong>${q.ans}</strong></span>　${q.expl}`;
 }
 
 function gradeAll(){
   let total=0,correct=0;
-  A1_DATA.forEach(q=>{
-    const cw=document.getElementById('cw1-'+q.n);
-    if(cw){
-      total++;
-      if(cw.querySelector('.c-correct'))correct++;
-    }
-  });
-  A2_DATA.forEach(q=>{
-    const inp=document.getElementById('bi2-'+q.n);
-    if(inp){
-      total++;
-      if(inp.classList.contains('blank-ok'))correct++;
-    }
-  });
+  A1_DATA.forEach(q=>{const cw=document.getElementById('cw1-'+q.n);if(cw){total++;if(cw.querySelector('.c-correct'))correct++;}});
+  A2_DATA.forEach(q=>{const inp=document.getElementById('bi2-'+q.n);if(inp){total++;if(inp.classList.contains('blank-ok'))correct++;}});
   document.getElementById('a-score-text').textContent=`${correct} / ${total} 問正解`;
 }
 
 function resetAll(){
-  A1_DATA.forEach(q=>{
-    const cw=document.getElementById('cw1-'+q.n);
-    if(cw){
-      cw.querySelectorAll('.choice-btn').forEach(b=>{b.disabled=false;b.className='choice-btn';});
-      document.getElementById('fb1-'+q.n).innerHTML='';
-    }
-  });
-  A2_DATA.forEach(q=>{
-    const inp=document.getElementById('bi2-'+q.n);
-    if(inp){inp.value='';inp.disabled=false;inp.className='blank-inp blank-inp-wide';}
-    document.getElementById('fb2-'+q.n).innerHTML='';
-  });
+  A1_DATA.forEach(q=>{const cw=document.getElementById('cw1-'+q.n);if(cw){cw.querySelectorAll('.choice-btn').forEach(b=>{b.disabled=false;b.className='choice-btn';});document.getElementById('fb1-'+q.n).innerHTML='';}});
+  A2_DATA.forEach(q=>{const inp=document.getElementById('bi2-'+q.n);if(inp){inp.value='';inp.disabled=false;inp.className='blank-inp blank-inp-wide';}document.getElementById('fb2-'+q.n).innerHTML='';});
   document.getElementById('a-score-text').textContent='未採点';
   updateProgLabel();
 }
 
-/* ═══════════════════════════════════════════
-   [B] PASSAGES DATA
-═══════════════════════════════════════════ */
+/* ── PASSAGESデータ（transフィールドを追加） ── */
 const PASSAGES=[
   {
     id:'b1',num:1,
     topic:'ナイル川と古代エジプト人の生活',
+    trans:'ナイル川は古代エジプト人の生活の糧であり、岸を溢れて大地に水を供給し、作物を育てた。ナイルがいつ増水するかを知ることが、彼らにとって死活的な関心事となった。',
     sentences:[
-      {
-        pattern:'SV（主語 = 固有名詞句）',
-        plain:'The Nile, the source of the livelihood of the ancient Egyptians, would overflow its banks and supply water to the ground so that their crops could grow.',
-        tokens:[
-          {t:'The Nile,',r:'S',l:'主語（固有名詞）'},
-          {t:'the source of the livelihood of the ancient Egyptians,',r:'adj',l:'同格・形容詞句'},
-          {t:'would overflow',r:'V',l:'動詞（would ＋ 原形）'},
-          {t:'its banks',r:'O',l:'目的語'},
-          {t:'and',r:'conj',l:'等位接続詞'},
-          {t:'supply',r:'V',l:'動詞（overflow と並列）'},
-          {t:'water',r:'O',l:'目的語'},
-          {t:'to the ground',r:'adv',l:'副詞句'},
-          {t:'so that',r:'conj',l:'目的の接続詞'},
-          {t:'their crops could grow.',r:'adv',ul:'adv-clause',l:'副詞節（目的）'},
-        ]
-      },
-      {
-        pattern:'SVC（主語 = to不定詞句）',
-        plain:'To be able to tell when the Nile would rise became their vital concern.',
-        tokens:[
-          {t:'To be able to tell',r:'S',ul:'s-clause',l:'to不定詞句（主語）'},
-          {t:'when the Nile would rise',r:'S',ul:'s-clause',l:'間接疑問節（tell の目的語）'},
-          {t:'became',r:'V',l:'動詞（SVC）'},
-          {t:'their vital concern.',r:'C',l:'補語（名詞句）'},
-        ]
-      }
+      {pattern:'SV（主語 = 固有名詞句）',plain:'The Nile, the source of the livelihood of the ancient Egyptians, would overflow its banks and supply water to the ground so that their crops could grow.',tokens:[{t:'The Nile,',r:'S',l:'主語（固有名詞）'},{t:'the source of the livelihood of the ancient Egyptians,',r:'adj',l:'同格・形容詞句'},{t:'would overflow',r:'V',l:'動詞（would ＋ 原形）'},{t:'its banks',r:'O',l:'目的語'},{t:'and',r:'conj',l:'等位接続詞'},{t:'supply',r:'V',l:'動詞（overflow と並列）'},{t:'water',r:'O',l:'目的語'},{t:'to the ground',r:'adv',l:'副詞句'},{t:'so that',r:'conj',l:'目的の接続詞'},{t:'their crops could grow.',r:'adv',ul:'adv-clause',l:'副詞節（目的）'}]},
+      {pattern:'SVC（主語 = to不定詞句）',plain:'To be able to tell when the Nile would rise became their vital concern.',tokens:[{t:'To be able to tell',r:'S',ul:'s-clause',l:'to不定詞句（主語）'},{t:'when the Nile would rise',r:'S',ul:'s-clause',l:'間接疑問節'},{t:'became',r:'V',l:'動詞（SVC）'},{t:'their vital concern.',r:'C',l:'補語（名詞句）'}]}
     ],
-    vocab:[
-      {w:'livelihood',m:'生計・生活手段'},
-      {w:'overflow',m:'氾濫する'},
-      {w:'vital concern',m:'死活問題・重大な関心事'},
-    ]
+    vocab:[{w:'livelihood',m:'生計・生活手段'},{w:'overflow',m:'氾濫する'},{w:'vital concern',m:'死活問題'}]
   },
   {
     id:'b2',num:2,
     topic:'美しい家への羨望',
+    trans:'絵のように美しく位置し、格別の美しさと快適さを備えた家を見たとき、私たちの多くはそこに住む人々がどんな人物なのかを知りたいというふとした欲求を感じたことがあると思う。',
     sentences:[
-      {
-        pattern:'SVO（主語 = most of us when…）',
-        plain:'I suppose that most of us when we have seen houses which were picturesquely situated, and wore a look of unusual beauty and comfort, have now and then felt a passing desire to know who were the people that lived in them.',
-        tokens:[
-          {t:'I',r:'S',l:'主語'},
-          {t:'suppose',r:'V',l:'動詞'},
-          {t:'that',r:'conj',l:'接続詞（名詞節）'},
-          {t:'most of us',r:'S',ul:'o-clause',l:'名詞節内の主語'},
-          {t:'when we have seen',r:'adv',ul:'adv-clause',l:'時の副詞節'},
-          {t:'houses',r:'O',ul:'o-clause',l:'目的語'},
-          {t:'which were picturesquely situated,',r:'adj',ul:'adj-clause',l:'関係詞節'},
-          {t:'and wore a look of unusual beauty and comfort,',r:'adj',l:'並列形容詞節'},
-          {t:'have … felt',r:'V',ul:'o-clause',l:'述語動詞（現在完了）'},
-          {t:'a passing desire',r:'O',ul:'o-clause',l:'目的語'},
-          {t:'to know',r:'adj',l:'形容詞的不定詞'},
-          {t:'who were the people',r:'O',ul:'o-clause',l:'間接疑問節'},
-          {t:'that lived in them.',r:'adj',ul:'adj-clause',l:'関係詞節'},
-        ]
-      }
+      {pattern:'SVO（主語 = most of us when…）',plain:'I suppose that most of us when we have seen houses which were picturesquely situated, and wore a look of unusual beauty and comfort, have now and then felt a passing desire to know who were the people that lived in them.',tokens:[{t:'I',r:'S',l:'主語'},{t:'suppose',r:'V',l:'動詞'},{t:'that',r:'conj',l:'接続詞（名詞節）'},{t:'most of us',r:'S',ul:'o-clause',l:'名詞節内の主語'},{t:'when we have seen',r:'adv',ul:'adv-clause',l:'時の副詞節'},{t:'houses',r:'O',ul:'o-clause',l:'目的語'},{t:'which were picturesquely situated,',r:'adj',ul:'adj-clause',l:'関係詞節'},{t:'and wore a look of unusual beauty and comfort,',r:'adj',l:'並列形容詞節'},{t:'have … felt',r:'V',ul:'o-clause',l:'述語動詞（現在完了）'},{t:'a passing desire',r:'O',ul:'o-clause',l:'目的語'},{t:'to know',r:'adj',l:'形容詞的不定詞'},{t:'who were the people',r:'O',ul:'o-clause',l:'間接疑問節'},{t:'that lived in them.',r:'adj',ul:'adj-clause',l:'関係詞節'}]}
     ],
-    vocab:[
-      {w:'picturesquely',m:'絵のように美しく'},
-      {w:'situated',m:'位置する'},
-      {w:'passing desire',m:'ふとした欲求'},
-    ]
+    vocab:[{w:'picturesquely',m:'絵のように美しく'},{w:'situated',m:'位置する'},{w:'passing desire',m:'ふとした欲求'}]
   },
   {
     id:'b3',num:3,
     topic:'民主主義と代表制',
+    trans:'大きな国家では、真の意味で人民による統治を実現することはできない。しかしそれは真の代表者——共同体の一般的利益を代表する人々——によるものであるべきだ。',
     sentences:[
-      {
-        pattern:'SVC（主語 = Government）',
-        plain:'Government can never in our large states be by the people in any true sense of the word; it may be — and since we are democrats, should be — by their true representatives, those who represent their real interest, the general interest of the community.',
-        tokens:[
-          {t:'Government',r:'S',l:'主語'},
-          {t:'can never',r:'V',l:'動詞（can）'},
-          {t:'in our large states',r:'adv',l:'副詞句'},
-          {t:'be',r:'V',l:'動詞（be）'},
-          {t:'by the people',r:'C',l:'補語（by句）'},
-          {t:'in any true sense of the word;',r:'adv',l:'副詞句'},
-          {t:'it',r:'S',l:'主語（= Government）'},
-          {t:'may be —',r:'V',l:'動詞'},
-          {t:'and since we are democrats,',r:'adv',ul:'adv-clause',l:'挿入節（理由）'},
-          {t:'should be —',r:'V',l:'等位動詞'},
-          {t:'by their true representatives,',r:'C',l:'補語'},
-          {t:'those who represent their real interest,',r:'adj',l:'同格関係詞節'},
-          {t:'the general interest of the community.',r:'adj',l:'同格名詞句'},
-        ]
-      }
+      {pattern:'SVC（主語 = Government）',plain:'Government can never in our large states be by the people in any true sense of the word; it may be — and since we are democrats, should be — by their true representatives, those who represent their real interest, the general interest of the community.',tokens:[{t:'Government',r:'S',l:'主語'},{t:'can never',r:'V',l:'動詞（can）'},{t:'in our large states',r:'adv',l:'副詞句'},{t:'be',r:'V',l:'動詞（be）'},{t:'by the people',r:'C',l:'補語（by句）'},{t:'in any true sense of the word;',r:'adv',l:'副詞句'},{t:'it',r:'S',l:'主語（= Government）'},{t:'may be —',r:'V',l:'動詞'},{t:'and since we are democrats,',r:'adv',ul:'adv-clause',l:'挿入節（理由）'},{t:'should be —',r:'V',l:'等位動詞'},{t:'by their true representatives,',r:'C',l:'補語'},{t:'those who represent their real interest,',r:'adj',l:'同格関係詞節'},{t:'the general interest of the community.',r:'adj',l:'同格名詞句'}]}
     ],
-    vocab:[
-      {w:'democrat',m:'民主主義者'},
-      {w:'representative',m:'代表者'},
-      {w:'general interest',m:'公益・共通の利益'},
-    ]
+    vocab:[{w:'democrat',m:'民主主義者'},{w:'representative',m:'代表者'},{w:'general interest',m:'公益・共通の利益'}]
   },
   {
     id:'b4',num:4,
     topic:'日本のナショナリズムの発達',
+    trans:'日本でなぜ民族主義がこれほど発達したかは興味深い問いである。主な理由は、日本人が歴史を通じて中国に圧倒されながらも、それとは異なる存在であり続けようとしたことにあったと考えられる。',
     sentences:[
-      {
-        pattern:'SVC（主語 = why節）',
-        plain:'Why nationalism should have appeared so developed so fully in Japan is an interesting question.',
-        tokens:[
-          {t:'Why nationalism should have appeared so developed so fully in Japan',r:'S',ul:'s-clause',l:'why節（主語節）'},
-          {t:'is',r:'V',l:'動詞'},
-          {t:'an interesting question.',r:'C',l:'補語（名詞句）'},
-        ]
-      },
-      {
-        pattern:'SVC（主語 = The main reason）',
-        plain:'The main reason may have been that the Japanese throughout their history felt themselves to be completely overshadowed by China but still distinct from it.',
-        tokens:[
-          {t:'The main reason',r:'S',l:'主語'},
-          {t:'may have been',r:'V',l:'動詞（推量の完了）'},
-          {t:'that',r:'conj',l:'接続詞（名詞節）'},
-          {t:'the Japanese',r:'S',ul:'c-clause',l:'補語節内の主語'},
-          {t:'throughout their history',r:'adv',l:'副詞句'},
-          {t:'felt',r:'V',ul:'c-clause',l:'動詞'},
-          {t:'themselves',r:'O',ul:'c-clause',l:'目的語'},
-          {t:'to be completely overshadowed by China',r:'C',ul:'c-clause',l:'目的格補語（to不定詞）'},
-          {t:'but still distinct from it.',r:'C',ul:'c-clause',l:'等位補語'},
-        ]
-      }
+      {pattern:'SVC（主語 = why節）',plain:'Why nationalism should have appeared so developed so fully in Japan is an interesting question.',tokens:[{t:'Why nationalism should have appeared so developed so fully in Japan',r:'S',ul:'s-clause',l:'why節（主語節）'},{t:'is',r:'V',l:'動詞'},{t:'an interesting question.',r:'C',l:'補語（名詞句）'}]},
+      {pattern:'SVC（主語 = The main reason）',plain:'The main reason may have been that the Japanese throughout their history felt themselves to be completely overshadowed by China but still distinct from it.',tokens:[{t:'The main reason',r:'S',l:'主語'},{t:'may have been',r:'V',l:'動詞（推量の完了）'},{t:'that',r:'conj',l:'接続詞（名詞節）'},{t:'the Japanese',r:'S',ul:'c-clause',l:'補語節内の主語'},{t:'throughout their history',r:'adv',l:'副詞句'},{t:'felt',r:'V',ul:'c-clause',l:'動詞'},{t:'themselves',r:'O',ul:'c-clause',l:'目的語'},{t:'to be completely overshadowed by China',r:'C',ul:'c-clause',l:'目的格補語（to不定詞）'},{t:'but still distinct from it.',r:'C',ul:'c-clause',l:'等位補語'}]}
     ],
-    vocab:[
-      {w:'nationalism',m:'国家主義・民族主義'},
-      {w:'overshadowed',m:'（影に）圧倒された'},
-      {w:'distinct from',m:'～とは異なる'},
-    ]
+    vocab:[{w:'nationalism',m:'国家主義・民族主義'},{w:'overshadowed',m:'（影に）圧倒された'},{w:'distinct from',m:'～とは異なる'}]
   },
   {
     id:'b5',num:5,
     topic:'英語の品位の低下',
+    trans:'耳にしたり目にしたりする話し言葉・書き言葉の英語の多くに見られる著しい不注意と下品さは、立派とされる学校や大学に何年通っても何の効果も生まなかったことを疑いなく証明している。',
     sentences:[
-      {
-        pattern:'SVO（主語 = The … carelessness and vulgarity）',
-        plain:'The quite shocking carelessness and vulgarity of much of the spoken English, as well as not a little of the written English, which one hears and sees, proves beyond doubt that years of attendance upon schools and colleges that are thought to be respectable have produced no impression.',
-        tokens:[
-          {t:'The quite shocking carelessness and vulgarity',r:'S',l:'主語（複数語が and で結合されるが単一概念）'},
-          {t:'of much of the spoken English,',r:'adj',l:'形容詞句'},
-          {t:'as well as not a little of the written English,',r:'adj',l:'追加句（主語はcarelessness…に一致）'},
-          {t:'which one hears and sees,',r:'adj',ul:'adj-clause',l:'関係詞節'},
-          {t:'proves',r:'V',l:'動詞（単数）'},
-          {t:'beyond doubt',r:'adv',l:'副詞句'},
-          {t:'that',r:'conj',l:'接続詞（名詞節）'},
-          {t:'years of attendance … have produced no impression.',r:'O',ul:'o-clause',l:'目的語節'},
-        ]
-      }
+      {pattern:'SVO（主語 = The … carelessness and vulgarity）',plain:'The quite shocking carelessness and vulgarity of much of the spoken English, as well as not a little of the written English, which one hears and sees, proves beyond doubt that years of attendance upon schools and colleges that are thought to be respectable have produced no impression.',tokens:[{t:'The quite shocking carelessness and vulgarity',r:'S',l:'主語'},{t:'of much of the spoken English,',r:'adj',l:'形容詞句'},{t:'as well as not a little of the written English,',r:'adj',l:'追加句'},{t:'which one hears and sees,',r:'adj',ul:'adj-clause',l:'関係詞節'},{t:'proves',r:'V',l:'動詞（単数）'},{t:'beyond doubt',r:'adv',l:'副詞句'},{t:'that',r:'conj',l:'接続詞（名詞節）'},{t:'years of attendance … have produced no impression.',r:'O',ul:'o-clause',l:'目的語節'}]}
     ],
-    vocab:[
-      {w:'vulgarity',m:'下品さ・粗野'},
-      {w:'attendance upon',m:'出席・通学'},
-      {w:'respectable',m:'体面のある・立派な'},
-    ]
+    vocab:[{w:'vulgarity',m:'下品さ・粗野'},{w:'attendance upon',m:'出席・通学'},{w:'respectable',m:'体面のある・立派な'}]
   },
   {
     id:'b6',num:6,
     topic:'職業選択と人生の幸福',
+    trans:'職業を選ぶ際、人は人生の幸福と満足に関わる多くのことを決定する。築く家庭、住む地域、生活水準、余暇の過ごし方、子供が育つ環境——これらすべてが職業の選択にかかっている。',
     sentences:[
-      {
-        pattern:'SVO（主語 = you）',
-        plain:'In choosing an occupation, you determine many things that involve your happiness and satisfaction in life.',
-        tokens:[
-          {t:'In choosing an occupation,',r:'adv',l:'副詞句（動名詞）'},
-          {t:'you',r:'S',l:'主語'},
-          {t:'determine',r:'V',l:'動詞'},
-          {t:'many things',r:'O',l:'目的語'},
-          {t:'that involve your happiness and satisfaction in life.',r:'adj',ul:'adj-clause',l:'関係詞節'},
-        ]
-      },
-      {
-        pattern:'SV（主語 = The home … and the environment）',
-        plain:'The home you make, the community in which you will live, the standard of living that you will maintain, the recreations you pursue, and the environment in which your children grow up will depend largely upon your choice of vocation.',
-        tokens:[
-          {t:'The home you make,',r:'S',l:'主語①（関係詞節含む）'},
-          {t:'the community in which you will live,',r:'S',l:'主語②'},
-          {t:'the standard of living that you will maintain,',r:'S',l:'主語③'},
-          {t:'the recreations you pursue,',r:'S',l:'主語④'},
-          {t:'and the environment in which your children grow up',r:'S',l:'主語⑤'},
-          {t:'will depend',r:'V',l:'動詞（複数主語）'},
-          {t:'largely',r:'adv',l:'副詞'},
-          {t:'upon your choice of vocation.',r:'adv',l:'副詞句'},
-        ]
-      }
+      {pattern:'SVO（主語 = you）',plain:'In choosing an occupation, you determine many things that involve your happiness and satisfaction in life.',tokens:[{t:'In choosing an occupation,',r:'adv',l:'副詞句（動名詞）'},{t:'you',r:'S',l:'主語'},{t:'determine',r:'V',l:'動詞'},{t:'many things',r:'O',l:'目的語'},{t:'that involve your happiness and satisfaction in life.',r:'adj',ul:'adj-clause',l:'関係詞節'}]},
+      {pattern:'SV（主語 = The home … and the environment）',plain:'The home you make, the community in which you will live, the standard of living that you will maintain, the recreations you pursue, and the environment in which your children grow up will depend largely upon your choice of vocation.',tokens:[{t:'The home you make,',r:'S',l:'主語①'},{t:'the community in which you will live,',r:'S',l:'主語②'},{t:'the standard of living that you will maintain,',r:'S',l:'主語③'},{t:'the recreations you pursue,',r:'S',l:'主語④'},{t:'and the environment in which your children grow up',r:'S',l:'主語⑤'},{t:'will depend',r:'V',l:'動詞（複数主語）'},{t:'largely',r:'adv',l:'副詞'},{t:'upon your choice of vocation.',r:'adv',l:'副詞句'}]}
     ],
-    vocab:[
-      {w:'occupation',m:'職業'},
-      {w:'vocation',m:'天職・職業'},
-      {w:'recreation',m:'余暇・気晴らし'},
-      {w:'standard of living',m:'生活水準'},
-    ]
+    vocab:[{w:'occupation',m:'職業'},{w:'vocation',m:'天職・職業'},{w:'recreation',m:'余暇・気晴らし'},{w:'standard of living',m:'生活水準'}]
   },
   {
     id:'b7',num:7,
     topic:'アメリカの国民性と変化',
+    trans:'過去半世紀の物質的・知的変化がアメリカ人の国民性に匹敵する変化をもたらしたかを判断するのは難しい。国民性を形成する力は個人の性格を形成する力と同様に不明確だが、両者が早期に形成され比較的変化しないことはほぼ確かである。',
     sentences:[
-      {
-        pattern:'SVC（主語 = Whether節）',
-        plain:'Whether either the material or the intellectual changes in the past half-century produced comparable changes in the American character is difficult to determine.',
-        tokens:[
-          {t:'Whether',r:'conj',l:'従属接続詞（主語節を導く）'},
-          {t:'either the material or the intellectual changes',r:'S',ul:'s-clause',l:'主語節内の主語'},
-          {t:'in the past half-century',r:'adv',l:'副詞句'},
-          {t:'produced',r:'V',ul:'s-clause',l:'主語節内の動詞'},
-          {t:'comparable changes in the American character',r:'O',ul:'s-clause',l:'目的語'},
-          {t:'is',r:'V',l:'主節の動詞'},
-          {t:'difficult to determine.',r:'C',l:'補語（形容詞 ＋ to不定詞）'},
-        ]
-      },
-      {
-        pattern:'SVC（主語 = The forces … / that both …）',
-        plain:'The forces that create a national character are as obscure as those that create an individual character, but that both are formed early and change relatively little is almost certain.',
-        tokens:[
-          {t:'The forces',r:'S',l:'主語'},
-          {t:'that create a national character',r:'adj',ul:'adj-clause',l:'関係詞節'},
-          {t:'are',r:'V',l:'動詞'},
-          {t:'as obscure as those that create an individual character,',r:'C',l:'補語（as … as 比較）'},
-          {t:'but',r:'conj',l:'等位接続詞'},
-          {t:'that both are formed early and change relatively little',r:'S',ul:'s-clause',l:'that節（主語）'},
-          {t:'is',r:'V',l:'動詞'},
-          {t:'almost certain.',r:'C',l:'補語'},
-        ]
-      }
+      {pattern:'SVC（主語 = Whether節）',plain:'Whether either the material or the intellectual changes in the past half-century produced comparable changes in the American character is difficult to determine.',tokens:[{t:'Whether',r:'conj',l:'従属接続詞（主語節）'},{t:'either the material or the intellectual changes',r:'S',ul:'s-clause',l:'主語節内の主語'},{t:'in the past half-century',r:'adv',l:'副詞句'},{t:'produced',r:'V',ul:'s-clause',l:'主語節内の動詞'},{t:'comparable changes in the American character',r:'O',ul:'s-clause',l:'目的語'},{t:'is',r:'V',l:'主節の動詞'},{t:'difficult to determine.',r:'C',l:'補語'}]},
+      {pattern:'SVC（主語 = The forces … / that both …）',plain:'The forces that create a national character are as obscure as those that create an individual character, but that both are formed early and change relatively little is almost certain.',tokens:[{t:'The forces',r:'S',l:'主語'},{t:'that create a national character',r:'adj',ul:'adj-clause',l:'関係詞節'},{t:'are',r:'V',l:'動詞'},{t:'as obscure as those that create an individual character,',r:'C',l:'補語（as … as 比較）'},{t:'but',r:'conj',l:'等位接続詞'},{t:'that both are formed early and change relatively little',r:'S',ul:'s-clause',l:'that節（主語）'},{t:'is',r:'V',l:'動詞'},{t:'almost certain.',r:'C',l:'補語'}]}
     ],
-    vocab:[
-      {w:'comparable',m:'匹敵する・比較できる'},
-      {w:'obscure',m:'不明確な・曖昧な'},
-      {w:'relatively',m:'比較的'},
-    ]
+    vocab:[{w:'comparable',m:'匹敵する・比較できる'},{w:'obscure',m:'不明確な・曖昧な'},{w:'relatively',m:'比較的'}]
   }
 ];
 
-/* ═══════════════════════════════════════════
-   RENDER [B]
-═══════════════════════════════════════════ */
 function buildToken(tok){
   const roleClass={S:'r-S',V:'r-V',O:'r-O',C:'r-C',adv:'r-adv',adj:'r-adj',conj:'r-conj',rel:'r-rel',plain:'r-plain'};
   const ulClass={'s-clause':'ul-s-clause','o-clause':'ul-o-clause','c-clause':'ul-c-clause','adj-clause':'ul-adj-clause','adv-clause':'ul-adv-clause'};
@@ -1247,192 +774,74 @@ function buildToken(tok){
   return `<span class="tok ${rc} ${uc}">${tok.t}<span class="tip">${tok.l||''}</span></span> `;
 }
 
-
-const PASSAGE_AUDIO = {
-  'b1': 'ch1_b1.mp3',
-  'b2': 'ch1_b2.mp3',
-  'b3': 'ch1_b3.mp3',
-  'b4': 'ch1_b4.mp3',
-  'b5': 'ch1_b5.mp3',
-  'b6': 'ch1_b6.mp3',
-  'b7': 'ch1_b7.mp3',
-};
+const PASSAGE_AUDIO={'b1':'ch1_b1.mp3','b2':'ch1_b2.mp3','b3':'ch1_b3.mp3','b4':'ch1_b4.mp3','b5':'ch1_b5.mp3','b6':'ch1_b6.mp3','b7':'ch1_b7.mp3'};
 const viewedB=new Set();
+
 function renderPassages(){
   const wrap=document.getElementById('b-wrap');
   PASSAGES.forEach(p=>{
-    const card=document.createElement('div');
-    card.className='pcard';
+    const card=document.createElement('div');card.className='pcard';
     let sentHtml='';
     p.sentences.forEach((s,si)=>{
       const analTokens=s.tokens.map(buildToken).join('');
-      sentHtml+=`
-        <div class="sent">
-          <div class="sent-pattern">${s.pattern}</div>
-          <div class="sent-plain" id="plain-${p.id}-${si}">${s.plain}</div>
-          <div class="sent-anal" id="anal-${p.id}-${si}">${analTokens}</div>
-        </div>`;
+      sentHtml+=`<div class="sent"><div class="sent-pattern">${s.pattern}</div><div class="sent-plain" id="plain-${p.id}-${si}">${s.plain}</div><div class="sent-anal" id="anal-${p.id}-${si}">${analTokens}</div></div>`;
     });
     const vocabHtml=p.vocab?p.vocab.map(v=>`<span class="vocab-item"><strong>${v.w}</strong> ${v.m}</span>`).join(''):'';
+
+    /* ── 全文訳バー（📖 全文訳ボタンで表示切替） ── */
+    const transHtml=p.trans?`<div class="topic-bar" id="topicbar-${p.id}"><span class="trans-label">📖 全文訳</span><span class="trans-body">${p.trans}</span></div>`:'';
+
     card.innerHTML=`
       <div class="phead" style="flex-direction:column;align-items:stretch;padding:0;">
         <div style="display:flex;align-items:center;gap:10px;padding:.85rem 1.1rem;">
           <span class="pnum">${p.num}</span>
           <span class="ptopic" id="ptopic-${p.id}">${p.topic}</span>
         </div>
-        ${PASSAGE_AUDIO[p.id] ? `<div class="audio-player">
-          <button class="ap-btn" id="apb-${p.id}" onclick="apToggle('${p.id}')">▶</button>
-          <div class="ap-track">
-            <div class="ap-bar-wrap" onclick="apSeek('${p.id}', event)">
-              <div class="ap-bar-fill" id="apf-${p.id}"></div>
-            </div>
-            <div class="ap-time">
-              <span id="apc-${p.id}">0:00</span>
-              <span id="apt-${p.id}">--:--</span>
-            </div>
-          </div>
-          <span class="ap-label">🔊 朗読</span>
-        </div>` : ''}
+        ${PASSAGE_AUDIO[p.id]?`<div class="audio-player"><button class="ap-btn" id="apb-${p.id}" onclick="apToggle('${p.id}')">▶</button><div class="ap-track"><div class="ap-bar-wrap" onclick="apSeek('${p.id}', event)"><div class="ap-bar-fill" id="apf-${p.id}"></div></div><div class="ap-time"><span id="apc-${p.id}">0:00</span><span id="apt-${p.id}">--:--</span></div></div><span class="ap-label">🔊 朗読</span></div>`:''}
       </div>
       <div class="pbody">${sentHtml}</div>
       ${p.vocab?`<div class="vocab-block" id="vocab-${p.id}"><div class="vocab-title">VOCABULARY</div><div class="vocab-list">${vocabHtml}</div></div>`:''}
-      ${p.topic?`<div class="topic-bar" id="topicbar-${p.id}">🎯 Main Topic: <span>${p.topic}</span></div>`:''}`;
+      ${transHtml}`;
     wrap.appendChild(card);
     card.querySelector('.pbody').addEventListener('click',()=>{viewedB.add(p.id);updateProgLabel();});
   });
   applyMode('anal');
 }
 
-/* ═══════════════════════════════════════════
-   [C] DATA
-═══════════════════════════════════════════ */
 const C_DATA=[
-  // [C][1] 語句整序
-  {
-    section:'[C][1] カッコの中の語句を適当に配列して英訳せよ',
-    num:'1',
-    ja:'彼がそんなことをしたので、友人はおどろいた。',
-    hint:'(do, friends, he, his, should, such a thing, surprised, that)',
-    ans:'That he should do such a thing surprised his friends.',
-    expl:'that節（主語）＋ should（驚きの should）'
-  },
-  {
-    section:null,
-    num:'2',
-    ja:'彼がくるかどうかはっきりしない。',
-    hint:'(come, he, is, not, or, uncertain, whether, will)',
-    ans:'Whether he will come or not is uncertain.',
-    expl:'whether … or not が主語節 → is uncertain（SVC）'
-  },
-  {
-    section:null,
-    num:'3',
-    ja:'そっちょくに語ることは、おたがいによりよく理解するための第１歩である。Speaking … understanding.',
-    hint:'(step, towards, is, mutual, frankly, the, better, first)',
-    ans:'Speaking frankly is the first step towards better mutual understanding.',
-    expl:'動名詞句（Speaking frankly）が主語 → SVC'
-  },
-  {
-    section:null,
-    num:'4',
-    ja:'精神と肉体をきびしく区別することは誤りのように思える。It seems that … is an error.',
-    hint:'(a, and, between, body, distinction, make, mind, strict, to)',
-    ans:'It seems that to make a strict distinction between mind and body is an error.',
-    expl:'to不定詞句が that節内の主語（形式主語 It）'
-  },
-  // [C][2] 英訳
-  {
-    section:'[C][2] 英訳せよ',
-    num:'1',
-    ja:'彼のいったことはほんとうのはずがない。（名詞節を用いよ）',
-    hint:'what節を主語に',
-    ans:'What he said cannot be true.',
-    expl:'what節（主語）＋ cannot be true（SVC）'
-  },
-  {
-    section:null,
-    num:'2',
-    ja:'今の若い人たちに必要なのは、自分でものを考える習慣をつける（acquire the habit）ことだ。',
-    hint:'What … need is …',
-    ans:'What young people today need is to acquire the habit of thinking for themselves.',
-    expl:'what節（主語）＋ is ＋ to不定詞（補語）→ SVC'
-  },
-  {
-    section:null,
-    num:'3',
-    ja:'火をおこし（make）火を使うことは、人間がなしとげた発明（invention）のなかで最大のものである。',
-    hint:'動名詞句を主語に',
-    ans:'Making and using fire is the greatest invention that mankind has ever achieved.',
-    expl:'動名詞句（Making and using fire）が主語 → is … SVC'
-  },
-  {
-    section:null,
-    num:'4',
-    ja:'これから平和のために、どれだけの代償を払わねばならぬ（have still to pay）かは、なぞ（a riddle）である。',
-    hint:'how much … が主語節',
-    ans:'How much we have still to pay for peace is a riddle.',
-    expl:'how much節が主語 → SVC'
-  },
+  {section:'[C][1] カッコの中の語句を適当に配列して英訳せよ',num:'1',ja:'彼がそんなことをしたので、友人はおどろいた。',hint:'(do, friends, he, his, should, such a thing, surprised, that)',ans:'That he should do such a thing surprised his friends.',expl:'that節（主語）＋ should（驚きの should）'},
+  {section:null,num:'2',ja:'彼がくるかどうかはっきりしない。',hint:'(come, he, is, not, or, uncertain, whether, will)',ans:'Whether he will come or not is uncertain.',expl:'whether … or not が主語節 → is uncertain（SVC）'},
+  {section:null,num:'3',ja:'そっちょくに語ることは、おたがいによりよく理解するための第１歩である。Speaking … understanding.',hint:'(step, towards, is, mutual, frankly, the, better, first)',ans:'Speaking frankly is the first step towards better mutual understanding.',expl:'動名詞句（Speaking frankly）が主語 → SVC'},
+  {section:null,num:'4',ja:'精神と肉体をきびしく区別することは誤りのように思える。It seems that … is an error.',hint:'(a, and, between, body, distinction, make, mind, strict, to)',ans:'It seems that to make a strict distinction between mind and body is an error.',expl:'to不定詞句が that節内の主語（形式主語 It）'},
+  {section:'[C][2] 英訳せよ',num:'1',ja:'彼のいったことはほんとうのはずがない。（名詞節を用いよ）',hint:'what節を主語に',ans:'What he said cannot be true.',expl:'what節（主語）＋ cannot be true（SVC）'},
+  {section:null,num:'2',ja:'今の若い人たちに必要なのは、自分でものを考える習慣をつける（acquire the habit）ことだ。',hint:'What … need is …',ans:'What young people today need is to acquire the habit of thinking for themselves.',expl:'what節（主語）＋ is ＋ to不定詞（補語）→ SVC'},
+  {section:null,num:'3',ja:'火をおこし（make）火を使うことは、人間がなしとげた発明（invention）のなかで最大のものである。',hint:'動名詞句を主語に',ans:'Making and using fire is the greatest invention that mankind has ever achieved.',expl:'動名詞句（Making and using fire）が主語 → is … SVC'},
+  {section:null,num:'4',ja:'これから平和のために、どれだけの代償を払わねばならぬ（have still to pay）かは、なぞ（a riddle）である。',hint:'how much … が主語節',ans:'How much we have still to pay for peace is a riddle.',expl:'how much節が主語 → SVC'},
 ];
 
-/* ═══════════════════════════════════════════
-   RENDER [C]
-═══════════════════════════════════════════ */
 function renderC(){
   const wrap=document.getElementById('c-wrap');
   let lastSection=null;
   C_DATA.forEach((q,i)=>{
-    if(q.section&&q.section!==lastSection){
-      const title=document.createElement('div');
-      title.className='c-section-title';
-      title.textContent=q.section;
-      wrap.appendChild(title);
-      lastSection=q.section;
-    }
-    const card=document.createElement('div');
-    card.className='c-card';
-    card.dataset.revealed='0';
-    card.innerHTML=`
-      <div class="c-head">
-        <span class="c-num">${q.num}.</span>
-        <span class="c-ja">${q.ja}</span>
-        ${q.hint?`<span class="c-hint-badge">ヒント</span>`:''}
-      </div>
-      <div class="c-body">
-        ${q.hint?`<div style="font-size:12px;color:var(--muted);margin-bottom:.5rem;font-style:italic;">${q.hint}</div>`:''}
-        <textarea class="c-textarea" id="ct-${i}" placeholder="英文を入力してください…" rows="2"></textarea>
-        <div class="c-actions">
-          <button class="btn btn-reveal" onclick="revealC(${i})">答え表示</button>
-          <button class="btn btn-reset" onclick="resetC(${i})">リセット</button>
-        </div>
-        <div class="c-fb" id="cfb-${i}"></div>
-      </div>`;
+    if(q.section&&q.section!==lastSection){const title=document.createElement('div');title.className='c-section-title';title.textContent=q.section;wrap.appendChild(title);lastSection=q.section;}
+    const card=document.createElement('div');card.className='c-card';card.dataset.revealed='0';
+    card.innerHTML=`<div class="c-head"><span class="c-num">${q.num}.</span><span class="c-ja">${q.ja}</span>${q.hint?`<span class="c-hint-badge">ヒント</span>`:''}</div><div class="c-body">${q.hint?`<div style="font-size:12px;color:var(--muted);margin-bottom:.5rem;font-style:italic;">${q.hint}</div>`:''}<textarea class="c-textarea" id="ct-${i}" placeholder="英文を入力してください…" rows="2"></textarea><div class="c-actions"><button class="btn btn-reveal" onclick="revealC(${i})">答え表示</button><button class="btn btn-reset" onclick="resetC(${i})">リセット</button></div><div class="c-fb" id="cfb-${i}"></div></div>`;
     wrap.appendChild(card);
   });
 }
 
 function revealC(i){
-  const q=C_DATA[i];
-  const ta=document.getElementById('ct-'+i);
-  ta.value=q.ans;
-  ta.classList.add('revealed');
-  ta.disabled=true;
+  const q=C_DATA[i];const ta=document.getElementById('ct-'+i);
+  ta.value=q.ans;ta.classList.add('revealed');ta.disabled=true;
   document.getElementById('cfb-'+i).innerHTML=`<span style="color:var(--blue);">${q.expl}</span>`;
-  ta.closest('.c-card').dataset.revealed='1';
-  updateProgLabel();
+  ta.closest('.c-card').dataset.revealed='1';updateProgLabel();
 }
-
 function resetC(i){
-  const ta=document.getElementById('ct-'+i);
-  ta.value='';ta.disabled=false;ta.classList.remove('revealed');
+  const ta=document.getElementById('ct-'+i);ta.value='';ta.disabled=false;ta.classList.remove('revealed');
   document.getElementById('cfb-'+i).innerHTML='';
-  ta.closest('.c-card').dataset.revealed='0';
-  updateProgLabel();
+  ta.closest('.c-card').dataset.revealed='0';updateProgLabel();
 }
 
-/* ═══════════════════════════════════════════
-   MODE (白文 / 5文型解析)
-═══════════════════════════════════════════ */
 let currentMode='anal';let vocabOn=false;let topicOn=false;
 function setMode(m){
   currentMode=m;
@@ -1457,6 +866,7 @@ function toggleAll(type){
     document.getElementById('tog-vocab').classList.toggle('on',vocabOn);
     PASSAGES.forEach(p=>{const el=document.getElementById('vocab-'+p.id);if(el)el.style.display=vocabOn?'block':'none';});
   } else {
+    /* 全文訳の表示切替 */
     topicOn=!topicOn;
     document.getElementById('tog-topic').classList.toggle('on',topicOn);
     PASSAGES.forEach(p=>{
@@ -1466,16 +876,14 @@ function toggleAll(type){
   }
 }
 
-/* ═══════════════════════════════════════════
-   PROGRESS
-═══════════════════════════════════════════ */
 function updateProgLabel(){
   const tabs=document.querySelectorAll('.nav-tab');
   let activeIdx=0;
   tabs.forEach((t,i)=>{if(t.classList.contains('active'))activeIdx=i;});
   const tabId=TABS[activeIdx];
   let pct=0;
-  if(tabId==='intro'){pct=0;document.getElementById('prog-label').textContent='';document.getElementById('prog-bar-fill').style.width='0%';return;}else if(tabId==='kihon'){pct=100;}
+  if(tabId==='intro'||tabId==='hashi'||tabId==='guide'){document.getElementById('prog-label').textContent='';document.getElementById('prog-bar-fill').style.width='0%';return;}
+  else if(tabId==='kihon'){pct=100;}
   else if(tabId==='a'){
     let total=0,done=0;
     A1_DATA.forEach(q=>{const cw=document.getElementById('cw1-'+q.n);if(cw){total++;if(cw.querySelector('.c-correct'))done++;}});
@@ -1492,9 +900,7 @@ function updateProgLabel(){
   document.getElementById('prog-bar-fill').style.width=pct+'%';
 }
 
-/* ═══════════════════════════════════════════
-   INIT
-═══════════════════════════════════════════ */
+/* ── プログレスバー初期化 ── */
 (function(){
   const nav=document.getElementById('top-nav');
   const div=document.createElement('div');
@@ -1508,77 +914,44 @@ function updateProgLabel(){
   nav.appendChild(div);
 })();
 
-
-/* ═══════════════════════════════════════════
-   AUDIO PLAYERS
-═══════════════════════════════════════════ */
-const _audios = {};
-function _initAudio(id, src) {
-  if (_audios[id]) return _audios[id];
-  const a = new Audio(src);
-  _audios[id] = a;
-  a.addEventListener('timeupdate', () => {
-    const fill = document.getElementById('apf-' + id);
-    const cur = document.getElementById('apc-' + id);
-    if (fill && a.duration) fill.style.width = (a.currentTime / a.duration * 100) + '%';
-    if (cur) cur.textContent = _fmtTime(a.currentTime);
+/* ── Audio Players ── */
+const _audios={};
+function _initAudio(id,src){
+  if(_audios[id])return _audios[id];
+  const a=new Audio(src);_audios[id]=a;
+  a.addEventListener('timeupdate',()=>{
+    const fill=document.getElementById('apf-'+id);const cur=document.getElementById('apc-'+id);
+    if(fill&&a.duration)fill.style.width=(a.currentTime/a.duration*100)+'%';
+    if(cur)cur.textContent=_fmtTime(a.currentTime);
   });
-  a.addEventListener('loadedmetadata', () => {
-    const tot = document.getElementById('apt-' + id);
-    if (tot) tot.textContent = _fmtTime(a.duration);
-  });
-  a.addEventListener('ended', () => {
-    const btn = document.getElementById('apb-' + id);
-    if (btn) { btn.classList.remove('ap-playing'); btn.textContent = '▶'; }
-    const fill = document.getElementById('apf-' + id);
-    if (fill) fill.style.width = '0%';
-    const cur = document.getElementById('apc-' + id);
-    if (cur) cur.textContent = '0:00';
+  a.addEventListener('loadedmetadata',()=>{const tot=document.getElementById('apt-'+id);if(tot)tot.textContent=_fmtTime(a.duration);});
+  a.addEventListener('ended',()=>{
+    const btn=document.getElementById('apb-'+id);if(btn){btn.classList.remove('ap-playing');btn.textContent='▶';}
+    const fill=document.getElementById('apf-'+id);if(fill)fill.style.width='0%';
+    const cur=document.getElementById('apc-'+id);if(cur)cur.textContent='0:00';
   });
   return a;
 }
-function _fmtTime(s) {
-  const m = Math.floor(s / 60);
-  return m + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+function _fmtTime(s){const m=Math.floor(s/60);return m+':'+String(Math.floor(s%60)).padStart(2,'0');}
+function apToggle(id){
+  const a=_audios[id];if(!a)return;
+  const btn=document.getElementById('apb-'+id);
+  if(a.paused){
+    Object.entries(_audios).forEach(([k,o])=>{if(k!==id&&!o.paused){o.pause();const b=document.getElementById('apb-'+k);if(b){b.classList.remove('ap-playing');b.textContent='▶';}}});
+    a.play();btn.classList.add('ap-playing');btn.textContent='⏸';
+  } else {a.pause();btn.classList.remove('ap-playing');btn.textContent='▶';}
 }
-function apToggle(id) {
-  const a = _audios[id]; if (!a) return;
-  const btn = document.getElementById('apb-' + id);
-  if (a.paused) {
-    // pause all others
-    Object.entries(_audios).forEach(([k, o]) => {
-      if (k !== id && !o.paused) {
-        o.pause();
-        const b = document.getElementById('apb-' + k);
-        if (b) { b.classList.remove('ap-playing'); b.textContent = '▶'; }
-      }
-    });
-    a.play();
-    btn.classList.add('ap-playing'); btn.textContent = '⏸';
-  } else {
-    a.pause();
-    btn.classList.remove('ap-playing'); btn.textContent = '▶';
-  }
-}
-function apSeek(id, e) {
-  const a = _audios[id]; if (!a || !a.duration) return;
-  const bar = e.currentTarget;
-  const rect = bar.getBoundingClientRect();
-  a.currentTime = ((e.clientX - rect.left) / rect.width) * a.duration;
+function apSeek(id,e){
+  const a=_audios[id];if(!a||!a.duration)return;
+  const bar=e.currentTarget;const rect=bar.getBoundingClientRect();
+  a.currentTime=((e.clientX-rect.left)/rect.width)*a.duration;
 }
 
-renderA1();
-renderA2();
-renderPassages();
-  // init kihon audio player
-  const _kihonEl = document.getElementById('_kihon_audio_src');
-  if (_kihonEl) _initAudio('kihon', _kihonEl.value);
-  // init passage audio players
-  Object.keys(PASSAGE_AUDIO).forEach(pid => {
-    if(PASSAGE_AUDIO[pid]) _initAudio(pid, PASSAGE_AUDIO[pid]);
-  });
-renderC();
-updateProgLabel();
+renderA1();renderA2();renderPassages();
+const _kihonEl=document.getElementById('_kihon_audio_src');
+if(_kihonEl)_initAudio('kihon',_kihonEl.value);
+Object.keys(PASSAGE_AUDIO).forEach(pid=>{if(PASSAGE_AUDIO[pid])_initAudio(pid,PASSAGE_AUDIO[pid]);});
+renderC();updateProgLabel();
 </script>
 
 <div class="footer-credit">© 2026 Sapphire ONLINE Studies English Project</div>
