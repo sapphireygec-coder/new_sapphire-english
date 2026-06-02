@@ -714,8 +714,8 @@ const A2_DATA = [
    hint:"need/want/require + -ing = need to be done の意味。"},
   {num:3,
    template:"He {0} to run. = He stopped {1}.",
-   blanks:[{ph:"①",ans:["began","started"]},{ph:"②",ans:["running"]}],
-   hint:"「走り始めた」= began/started to run。stop -ing = 〜するのをやめる。"},
+   blanks:[{ph:"①",ans:["ceased"]},{ph:"②",ans:["running"]}],
+   hint:"cease to do ≒ stop doing「〜するのをやめる」。どちらも「走るのをやめた」の意味。"},
   {num:4,
    template:"The boy told us that he came from Virginia, and {0} his father had seven sons.",
    blanks:[{ph:"①",ans:["that"]}],
@@ -745,9 +745,9 @@ const A3_DATA = [
   {num:1, src:"He pretended that he did not hear me.", inst:"単文に",
    answer:"He pretended not to hear me.",
    hint:"pretend to do の形。否定不定詞は not to do。"},
-  {num:2, src:"I hoped to have become an engineer.", inst:"重文に",
-   answer:"I hoped that I would become an engineer, but I didn't.",
-   hint:"hoped to have done = 〜になりたかったが、なれなかった。"},
+  {num:2, src:"I hoped to become an engineer.", inst:"重文に",
+   answer:"I hoped to become an engineer, but I didn't [couldn't].",
+   hint:"hope to do を重文に。but I didn't / couldn't で「しかしできなかった」を表す。"},
   {num:3, src:"I remember seeing him somewhere.", inst:"複文に",
    answer:"I remember that I saw him somewhere.",
    hint:"動名詞句 → that節。remember that I saw ..."},
@@ -1219,8 +1219,8 @@ const C_DATA = [
   {num:6,
    ja:"私はそのとき自分がどんなにばかであったかに気がついた。",
    hint:"realize を用いて",
-   point:"realized の目的語 = how foolish I had been（間接疑問）",
-   answer:"I then realized how foolish I had been."}
+   point:"realized の目的語 = how foolish I had been（間接疑問）。then の位置は文頭寄り・動詞後・文末いずれも可。",
+   answer:"I then realized how foolish I had been. / I realized then how foolish I had been. / I realized how foolish I had been then."}
 ];
 
 function renderC(){
