@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>第1章　主語と動詞 ― 改訂版（慶應文2024反映）</title>
+<style>
+:root{
+  --S:#FF6B35;--V:#42A5F5;--O:#FFC107;--C:#66BB6A;
+  --adv:#CE93D8;--adj-c:#F48FB1;--conj:#4DB6AC;--rel:#BA68C8;
+  --bg:#121212;--card:#1e1e1e;--border:#2e2e2e;
+  --text:#e8e6e0;--muted:#888;--tag-bg:#252525;
+  --green:#4caf50;--green-bg:#1b2e1c;
+  --red:#ef5350;--red-bg:#2d1515;
+  --blue:#64b5f6;--blue-bg:#152033;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Times New Roman","游明朝","YuMincho","Hiragino Mincho ProN",Georgia,serif;
+  background:var(--bg);color:var(--text);font-size:15px;}
+
+/* ══ sticky nav ══ */
+#top-nav{
+  position:sticky;top:0;z-index:300;
+  background:var(--card);border-bottom:1.5px solid var(--border);
+  display:flex;align-items:stretch;gap:0;
+}
+.nav-tab{
+  flex:1;padding:.55rem .4rem;
+  font-size:12px;font-weight:600;letter-spacing:.03em;text-align:center;
+  border:none;background:none;cursor:pointer;color:var(--muted);
+  border-bottom:3px solid transparent;transition:all .15s;
+  font-family:inherit;
+}
+.nav-tab.active{color:var(--text);border-bottom-color:var(--S);}
+.nav-tab:hover:not(.active){background:var(--tag-bg);}
+
+/* ══ layout ══ */
+.app{max-width:900px;margin:0 auto;padding:1.5rem 1rem 5rem;}
+.section-panel{display:none;}
+.section-panel.active{display:block;}
+
+/* ══ headings ══ */
+h1{font-size:20px;font-weight:700;border-bottom:2px solid var(--S);
+   padding-bottom:.5rem;margin-bottom:1.5rem;color:var(--text);}
+h2{font-size:15px;font-weight:700;margin:1.8rem 0 .9rem;
+   padding-left:.7rem;border-left:3px solid var(--O);color:var(--text);}
+
+/* ══ legend / controls ══ */
+.ctrl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:1.2rem;align-items:center;}
+.tog{padding:5px 14px;border-radius:99px;border:1.5px solid var(--border);
+     background:var(--card);font-size:13px;cursor:pointer;transition:all .15s;
+     font-weight:500;color:var(--text);font-family:inherit;}
+.tog.on{background:var(--S);color:#fff;border-color:var(--S);}
+.tog:hover{border-color:#666;}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-bottom:1.5rem;
+  padding:.75rem 1rem;background:var(--card);border:0.5px solid var(--border);border-radius:10px;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+.dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.ul-swatch{width:28px;height:4px;border-radius:2px;flex-shrink:0;}
+
+/* ══ passage card ══ */
+.pcard{background:var(--card);border:0.5px solid var(--border);
+  border-radius:12px;margin-bottom:1.5rem;overflow:hidden;}
+.phead{display:flex;align-items:center;gap:10px;padding:.85rem 1.1rem;
+  border-bottom:0.5px solid var(--border);}
+.pnum{font-size:13px;font-weight:700;color:var(--muted);min-width:24px;}
+.play-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid #555;
+  background:var(--card);cursor:pointer;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;font-family:inherit;}
+.play-btn:hover{border-color:var(--text);background:var(--tag-bg);}
+.play-btn.playing{background:var(--S);border-color:var(--S);}
+.play-btn svg{width:12px;height:12px;fill:#888;}
+.play-btn.playing svg{fill:#fff;}
+.prog-wrap{flex:1;height:3px;background:var(--border);border-radius:2px;cursor:pointer;}
+.prog-fill{height:3px;background:var(--S);border-radius:2px;width:0%;transition:width .1s linear;}
+.ptopic{font-size:13px;font-weight:600;color:var(--text);flex:1;display:none;}
+.pbody{padding:1rem 1.1rem;}
+
+/* ══ sentences ══ */
+.sent{margin-bottom:1.2rem;}
+.sent-pattern{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.04em;
+  margin-bottom:.55rem;padding:3px 8px;background:var(--tag-bg);border-radius:4px;display:inline-block;}
+.sent-plain{font-size:15px;line-height:2.1;display:none;}
+.sent-anal{font-size:15px;line-height:2.6;display:none;flex-wrap:wrap;gap:2px 0;align-items:baseline;}
+
+/* ══ token ══ */
+.tok{display:inline;position:relative;cursor:default;padding:0 1px;white-space:pre-wrap;}
+.tok .tip{display:none;position:absolute;bottom:calc(100% + 4px);left:50%;transform:translateX(-50%);
+  background:#333;color:#fff;font-size:11px;padding:3px 7px;border-radius:5px;
+  white-space:nowrap;z-index:100;pointer-events:none;border:1px solid #555;}
+.tok:hover .tip{display:block;}
+.r-S{color:var(--S);font-weight:700;} .r-V{color:var(--V);font-weight:700;}
+.r-O{color:var(--O);font-weight:700;} .r-C{color:var(--C);font-weight:700;}
+.r-adv{color:var(--adv);} .r-adj{color:var(--adj-c);}
+.r-conj{color:var(--conj);font-style:italic;} .r-rel{color:var(--rel);}
+.r-plain{color:var(--text);}
+.ul-s-clause{text-decoration:underline;text-decoration-color:var(--S);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+.ul-o-clause{text-decoration:underline;text-decoration-color:var(--O);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+.ul-c-clause{text-decoration:underline;text-decoration-color:var(--C);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+.ul-adj-clause{text-decoration:underline;text-decoration-color:var(--adj-c);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+.ul-adv-clause{text-decoration:underline;text-decoration-color:var(--adv);
+  text-decoration-thickness:2.5px;text-underline-offset:2px;}
+
+/* ══ vocab / topic ══ */
+.vocab-block{display:none;border-top:0.5px solid var(--border);padding:.75rem 1.1rem;}
+.vocab-title{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.06em;margin-bottom:.5rem;}
+.vocab-list{display:flex;flex-wrap:wrap;gap:6px;}
+.vocab-item{background:var(--tag-bg);border-radius:6px;padding:4px 10px;font-size:13px;}
+.vocab-item strong{color:var(--V);}
+.topic-bar{display:none;border-top:0.5px solid var(--border);padding:.6rem 1.1rem;font-size:13px;}
+.topic-bar span{font-weight:600;color:var(--rel);}
+
+/* ══ 基本例文 ══ */
+.kihon-card{background:var(--card);border:0.5px solid var(--border);
+  border-radius:12px;margin-bottom:1.2rem;overflow:hidden;}
+.kihon-head{padding:.65rem 1.1rem;background:var(--tag-bg);
+  border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:8px;}
+.kihon-label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;}
+.kihon-body{padding:.9rem 1.1rem;}
+.kihon-row{display:flex;gap:.8rem;align-items:baseline;margin-bottom:.5rem;}
+.kihon-row:last-child{margin-bottom:0;}
+.kihon-id{font-size:12px;font-weight:700;color:var(--O);min-width:1.6rem;flex-shrink:0;}
+.kihon-en{font-size:15px;line-height:1.8;flex:1;}
+.kihon-note{font-size:12px;color:var(--muted);margin-top:.15rem;}
+.kh-s{color:var(--S);font-weight:700;}
+.kh-v{color:var(--V);font-weight:700;}
+.kh-o{color:var(--O);font-weight:700;}
+.kh-c{color:var(--C);font-weight:700;}
+.kh-inf{color:var(--C);font-style:italic;}
+.kh-ger{color:var(--rel);font-style:italic;}
+.kh-that{color:var(--conj);}
+.highlight-off .kh-s,.highlight-off .kh-v,.highlight-off .kh-o,
+.highlight-off .kh-c,.highlight-off .kh-inf,.highlight-off .kh-ger,.highlight-off .kh-that{
+  color:inherit;font-weight:inherit;font-style:inherit;}
+.struct-note{display:inline-block;background:var(--tag-bg);border-radius:4px;
+  padding:2px 6px;font-size:11px;color:var(--muted);margin-top:.3rem;}
+
+/* ══ [A] 文法問題 ══ */
+.a-card{background:var(--card);border:0.5px solid var(--border);border-radius:10px;margin-bottom:1rem;overflow:hidden;}
+.a-head{display:flex;gap:.7rem;align-items:baseline;padding:.75rem 1.1rem;border-bottom:0.5px solid var(--border);background:var(--tag-bg);}
+.a-num{font-size:13px;font-weight:700;color:var(--muted);min-width:1.4rem;flex-shrink:0;}
+.a-sent{font-size:14px;line-height:1.7;flex:1;}
+.a-sent em{font-style:italic;color:var(--text);}
+.inst-badge{font-size:11px;background:var(--blue-bg);color:var(--blue);border-radius:4px;padding:2px 6px;font-style:normal;white-space:nowrap;}
+.a-body{padding:.7rem 1.1rem;}
+.a-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.4rem;}
+.a-fb{font-size:12px;min-height:1.2rem;margin-top:.35rem;}
+.fb-ok{color:var(--green);font-weight:600;}
+.fb-ng{color:var(--red);}
+.hint-tog{padding:3px 10px;border-radius:99px;border:1px solid var(--border);background:none;font-size:12px;cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s;}
+.hint-tog:hover{background:var(--tag-bg);}
+.btn-check{background:var(--V);color:#fff;border-color:var(--V);}
+.btn-check:hover{background:#1a6fb5;}
+.btn-reveal{border-color:var(--V);color:var(--V);}
+.btn-reveal:hover{background:var(--blue-bg);}
+.choice-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.4rem;}
+.choice-btn{padding:5px 14px;border-radius:99px;border:1.5px solid var(--border);background:var(--tag-bg);font-size:13px;cursor:pointer;font-family:inherit;transition:all .15s;color:var(--text);}
+.choice-btn:hover:not(:disabled){border-color:#666;background:#2a2a2a;}
+.choice-btn.c-correct{background:var(--green-bg);border-color:var(--green);color:var(--green);font-weight:700;}
+.choice-btn.c-wrong{background:var(--red-bg);border-color:var(--red);color:var(--red);text-decoration:line-through;}
+.choice-btn:disabled{cursor:default;}
+.blank-inp{border:none;border-bottom:2px solid var(--border);background:transparent;font-family:inherit;font-size:14px;color:var(--text);width:72px;padding:1px 4px;outline:none;text-align:center;transition:border-color .15s;}
+.blank-inp:focus{border-color:var(--V);}
+.blank-inp.blank-ok{border-color:var(--green);color:var(--green);}
+.blank-inp.blank-ng{border-color:var(--red);color:var(--red);}
+.blank-inp-wide{width:110px;}
+.rw-textarea{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:.5rem .75rem;font-family:inherit;font-size:14px;color:var(--text);background:var(--tag-bg);resize:vertical;min-height:48px;outline:none;transition:border-color .15s;margin-bottom:.5rem;}
+.rw-textarea:focus{border-color:var(--V);}
+.rw-textarea.rw-revealed{border-color:#444;background:#1a1a1a;color:#666;}
+
+/* ══ [C] 作文 ══ */
+.c-card{background:var(--card);border:0.5px solid var(--border);
+  border-radius:12px;margin-bottom:1.2rem;overflow:hidden;}
+.c-head{display:flex;align-items:center;gap:10px;padding:.75rem 1.1rem;
+  border-bottom:0.5px solid var(--border);background:var(--tag-bg);}
+.c-num{font-size:13px;font-weight:700;color:var(--muted);min-width:20px;}
+.c-ja{font-size:14px;color:var(--text);flex:1;line-height:1.6;}
+.c-hint-badge{font-size:11px;color:var(--V);background:var(--blue-bg);
+  border-radius:4px;padding:2px 7px;white-space:nowrap;flex-shrink:0;}
+.c-body{padding:.85rem 1.1rem;}
+.c-textarea{width:100%;border:1.5px solid var(--border);border-radius:6px;
+  padding:.55rem .8rem;font-family:inherit;font-size:14px;color:var(--text);
+  background:var(--tag-bg);resize:vertical;min-height:52px;outline:none;
+  transition:border-color .15s;}
+.c-textarea:focus{border-color:var(--V);}
+.c-textarea.revealed{border-color:#444;background:#1a1a1a;color:#666;}
+.c-actions{display:flex;gap:8px;margin-top:.6rem;flex-wrap:wrap;align-items:center;}
+.btn{padding:5px 14px;border-radius:99px;border:1.5px solid var(--border);
+  background:var(--card);font-size:12px;cursor:pointer;font-family:inherit;
+  font-weight:500;color:var(--text);transition:all .15s;}
+.btn:hover{border-color:#666;background:var(--tag-bg);}
+.btn-reveal{border-color:var(--V);color:var(--V);}
+.btn-reveal:hover{background:var(--blue-bg);}
+.btn-reset{color:var(--muted);}
+.c-fb{font-size:12px;margin-top:.4rem;min-height:1rem;color:var(--muted);font-style:italic;}
+.c-fb.hint{color:var(--blue);}
+
+/* ══ progress ══ */
+#prog-label{font-size:11px;color:var(--muted);padding:.35rem .8rem;
+  white-space:nowrap;border-left:1px solid var(--border);}
+
+/* ══ table ══ */
+table{color:var(--text);}
+table th{color:var(--muted);background:var(--tag-bg);}
+table td,table th{border-bottom-color:var(--border)!important;}
+
+/* ══ warn badge ══ */
+.warn-badge{display:inline-block;font-size:10px;background:#2a2000;border:1px solid #7a5000;
+  color:#f0ad4e;border-radius:3px;padding:1px 5px;margin-left:4px;vertical-align:middle;}
+
+/* ══ section sub-heading ══ */
+.c-section-title{font-size:13px;font-weight:700;color:var(--O);margin:1.2rem 0 .6rem;
+  padding:.3rem .7rem;background:var(--tag-bg);border-radius:6px;
+  border-left:3px solid var(--O);}
+
+/* ── 設問ブロック（Type A/B/C） ── */
+.q-block{border-top:1px solid var(--border);padding:16px 1.1rem;display:none}
+.q-block.shown{display:block}
+.q-block-title{font-size:13px;font-weight:700;color:var(--O);margin-bottom:14px}
+.q-block-title::before{content:'✏️　'}
+.q-item{background:var(--tag-bg);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:10px}
+.q-label{font-size:12px;font-weight:700;margin-bottom:6px}
+.q-label-A{color:#64b5f6}.q-label-B{color:#4ec9a0}.q-label-C{color:#f07070}
+.q-text{font-size:14px;color:var(--text);line-height:1.75;margin-bottom:8px;font-family:"Times New Roman","游明朝",serif}
+.q-en{font-size:15px;font-style:italic;color:var(--text);margin-bottom:8px;padding-left:12px;border-left:2px solid var(--border)}
+.fill-template{background:rgba(78,201,160,.05);border-left:3px solid #4ec9a0;border-radius:0 6px 6px 0;padding:10px 14px;margin:8px 0;font-size:14px;line-height:2.0;color:var(--text)}
+.choice-line{font-size:14px;font-weight:700;color:var(--text);margin:6px 0 6px 12px}
+.ans-reveal-btn{background:none;border:1px solid var(--border);border-radius:5px;color:var(--muted);font-size:12px;padding:4px 12px;cursor:pointer;transition:all .15s;font-family:inherit}
+.ans-reveal-btn:hover{border-color:#4ec9a0;color:#4ec9a0}
+.q-answer{display:none;margin-top:8px;padding:10px 14px;background:rgba(78,201,160,.07);border-left:3px solid #4ec9a0;border-radius:0 6px 6px 0;font-size:13px;line-height:1.8}
+.q-answer.shown{display:block}
+.ans-lbl{font-size:11px;font-weight:700;color:#4ec9a0;letter-spacing:.06em;display:block;margin-bottom:4px}
+.ans-txt{color:#4ec9a0;font-family:"Times New Roman",serif;font-size:15px;margin-bottom:6px}
+.expl-lbl{font-size:11px;font-weight:700;color:#64b5f6;letter-spacing:.06em;display:block;margin-bottom:3px;margin-top:6px}
+.expl-txt{color:var(--muted);font-size:13px;line-height:1.7}
+.tog-q-btn{padding:4px 12px;border-radius:5px;border:1px solid var(--border);background:none;font-size:12px;cursor:pointer;color:var(--muted);font-family:inherit;transition:all .15s}
+.tog-q-btn:hover,.tog-q-btn.on{border-color:var(--O);color:var(--O);background:rgba(255,193,7,.08)}
+</style>
+</head>
+<body>
+
+<!-- ── sticky tab nav ── -->
+<nav id="top-nav">
+  <button class="nav-tab active" onclick="switchTab('kihon')">基本例文</button>
+  <button class="nav-tab" onclick="switchTab('a')">〔A〕文法</button>
+  <button class="nav-tab" onclick="switchTab('b')">〔B〕読解</button>
+  <button class="nav-tab" onclick="switchTab('c')">〔C〕作文</button>
+  <span id="prog-label">進捗 0%</span>
+</nav>
+
+<div class="app">
+
+  <!-- ════════════════ 基本例文 ════════════════ -->
+  <div id="panel-kihon" class="section-panel active">
+    <h1>第1章　主語と動詞 ― 基本例文</h1>
+
+    <div class="ctrl">
+      <button class="tog on" id="tog-hl" onclick="toggleHighlight()">構造ハイライト ON</button>
+    </div>
+
+    <div id="kihon-wrap">
+
+      <!-- 例文グループ 1 — 名詞・動名詞・不定詞が主語 -->
+      <div class="kihon-card">
+        <div class="kihon-head">
+          <span class="kihon-label">例文１ — 名詞・動名詞・不定詞が主語になる場合</span>
+        </div>
+        <div class="kihon-body" id="kihon-body">
+          <div class="kihon-row">
+            <span class="kihon-id">(1)</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">A student sitting by the window</span> <span class="kh-v">raised</span> <span class="kh-o">her hand</span>.
+              </div>
+              <div class="kihon-jp">（窓際に座っていた学生が手を挙げた。）</div>
+              <div class="kihon-note">名詞句が主語 ／ 分詞（sitting…）が後置修飾</div>
+            </div>
+          </div>
+          <div class="kihon-row">
+            <span class="kihon-id">(2)</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">To see you</span> <span class="kh-v">is</span> <span class="kh-c">always a great pleasure</span>.
+              </div>
+              <div class="kihon-jp">（あなたに会えることはいつも大きな喜びだ。）</div>
+              <div class="kihon-note">to不定詞句が主語 ／ It is always a great pleasure to see you. に書き換え可</div>
+            </div>
+          </div>
+          <div class="kihon-row">
+            <span class="kihon-id">(3)</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">Reading good books</span> <span class="kh-v">develops</span> <span class="kh-o">our taste</span>.
+              </div>
+              <div class="kihon-jp">（良書を読むことは私たちの感性を豊かにする。）</div>
+              <div class="kihon-note">動名詞句が主語 ／ 単数扱い</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 例文グループ 2 — 名詞節が主語 -->
+      <div class="kihon-card">
+        <div class="kihon-head">
+          <span class="kihon-label">例文２ — 名詞節（that節・what節・how節）が主語になる場合</span>
+        </div>
+        <div class="kihon-body">
+          <div class="kihon-row">
+            <span class="kihon-id">(4)</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">That people see the same event differently</span> <span class="kh-v">is</span> <span class="kh-c">hardly surprising</span>.
+              </div>
+              <div class="kihon-jp">（人が同じ出来事を違って見ることは、驚くべきことではない。）</div>
+              <div class="kihon-note">that節が主語（接続詞 that ― 文頭では省略不可）</div>
+            </div>
+          </div>
+          <div class="kihon-row">
+            <span class="kihon-id">(5)</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">What you say</span> <span class="kh-v">is</span> <span class="kh-c">quite true</span>.
+              </div>
+              <div class="kihon-jp">（あなたの言うことはまったく正しい。）</div>
+              <div class="kihon-note">what節が主語（関係代名詞 what = the thing which）</div>
+            </div>
+          </div>
+          <div class="kihon-row">
+            <span class="kihon-id">(6)</span>
+            <div>
+              <div class="kihon-en">
+                <span class="kh-s">How he solved the problem</span> <span class="kh-v">is</span> <span class="kh-c">not known</span>.
+              </div>
+              <div class="kihon-jp">（彼がどのようにしてその問題を解いたかは知られていない。）</div>
+              <div class="kihon-note">how節が主語（間接疑問節 ― 平叙文語順）</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /kihon-wrap -->
+  <div style="padding:1rem 1.2rem;font-size:13px;color:var(--muted);border-top:0.5px solid var(--border);margin-top:1rem;">
+    <strong style="color:var(--text);">この章の確認</strong><br>
+    英文が長くても、修飾語・挿入句・節に惑わされず、まず主節のSとVを探す。<br>
+    句や節そのものがSになる場合は、そのまとまり全体を一つの主語として捉える。<br>
+    <em style="color:var(--C);">STRUCTURE → LOGIC → INTENTION ― まず第1章では、英文のSTRUCTUREをつかむ。</em>
+  </div>
+  </div><!-- /panel-kihon -->
+
+
+  <!-- ════════════════ [A] 文法問題 ════════════════ -->
+  <div id="panel-a" class="section-panel">
+    <h1>第1章　〔A〕文法問題</h1>
+
+    <!-- ── [1] 選択問題 ── -->
+    <h2>[1] カッコの中から適当な語句を選べ</h2>
+    <div id="a1-wrap"></div>
+
+    <!-- ── [2] 穴埋め問題 ── -->
+    <h2>[2] カッコの中に適当な１語を入れよ</h2>
+    <div id="a2-wrap"></div>
+
+    <!-- score footer -->
+    <div id="a-score-bar" style="margin-top:1.5rem;padding:1rem 1.2rem;background:var(--card);border:0.5px solid var(--border);border-radius:10px;display:flex;align-items:center;gap:1rem;font-size:13px;">
+      <span style="font-weight:700;">採点結果</span>
+      <span id="a-score-text" style="color:var(--muted);">未採点</span>
+      <button class="tog" style="margin-left:auto;" onclick="gradeAll()">全問採点</button>
+      <button class="tog" onclick="resetAll()">リセット</button>
+    </div>
+  </div>
+
+  <!-- ════════════════ [B] 読解 ════════════════ -->
+  <div id="panel-b" class="section-panel">
+    <h1>第1章　[B] 読解 ― 主語・動詞構造ビジュアル解析</h1>
+    <div class="ctrl">
+      <button class="tog" id="tog-plain" onclick="setMode('plain')">白文</button>
+      <button class="tog on" id="tog-anal" onclick="setMode('anal')">5文型解析</button>
+      <button class="tog" id="tog-vocab" onclick="toggleAll('vocab')">Vocabulary</button>
+      <button class="tog" id="tog-topic" onclick="toggleAll('topic')">📖 全文訳</button>
+      <button class="tog" id="tog-q" onclick="toggleAll('q')">✏️ 設問</button>
+    </div>
+    <div class="legend" id="legend">
+      <div class="legend-item"><div class="dot" style="background:var(--S)"></div>S 主語</div>
+      <div class="legend-item"><div class="dot" style="background:var(--V)"></div>V 動詞</div>
+      <div class="legend-item"><div class="dot" style="background:var(--O)"></div>O 目的語</div>
+      <div class="legend-item"><div class="dot" style="background:var(--C)"></div>C 補語</div>
+      <div class="legend-item"><div class="dot" style="background:var(--adv)"></div>副詞句</div>
+      <div class="legend-item"><div class="dot" style="background:var(--adj-c)"></div>形容詞句</div>
+      <div class="legend-item"><div class="dot" style="background:var(--conj)"></div>接続詞</div>
+      <div class="legend-item"><div class="dot" style="background:var(--rel)"></div>関係詞</div>
+      <div style="width:100%;height:0;border-top:0.5px solid var(--border);margin:2px 0;"></div>
+      <div class="legend-item"><div class="ul-swatch" style="background:var(--S)"></div>主語節</div>
+      <div class="legend-item"><div class="ul-swatch" style="background:var(--O)"></div>目的語節</div>
+      <div class="legend-item"><div class="ul-swatch" style="background:var(--adj-c)"></div>形容詞節</div>
+      <div class="legend-item"><div class="ul-swatch" style="background:var(--adv);height:3px;"></div>副詞節</div>
+    </div>
+    <div id="b-wrap"></div>
+  </div>
+
+  <!-- ════════════════ [C] 作文 ════════════════ -->
+  <div id="panel-c" class="section-panel">
+    <h1>第1章　[C] 作文</h1>
+    <div id="c-wrap"></div>
+  </div>
+
+</div><!-- /app -->
+
+<script>
+/* ═══════════════════════════════════════════
+   TAB NAVIGATION
+═══════════════════════════════════════════ */
+const TABS=['kihon','a','b','c'];
+function switchTab(id){
+  TABS.forEach(t=>{
+    document.getElementById('panel-'+t).classList.toggle('active',t===id);
+  });
+  document.querySelectorAll('.nav-tab').forEach((btn,i)=>{
+    btn.classList.toggle('active',TABS[i]===id);
+  });
+  updateProgLabel();
+}
+
+/* ═══════════════════════════════════════════
+   HIGHLIGHT TOGGLE (基本例文)
+═══════════════════════════════════════════ */
+let hlOn=true;
+function toggleHighlight(){
+  hlOn=!hlOn;
+  document.getElementById('kihon-body').closest('.app').querySelectorAll('[id^="kihon"]').forEach(el=>{
+    el.classList.toggle('highlight-off',!hlOn);
+  });
+  document.getElementById('kihon-wrap').classList.toggle('highlight-off',!hlOn);
+  document.getElementById('tog-hl').classList.toggle('on',hlOn);
+  document.getElementById('tog-hl').textContent='構造ハイライト '+(hlOn?'ON':'OFF');
+}
+
+/* ═══════════════════════════════════════════
+   [A] DATA
+═══════════════════════════════════════════ */
+const A1_DATA=[
+  {n:1, sent:'One out of three car accidents <em>( )</em> caused by a teenage driver.',
+   choices:['are','has','is','were'], ans:'is',
+   expl:'主語は <strong>One</strong>（単数）。"out of three…" は修飾句。→ <strong>is</strong>'},
+  {n:2, sent:'The United Nations <em>( )</em> in New York City.',
+   choices:['meet','meets'], ans:'meets',
+   expl:'固有名詞の組織名は単数扱い。→ <strong>meets</strong>'},
+  {n:3, sent:'The elderly <em>( )</em> increasingly using digital services.',
+   choices:['is','are'], ans:'are',
+   expl:'「the ＋ 形容詞」で「〜な人々」を表す集合的用法は複数扱い。→ <strong>are</strong>'},
+  {n:4, sent:'Three weeks, we are afraid, <em>( )</em> too short a time.',
+   choices:['and','are','is','were'], ans:'is',
+   expl:'期間を一まとまりと見なす → 単数扱い。→ <strong>is</strong>'},
+  {n:5, sent:'The crowd <em>( )</em> moving toward the exit as one group when the announcement was made.',
+   choices:['was','were'], ans:'was',
+   expl:'「一体として行動」している → 単数扱い → <strong>was</strong>'},
+  {n:6, sent:'Two-thirds of the house <em>( )</em> destroyed by the fire.',
+   choices:['was','were','have'], ans:'was',
+   expl:'分数 ＋ of ＋ 名詞 → 名詞に一致。house は不可算単数 → <strong>was</strong>'},
+  {n:7, sent:'Either the father or one of his two sons <em>( )</em> responsible for the mistake.',
+   choices:['are','is','do'], ans:'is',
+   expl:'Either A or B → Bに一致。B＝one（単数）→ <strong>is</strong>'},
+  {n:8, sent:'Anyone who <em>( )</em> to improve must be willing to learn from mistakes.',
+   choices:['want','wants','wanting','wanted'], ans:'wants',
+   expl:'先行詞 Anyone は単数 → 関係詞節内の動詞も単数 → <strong>wants</strong>'},
+  {n:9, sent:'She <em>( )</em> a careful researcher and always will be.',
+   choices:['has','has been','had'], ans:'has been',
+   expl:'"and always will be" と対応させるため現在完了 → <strong>has been</strong>'},
+  {n:10, sent:'It was, as you may know, the first great automaton — a chess-playing machine that inflamed Europe in the late 18th century. <em>( )</em> it was not actually an automaton and couldn't play chess didn't alter the effect it had on people at the time.',
+   choices:['As','For','That','When'], ans:'That',
+   expl:'<em>（慶應義塾大学・文 2024）</em><br>空所から "couldn't play chess" まで全体が主語節。名詞節を導く接続詞 → <strong>That</strong>'},
+];
+
+const A2_DATA=[
+  {n:1, sent:'The number of people who gathered there <em>( )</em> impossible to estimate.',
+   ans:'was', expl:'"The number of…" の主語は number（単数）→ <strong>was</strong>'},
+  {n:2, sent:'More than one student <em>( )</em> raised the same question.',
+   ans:'has', expl:'"More than one ＋ 単数名詞" は単数扱い → <strong>has</strong>'},
+  {n:3, sent:'The scientist and author <em>( )</em> speaking at the conference today.',
+   ans:'is', expl:'同一人物を指す → 単数 → <strong>is</strong>'},
+  {n:4, sent:'Neither he nor I <em>( )</em> responsible for this error.',
+   ans:'am', expl:'"Neither A nor B" → Bに一致。B＝I → <strong>am</strong>'},
+  {n:5, sent:'Experience, as well as knowledge, <em>( )</em> necessary for good judgment.',
+   ans:'is', expl:'"A as well as B" → Aに一致。A＝Experience（単数）→ <strong>is</strong>'},
+  {n:6, sent:'<em>( )</em> we learn from failure can shape what we do next.',
+   ans:'What', expl:'関係代名詞 what（= the thing that）→ <strong>What</strong> we learn from failure…'},
+  {n:7, sent:'Does he think <em>( )</em> he did was the right thing?',
+   ans:'what', expl:'think の目的語節中の主語として what節 → <strong>what</strong>'},
+  {n:8, sent:'<em>( )</em> wishes to join the project will be welcome.',
+   ans:'Whoever', expl:'複合関係代名詞 Whoever（= Anyone who）→ <strong>Whoever</strong>'},
+  {n:9, sent:'<em>( )</em> people interpret the same event differently is hardly surprising.',
+   ans:'That', expl:'that節が文の主語（文頭で省略不可）→ <strong>That</strong>'},
+  {n:10, sent:'<em>( )</em> the new method will improve learning or not remains uncertain.',
+   ans:'Whether', expl:'whether … or not が主語節 → <strong>Whether</strong>'},
+];
+
+/* ═══════════════════════════════════════════
+   RENDER [A1] 選択問題
+═══════════════════════════════════════════ */
+function renderA1(){
+  const wrap=document.getElementById('a1-wrap');
+  A1_DATA.forEach(q=>{
+    const card=document.createElement('div');
+    card.className='a-card';
+    card.innerHTML=`
+      <div class="a-head">
+        <span class="a-num">${q.n}.</span>
+        <span class="a-sent">${q.sent}</span>
+        <span class="inst-badge">選択</span>
+      </div>
+      <div class="a-body">
+        <div class="choice-wrap" id="cw1-${q.n}"></div>
+        <div class="a-fb" id="fb1-${q.n}"></div>
+      </div>`;
+    wrap.appendChild(card);
+    const cw=document.getElementById('cw1-'+q.n);
+    q.choices.forEach(ch=>{
+      const b=document.createElement('button');
+      b.className='choice-btn';
+      b.textContent=ch;
+      b.onclick=()=>checkChoice1(q,ch,b,cw);
+      cw.appendChild(b);
+    });
+  });
+}
+
+function checkChoice1(q,ch,btn,cw){
+  if(btn.disabled)return;
+  const correct=ch===q.ans;
+  btn.classList.add(correct?'c-correct':'c-wrong');
+  if(!correct){
+    cw.querySelectorAll('.choice-btn').forEach(b=>{
+      if(b.textContent===q.ans)b.classList.add('c-correct');
+    });
+  }
+  cw.querySelectorAll('.choice-btn').forEach(b=>b.disabled=true);
+  const fb=document.getElementById('fb1-'+q.n);
+  fb.innerHTML=`<span class="${correct?'fb-ok':'fb-ng'}">${correct?'✓ 正解！':'✗ 不正解'}</span>　${q.expl}`;
+  updateProgLabel();
+}
+
+/* ═══════════════════════════════════════════
+   RENDER [A2] 穴埋め問題
+═══════════════════════════════════════════ */
+function renderA2(){
+  const wrap=document.getElementById('a2-wrap');
+  A2_DATA.forEach(q=>{
+    const card=document.createElement('div');
+    card.className='a-card';
+    card.innerHTML=`
+      <div class="a-head">
+        <span class="a-num">${q.n}.</span>
+        <span class="a-sent">${q.sent}</span>
+        <span class="inst-badge">記入</span>
+      </div>
+      <div class="a-body">
+        <div class="a-actions">
+          <input class="blank-inp blank-inp-wide" id="bi2-${q.n}" placeholder="解答を入力" autocomplete="off" onkeydown="if(event.key==='Enter')checkBlank2(${q.n})">
+          <button class="hint-tog btn-check" onclick="checkBlank2(${q.n})">確認</button>
+          <button class="hint-tog btn-reveal" onclick="revealBlank2(${q.n})">答え表示</button>
+        </div>
+        <div class="a-fb" id="fb2-${q.n}"></div>
+      </div>`;
+    wrap.appendChild(card);
+  });
+}
+
+function checkBlank2(n){
+  const q=A2_DATA[n-1];
+  const inp=document.getElementById('bi2-'+n);
+  const val=inp.value.trim();
+  if(!val)return;
+  const correct=val.toLowerCase()===q.ans.toLowerCase();
+  inp.classList.toggle('blank-ok',correct);
+  inp.classList.toggle('blank-ng',!correct);
+  const fb=document.getElementById('fb2-'+n);
+  fb.innerHTML=`<span class="${correct?'fb-ok':'fb-ng'}">${correct?'✓ 正解！':'✗ 不正解 — 正答: <strong>'+q.ans+'</strong>'}</span>　${q.expl}`;
+  updateProgLabel();
+}
+
+function revealBlank2(n){
+  const q=A2_DATA[n-1];
+  const inp=document.getElementById('bi2-'+n);
+  inp.value=q.ans;
+  inp.classList.add('blank-ok');
+  inp.disabled=true;
+  const fb=document.getElementById('fb2-'+n);
+  fb.innerHTML=`<span style="color:var(--muted);">答え: <strong>${q.ans}</strong></span>　${q.expl}`;
+}
+
+function gradeAll(){
+  let total=0,correct=0;
+  A1_DATA.forEach(q=>{
+    const cw=document.getElementById('cw1-'+q.n);
+    if(cw){
+      total++;
+      if(cw.querySelector('.c-correct'))correct++;
+    }
+  });
+  A2_DATA.forEach(q=>{
+    const inp=document.getElementById('bi2-'+q.n);
+    if(inp){
+      total++;
+      if(inp.classList.contains('blank-ok'))correct++;
+    }
+  });
+  document.getElementById('a-score-text').textContent=`${correct} / ${total} 問正解`;
+}
+
+function resetAll(){
+  A1_DATA.forEach(q=>{
+    const cw=document.getElementById('cw1-'+q.n);
+    if(cw){
+      cw.querySelectorAll('.choice-btn').forEach(b=>{b.disabled=false;b.className='choice-btn';});
+      document.getElementById('fb1-'+q.n).innerHTML='';
+    }
+  });
+  A2_DATA.forEach(q=>{
+    const inp=document.getElementById('bi2-'+q.n);
+    if(inp){inp.value='';inp.disabled=false;inp.className='blank-inp blank-inp-wide';}
+    document.getElementById('fb2-'+q.n).innerHTML='';
+  });
+  document.getElementById('a-score-text').textContent='未採点';
+  updateProgLabel();
+}
+
+
+/* ═══════════════════════════════════════════
+   [B] QUESTIONS DATA  (Type A / B / C)
+═══════════════════════════════════════════ */
+const QUESTIONS = {
+  b1: [
+    {
+      type:'A', label:'設問①',
+      en:'The Nile, the source of the livelihood of the ancient Egyptians, would overflow its banks…',
+      text:'主語（S）と動詞（V）を本文中から抜き出せ。',
+      template:'S：（　　　　　　　　　）　　V：（　　　　　　　　　）',
+      ans:'S：The Nile　　V：would overflow',
+      expl:'the source of the livelihood of the ancient Egyptians はコンマで挟まれた同格句。取り除くとS・Vが明確になる。'
+    },
+    {
+      type:'B', label:'設問②',
+      en:'To be able to tell when the Nile would rise became their vital concern.',
+      text:'次の穴埋め説明文を完成させよ。',
+      template:'この文の主語は（　　　　）で始まる句で、品詞は【不定詞 ／ 動名詞】句。\n文型は第（　　）文型（SVC）で、動詞は（　　　　　　）、補語は（　　　　　　　　　　　）である。',
+      ans:'To／不定詞／2（SVC）／became／their vital concern',
+      expl:'To be able to tell when…という不定詞句全体が主語(S)。第2文型SVC。'
+    }
+  ],
+  b2: [
+    {
+      type:'B', label:'設問',
+      en:'People who receive the same information, when they approach it with different expectations, often reach very different conclusions.',
+      text:'次の穴埋め説明文を完成させよ。',
+      template:'文全体の主語の中心は（　　　　　）、主節の動詞は（　　　　　）である。\nwho receive the same information は（　　　　　）節、\nwhen they approach it … は（　　　　　）節として主語と動詞の間に入っている。',
+      ans:'People／reach／形容詞（関係詞）／副詞',
+      expl:'Peopleが主語、reachが動詞。関係詞節と副詞節が割り込んでいる典型例。'
+    }
+  ],
+  b3: [
+    {
+      type:'B', label:'設問①',
+      en:'A good question, in many areas of learning, can be more valuable than a quick answer.',
+      text:'次の穴埋め説明文を完成させよ。',
+      template:'挿入句（　　　　　　　　　　　　　　　　　　　　　）を取り除くと、\nS＝（　　　　　　　　　）、V＝（　　　　　　　）、C＝（　　　　　　　　　　　　　　　　　　　）という骨格が見える。',
+      ans:'in many areas of learning／A good question／can be／more valuable than a quick answer',
+      expl:'挿入句を取り除くと第2文型（SVC）の骨格が明確になる。'
+    },
+    {
+      type:'A', label:'設問②',
+      en:'The habit of asking why, rather than simply accepting what we are told, helps us examine ideas more carefully.',
+      text:'文全体の主部の中心となる語と主節の動詞を抜き出せ。',
+      template:'主部の中心：（　　　　　　　　　　　　　　　　　　　　　　　　）\n述部の動詞：（　　　　　　　　　　　　　　　　　　　　　　　　）',
+      ans:'habit／helps',
+      expl:'"The habit of asking why" が主語。rather than …は挿入句。主節の動詞はhelps。'
+    }
+  ],
+  b4: [
+    {
+      type:'A', label:'設問①',
+      en:'Why some people learn more effectively from experience than from explanation remains an important question for educators.',
+      text:'この文の主語に当たる部分と主節の動詞を本文からそのまま抜き出せ。',
+      template:'主語：（　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　）\n動詞：（　　　　　　　　　　　　　　　　　　　　　　　　　　）',
+      ans:'Why some people learn more effectively from experience than from explanation／remains',
+      expl:'Why節全体が主語（名詞節）。remainsが主節の動詞。'
+    },
+    {
+      type:'B', label:'設問②',
+      en:'One reason may be that active experience allows learners to connect new information with what they already know.',
+      text:'次の穴埋め説明文を完成させよ。',
+      template:'主節のS＝（　　　　　　　　）、V＝（　　　　　）、C＝that以下の（　　　　　）節である。\nそのthat節の中では active experience がS、allows がVである。',
+      ans:'One reason／may be／名詞',
+      expl:'that節が補語（C）として機能するSVC第2文型。'
+    }
+  ],
+  b5: [
+    {
+      type:'A', label:'設問①',
+      en:'The rapid growth of online information, together with the constant arrival of messages and notifications, has made sustained attention increasingly difficult.',
+      text:'文全体の主語の中心となる語と、主節の動詞を抜き出せ。',
+      template:'主語の中心：（　　　　　　　　　　　　　　　　　　　　　　　　）\n動詞：（　　　　　　　　　　　　　　　　　　　　　　）',
+      ans:'growth／has made',
+      expl:'"The rapid growth of online information" が主語の核心。"together with …" は修飾句で主語に含まれない。'
+    },
+    {
+      type:'B', label:'設問②',
+      en:'together with the constant arrival of messages and notifications',
+      text:'次の説明文を完成させよ。',
+      template:'together with 以下は主語の中心には含まれない（　　　　　　）句である。\nしたがって、主語の中心（　　　　）に一致して、動詞は（　　　　　　　）が用いられている。',
+      ans:'副詞（挿入）／growth（単数）／has made（単数）',
+      expl:'"A together with B" はAのみが主語。Bは主語の数に影響しない。'
+    }
+  ],
+  b6: [
+    {
+      type:'A', label:'設問',
+      en:'The work you do, the place in which you live, the people with whom you spend your time, the skills you continue to develop, and the balance you create between work and private life will depend partly on the choices you make.',
+      text:'この文の主語の中心となる名詞を5つ、本文中から抜き出せ。',
+      template:'1.（　　　　　　）　2.（　　　　　　）　3.（　　　　　　）　4.（　　　　　　）　5.（　　　　　　）',
+      ans:'work／place／people／skills／balance',
+      expl:'5つの名詞句がandで結ばれた等位構造の主語。それぞれに関係詞節が後置修飾している。'
+    }
+  ],
+  b7: [
+    {
+      type:'A', label:'設問①',
+      en:'Whether getting more sleep actually improves a student's ability to learn is more difficult to determine than it may seem.',
+      text:'この節を導く接続詞・文全体の動詞・補語を抜き出せ。',
+      template:'接続詞：（　　　　　　）　動詞：（　　　　　　　　　）　補語：（　　　　　　　　　　　　　　　　　　　　）',
+      ans:'Whether／is／more difficult to determine than it may seem',
+      expl:'Whether節全体が主語（名詞節）。is が主節の動詞、more difficult… が補語（SVC）。'
+    },
+    {
+      type:'B', label:'設問②',
+      en:'that sleep plays an important role in learning is now widely accepted',
+      text:'次の穴埋め説明文を完成させよ。',
+      template:'thatの品詞は（　　　　　　）で、\nthat sleep plays an important role in learning 全体が文の（　　　　　）として働く（　　　）節。\n主節の動詞は（　　　　　　　　　　　）。\n文頭のthat節のthatは省略（できる ／ できない）。',
+      ans:'接続詞／主語／名詞／is now widely accepted／できない',
+      expl:'that節が主語になる構文。文頭で主語の役割を担う場合、thatは省略不可。'
+    }
+  ]
+};/* ═══════════════════════════════════════════
+   [B] PASSAGES DATA
+═══════════════════════════════════════════ */
+const PASSAGES=[
+  {
+    id:'b1',num:1,
+    subtitle:'ナイル川と古代エジプト人の生活',
+    topic:'to不定詞句が主語 ／ 同格表現',
+    sents:[
+      {
+        plain:'The Nile, the source of the livelihood of the ancient Egyptians, would overflow its banks and supply water to the ground so that their crops could grow.',
+        anal:'<span class="s">The Nile</span>, <span class="adv">the source of the livelihood of the ancient Egyptians</span>, <span class="v">would overflow</span> <span class="o">its banks</span> and <span class="v">supply</span> <span class="o">water to the ground</span> <span class="adv">so that their crops could grow</span>.',
+        jp:'ナイル川は、古代エジプト人の生活の源として、岸を溢れ、農作物が育つよう大地に水を供給した。'
+      },
+      {
+        plain:'To be able to tell when the Nile would rise became their vital concern.',
+        anal:'<span class="s">To be able to tell when the Nile would rise</span> <span class="v">became</span> <span class="c">their vital concern</span>.',
+        jp:'ナイル川がいつ増水するかを知ることが、彼らにとって不可欠な関心事となった。'
+      }
+    ],
+    vocab:[{w:'livelihood',m:'生計・生活の糧'},{w:'overflow',m:'溢れる・氾濫する'},{w:'vital',m:'不可欠な・非常に重要な'},{w:'concern',m:'関心事・懸念'}]
+  },
+  {
+    id:'b2',num:2,
+    subtitle:'第一印象と人間の判断',
+    topic:'長い主語・関係詞節と副詞節の挿入',
+    sents:[
+      {
+        plain:'People who receive the same information, when they approach it with different expectations, often reach very different conclusions.',
+        anal:'<span class="s">People</span> <span class="adv">who receive the same information</span>, <span class="adv">when they approach it with different expectations</span>, <span class="v">often reach</span> <span class="o">very different conclusions</span>.',
+        jp:'同じ情報を受け取っても、異なる期待を持ってそれに向き合うとき、人々はしばしばまったく異なる結論に達する。'
+      },
+      {
+        plain:'What we already believe can influence what we notice, remember, and consider important.',
+        anal:'<span class="s">What we already believe</span> <span class="v">can influence</span> <span class="o">what we notice, remember, and consider important</span>.',
+        jp:'私たちがすでに信じていることが、私たちが気づき、記憶し、重要だと思うことに影響を与えうる。'
+      }
+    ],
+    vocab:[{w:'expectation',m:'期待・予想'},{w:'conclusion',m:'結論'},{w:'influence',m:'影響を与える'},{w:'consider',m:'〜とみなす・考える'}]
+  },
+  {
+    id:'b3',num:3,
+    subtitle:'知識と「問い」の重要性',
+    topic:'挿入句・長い主語の動詞一致',
+    sents:[
+      {
+        plain:'A good question, in many areas of learning, can be more valuable than a quick answer.',
+        anal:'<span class="s">A good question</span>, <span class="adv">in many areas of learning</span>, <span class="v">can be</span> <span class="c">more valuable than a quick answer</span>.',
+        jp:'学びの多くの分野において、良い問いは、すぐに出てくる答えよりも価値がある場合がある。'
+      },
+      {
+        plain:'The habit of asking why, rather than simply accepting what we are told, helps us examine ideas more carefully and discover connections that we might otherwise miss.',
+        anal:'<span class="s">The habit of asking why</span>, <span class="adv">rather than simply accepting what we are told</span>, <span class="v">helps</span> <span class="o">us</span> <span class="c">examine ideas more carefully and discover connections that we might otherwise miss</span>.',
+        jp:'単に言われたことを受け入れるのではなく、なぜと問う習慣が、私たちがより注意深くアイデアを検討し、さもなければ見逃してしまうつながりを発見する助けとなる。'
+      }
+    ],
+    vocab:[{w:'valuable',m:'価値ある・貴重な'},{w:'habit',m:'習慣'},{w:'examine',m:'検討する・吟味する'},{w:'otherwise',m:'さもなければ・別の状況なら'}]
+  },
+  {
+    id:'b4',num:4,
+    subtitle:'学び方の違い',
+    topic:'why節・that節が主語',
+    sents:[
+      {
+        plain:'Why some people learn more effectively from experience than from explanation remains an important question for educators.',
+        anal:'<span class="s">Why some people learn more effectively from experience than from explanation</span> <span class="v">remains</span> <span class="c">an important question for educators</span>.',
+        jp:'なぜ一部の人々は説明よりも経験からより効果的に学ぶのかは、教育者にとって重要な問いであり続けている。'
+      },
+      {
+        plain:'One reason may be that active experience allows learners to connect new information with what they already know.',
+        anal:'<span class="s">One reason</span> <span class="v">may be</span> <span class="c">that active experience allows learners to connect new information with what they already know</span>.',
+        jp:'一つの理由として、能動的な体験が学習者に新しい情報をすでに知っていることとつなぐことを可能にする、ということが挙げられるかもしれない。'
+      }
+    ],
+    vocab:[{w:'effectively',m:'効果的に'},{w:'explanation',m:'説明'},{w:'educator',m:'教育者'},{w:'connect',m:'結びつける・つなげる'}]
+  },
+  {
+    id:'b5',num:5,
+    subtitle:'情報過多と注意力',
+    topic:'長い主語・as well as / together with の扱い',
+    sents:[
+      {
+        plain:'The rapid growth of online information, together with the constant arrival of messages and notifications, has made sustained attention increasingly difficult.',
+        anal:'<span class="s">The rapid growth of online information</span>, <span class="adv">together with the constant arrival of messages and notifications</span>, <span class="v">has made</span> <span class="o">sustained attention</span> <span class="c">increasingly difficult</span>.',
+        jp:'オンライン情報の急速な増加は、メッセージや通知が絶え間なく届くことと相まって、持続的な注意力をますます難しくしている。'
+      },
+      {
+        plain:'The ability to decide what deserves our attention is therefore becoming an important part of learning.',
+        anal:'<span class="s">The ability to decide what deserves our attention</span> <span class="v">is</span> <span class="adv">therefore</span> <span class="v">becoming</span> <span class="c">an important part of learning</span>.',
+        jp:'何が私たちの注意に値するかを判断する能力は、それゆえ学びの重要な部分になりつつある。'
+      }
+    ],
+    vocab:[{w:'sustained',m:'持続的な・継続的な'},{w:'notification',m:'通知'},{w:'deserve',m:'〜に値する・ふさわしい'},{w:'increasingly',m:'ますます・次第に'}]
+  },
+  {
+    id:'b6',num:6,
+    subtitle:'職業選択と人生の設計',
+    topic:'5つの名詞句が並ぶ長い主語',
+    sents:[
+      {
+        plain:'In choosing a career, you make decisions that can affect many parts of your life.',
+        anal:'<span class="adv">In choosing a career</span>, <span class="s">you</span> <span class="v">make</span> <span class="o">decisions that can affect many parts of your life</span>.',
+        jp:'職業を選ぶ際、あなたは人生の多くの部分に影響しうる決断を下す。'
+      },
+      {
+        plain:'The work you do, the place in which you live, the people with whom you spend your time, the skills you continue to develop, and the balance you create between work and private life will depend partly on the choices you make.',
+        anal:'<span class="s">The work you do, the place in which you live, the people with whom you spend your time, the skills you continue to develop, and the balance you create between work and private life</span> <span class="v">will depend</span> <span class="adv">partly on the choices you make</span>.',
+        jp:'あなたがする仕事、住む場所、時間を共に過ごす人々、磨き続けるスキル、そして仕事と私生活の間に作るバランス——これらはすべて、あなたが下す選択に部分的に左右される。'
+      }
+    ],
+    vocab:[{w:'career',m:'職業・キャリア'},{w:'develop',m:'磨く・発展させる'},{w:'balance',m:'バランス・均衡'},{w:'depend on',m:'〜に左右される・依存する'}]
+  },
+  {
+    id:'b7',num:7,
+    subtitle:'睡眠と学習',
+    topic:'Whether節・that節が主語',
+    sents:[
+      {
+        plain:'Whether getting more sleep actually improves a student's ability to learn is more difficult to determine than it may seem.',
+        anal:'<span class="s">Whether getting more sleep actually improves a student's ability to learn</span> <span class="v">is</span> <span class="c">more difficult to determine than it may seem</span>.',
+        jp:'より多く眠ることが実際に学生の学習能力を向上させるかどうかは、見かけよりも判断が難しい。'
+      },
+      {
+        plain:'The processes that support memory are complex, but that sleep plays an important role in learning is now widely accepted.',
+        anal:'<span class="s">The processes that support memory</span> <span class="v">are</span> <span class="c">complex</span>, but <span class="s">that sleep plays an important role in learning</span> <span class="v">is</span> <span class="adv">now widely</span> <span class="c">accepted</span>.',
+        jp:'記憶を支える過程は複雑だが、睡眠が学習において重要な役割を果たすことは今や広く認められている。'
+      }
+    ],
+    vocab:[{w:'determine',m:'判断する・確定する'},{w:'process',m:'過程・プロセス'},{w:'widely accepted',m:'広く受け入れられている'},{w:'play a role',m:'役割を果たす'}]
+  }
+];
+/* ═══════════════════════════════════════════
+   RENDER [B]
+═══════════════════════════════════════════ */
+function buildToken(tok){
+  const roleClass={S:'r-S',V:'r-V',O:'r-O',C:'r-C',adv:'r-adv',adj:'r-adj',conj:'r-conj',rel:'r-rel',plain:'r-plain'};
+  const ulClass={'s-clause':'ul-s-clause','o-clause':'ul-o-clause','c-clause':'ul-c-clause','adj-clause':'ul-adj-clause','adv-clause':'ul-adv-clause'};
+  const rc=roleClass[tok.r]||'r-plain';
+  const uc=tok.ul?ulClass[tok.ul]||'':'';
+  return `<span class="tok ${rc} ${uc}">${tok.t}<span class="tip">${tok.l||''}</span></span> `;
+}
+
+const viewedB=new Set();
+function renderPassages(){
+  const wrap=document.getElementById('b-wrap');
+  PASSAGES.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='pcard';
+    let sentHtml='';
+    p.sentences.forEach((s,si)=>{
+      const analTokens=s.tokens.map(buildToken).join('');
+      sentHtml+=`
+        <div class="sent">
+          <div class="sent-pattern">${s.pattern}</div>
+          <div class="sent-plain" id="plain-${p.id}-${si}">${s.plain}</div>
+          <div class="sent-anal" id="anal-${p.id}-${si}">${analTokens}</div>
+        </div>`;
+    });
+    const vocabHtml=p.vocab?p.vocab.map(v=>`<span class="vocab-item"><strong>${v.w}</strong> ${v.m}</span>`).join(''):'';
+    card.innerHTML=`
+      <div class="phead">
+        <span class="pnum">${p.num}</span>
+        <span class="ptopic" id="ptopic-${p.id}">${p.topic}</span>
+      </div>
+      <div class="pbody">${sentHtml}</div>
+      ${p.vocab?`<div class="vocab-block" id="vocab-${p.id}"><div class="vocab-title">VOCABULARY</div><div class="vocab-list">${vocabHtml}</div></div>`:''}
+      ${p.topic?`<div class="topic-bar" id="topicbar-${p.id}">🎯 Main Topic: <span>${p.topic}</span></div>`:''}
+      <div class="q-block" id="qblock-${p.id}">
+        <div class="q-block-title">読解設問</div>
+        ${buildQHtml(p.id)}
+      </div>`;
+    wrap.appendChild(card);
+    card.querySelector('.pbody').addEventListener('click',()=>{viewedB.add(p.id);updateProgLabel();});
+  });
+  applyMode('anal');
+}
+
+/* ═══════════════════════════════════════════
+   [C] DATA
+═══════════════════════════════════════════ */
+const C_DATA=[
+  // [C][1] 語句整序
+  {
+    section:'[C][1] カッコの中の語句を適当に配列して英訳せよ',
+    num:'1',
+    ja:'同じ出来事を人によって違って見ることは、驚くべきことではない。',
+    hint:'(differently, event, hardly, is, people, see, surprising, that, the same)',
+    ans:'That people see the same event differently is hardly surprising.',
+    expl:'that節（接続詞）が主語。文頭のthatは省略不可。hardly = not very / scarcely。'
+  },
+  {
+    section:'',
+    num:'2',
+    ja:'彼が来るかどうかはっきりしない。',
+    hint:'(come, he, is, not, or, uncertain, whether, will)',
+    ans:'Whether he will come or not is uncertain.',
+    expl:'whether … or not が主語節。"It is uncertain whether…" の書き換えも可。'
+  },
+  {
+    section:'',
+    num:'3',
+    ja:'率直に語ることは、お互いによりよく理解するための第一歩である。',
+    hint:'(step, towards, is, mutual, frankly, the, better, first)',
+    ans:'Speaking frankly is the first step towards mutual understanding.',
+    expl:'動名詞句(Speaking frankly)が主語。towards mutual understanding「相互理解に向けての」。'
+  },
+  {
+    section:'',
+    num:'4',
+    ja:'精神と肉体を厳しく区別することは誤りのように思える。',
+    hint:'(a, and, between, body, distinction, make, mind, strict, to)',
+    ans:'To make a strict distinction between mind and body seems a mistake.',
+    expl:'to不定詞句が主語。"It seems a mistake to make a strict distinction…" に書き換え可。'
+  },
+  // [C][2] 英訳
+  {
+    section:'[C][2] 英訳せよ',
+    num:'1',
+    ja:'彼の言ったことがすべて正しいとは限らない。',
+    hint:'ヒント：What ... を主語に',
+    ans:'What he said is not always true. / Not everything he said is correct.',
+    expl:'What he said（彼の言ったこと）がwhat節として主語。not always = 部分否定「必ずしも〜ではない」。'
+  },
+  {
+    section:'',
+    num:'2',
+    ja:'今の若い人たちに必要なのは、自分でものを考える習慣を身につけることだ。',
+    hint:'ヒント：What ... need is ... / acquire the habit',
+    ans:'What young people today need is to acquire the habit of thinking for themselves.',
+    expl:'What … need is … の構文。"to think for oneself" = 自分でものを考える。'
+  },
+  {
+    section:'',
+    num:'3',
+    ja:'情報を批判的に評価することは、これからますます重要になる。',
+    hint:'ヒント：動名詞句を主語に',
+    ans:'Evaluating information critically will become increasingly important.',
+    expl:'Evaluating information critically（動名詞句）が主語。increasingly = ますます。'
+  },
+  {
+    section:'',
+    num:'4',
+    ja:'私たちが将来どれほど多くの変化に適応しなければならないかは、まだ分からない。',
+    hint:'ヒント：how many ... が主語節',
+    ans:'How many changes we will have to adapt to in the future is not yet known.',
+    expl:'how many … が間接疑問節として主語。adapt to = 〜に適応する。'
+  },
+];
+/* ═══════════════════════════════════════════
+   RENDER [C]
+═══════════════════════════════════════════ */
+function renderC(){
+  const wrap=document.getElementById('c-wrap');
+  let lastSection=null;
+  C_DATA.forEach((q,i)=>{
+    if(q.section&&q.section!==lastSection){
+      const title=document.createElement('div');
+      title.className='c-section-title';
+      title.textContent=q.section;
+      wrap.appendChild(title);
+      lastSection=q.section;
+    }
+    const card=document.createElement('div');
+    card.className='c-card';
+    card.dataset.revealed='0';
+    card.innerHTML=`
+      <div class="c-head">
+        <span class="c-num">${q.num}.</span>
+        <span class="c-ja">${q.ja}</span>
+        ${q.hint?`<span class="c-hint-badge">ヒント</span>`:''}
+      </div>
+      <div class="c-body">
+        ${q.hint?`<div style="font-size:12px;color:var(--muted);margin-bottom:.5rem;font-style:italic;">${q.hint}</div>`:''}
+        <textarea class="c-textarea" id="ct-${i}" placeholder="英文を入力してください…" rows="2"></textarea>
+        <div class="c-actions">
+          <button class="btn btn-reveal" onclick="revealC(${i})">答え表示</button>
+          <button class="btn btn-reset" onclick="resetC(${i})">リセット</button>
+        </div>
+        <div class="c-fb" id="cfb-${i}"></div>
+      </div>`;
+    wrap.appendChild(card);
+  });
+}
+
+function revealC(i){
+  const q=C_DATA[i];
+  const ta=document.getElementById('ct-'+i);
+  ta.value=q.ans;
+  ta.classList.add('revealed');
+  ta.disabled=true;
+  document.getElementById('cfb-'+i).innerHTML=`<span style="color:var(--blue);">${q.expl}</span>`;
+  ta.closest('.c-card').dataset.revealed='1';
+  updateProgLabel();
+}
+
+function resetC(i){
+  const ta=document.getElementById('ct-'+i);
+  ta.value='';ta.disabled=false;ta.classList.remove('revealed');
+  document.getElementById('cfb-'+i).innerHTML='';
+  ta.closest('.c-card').dataset.revealed='0';
+  updateProgLabel();
+}
+
+/* ═══════════════════════════════════════════
+   MODE (白文 / 5文型解析)
+═══════════════════════════════════════════ */
+let currentMode='anal';let vocabOn=false;let topicOn=false;
+function setMode(m){
+  currentMode=m;
+  document.getElementById('tog-plain').classList.toggle('on',m==='plain');
+  document.getElementById('tog-anal').classList.toggle('on',m==='anal');
+  applyMode(m);
+  document.getElementById('legend').style.display=m==='anal'?'flex':'none';
+}
+function applyMode(m){
+  PASSAGES.forEach(p=>{
+    p.sentences.forEach((s,si)=>{
+      const pl=document.getElementById('plain-'+p.id+'-'+si);
+      const an=document.getElementById('anal-'+p.id+'-'+si);
+      if(pl)pl.style.display=m==='plain'?'block':'none';
+      if(an)an.style.display=m==='anal'?'flex':'none';
+    });
+  });
+}
+
+function buildQHtml(pid){
+  const qs = QUESTIONS[pid];
+  if(!qs) return '';
+  return qs.map((q,i)=>{
+    const colors={A:'#64b5f6',B:'#4ec9a0',C:'#f07070'};
+    const labels={A:'Type A：抜き出し・空所補充',B:'Type B：穴埋め説明文',C:'Type C：選択＋一言記述'};
+    const col = colors[q.type];
+    const lbl = labels[q.type];
+    const choices = q.choices ? `<div class="choice-line">【　${q.choices.join('　／　')}　】</div>` : '';
+    const tmpl = q.template ? `<div class="fill-template">${q.template.replace(/\n/g,'<br>')}</div>` : '';
+    const blank = q.blank ? `<div class="fill-template">${q.blank}</div>` : '';
+    return `
+      <div class="q-item">
+        <div class="q-label q-label-${q.type}" style="color:${col}">${q.label}　<span style="font-size:11px;opacity:.7">[${lbl}]</span></div>
+        ${q.en?`<div class="q-en">${q.en}</div>`:''}
+        <div class="q-text">${q.text}</div>
+        ${tmpl}${choices}${blank}
+        <button class="ans-reveal-btn" onclick="togQA('qa-${pid}-${i}')">正解・解説を見る</button>
+        <div class="q-answer" id="qa-${pid}-${i}">
+          <span class="ans-lbl">正解</span>
+          <div class="ans-txt">${q.ans}</div>
+          <span class="expl-lbl">解説</span>
+          <div class="expl-txt">${q.expl}</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function togQA(id){
+  const el=document.getElementById(id);
+  if(el) el.classList.toggle('shown');
+}
+
+function toggleAll(type){
+  if(type==='vocab'){
+    vocabOn=!vocabOn;
+    document.getElementById('tog-vocab').classList.toggle('on',vocabOn);
+    PASSAGES.forEach(p=>{const el=document.getElementById('vocab-'+p.id);if(el)el.style.display=vocabOn?'block':'none';});
+  } else if(type==='q'){
+    const btn=document.getElementById('tog-q');
+    const qOn=btn.classList.toggle('on');
+    PASSAGES.forEach(p=>{
+      const el=document.getElementById('qblock-'+p.id);
+      if(el) el.classList.toggle('shown',qOn);
+    });
+  } else {
+    topicOn=!topicOn;
+    document.getElementById('tog-topic').classList.toggle('on',topicOn);
+    PASSAGES.forEach(p=>{
+      const el=document.getElementById('topicbar-'+p.id);if(el)el.style.display=topicOn?'block':'none';
+      const tp=document.getElementById('ptopic-'+p.id);if(tp)tp.style.display=topicOn?'inline':'none';
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════
+   PROGRESS
+═══════════════════════════════════════════ */
+function updateProgLabel(){
+  const tabs=document.querySelectorAll('.nav-tab');
+  let activeIdx=0;
+  tabs.forEach((t,i)=>{if(t.classList.contains('active'))activeIdx=i;});
+  const tabId=TABS[activeIdx];
+  let pct=0;
+  if(tabId==='kihon'){pct=100;}
+  else if(tabId==='a'){
+    let total=0,done=0;
+    A1_DATA.forEach(q=>{const cw=document.getElementById('cw1-'+q.n);if(cw){total++;if(cw.querySelector('.c-correct'))done++;}});
+    A2_DATA.forEach(q=>{const inp=document.getElementById('bi2-'+q.n);if(inp){total++;if(inp.classList.contains('blank-ok'))done++;}});
+    pct=total>0?Math.round(done/total*100):0;
+  } else if(tabId==='b'){
+    pct=Math.round(viewedB.size/PASSAGES.length*100);
+  } else if(tabId==='c'){
+    const total=C_DATA.length;
+    const done=document.querySelectorAll('#c-wrap .c-card[data-revealed="1"]').length;
+    pct=total>0?Math.round(done/total*100):0;
+  }
+  document.getElementById('prog-label').textContent='進捗 '+pct+'%';
+  document.getElementById('prog-bar-fill').style.width=pct+'%';
+}
+
+/* ═══════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════ */
+(function(){
+  const nav=document.getElementById('top-nav');
+  const div=document.createElement('div');
+  div.id='prog-bar-bg';
+  div.style.cssText='position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--border);pointer-events:none;';
+  const fill=document.createElement('div');
+  fill.id='prog-bar-fill';
+  fill.style.cssText='height:3px;background:var(--S);width:0%;transition:width .4s;';
+  div.appendChild(fill);
+  nav.style.position='sticky';nav.style.top='0';nav.style.zIndex='300';
+  nav.appendChild(div);
+})();
+
+renderA1();
+renderA2();
+renderPassages();
+renderC();
+updateProgLabel();
+</script>
+</body>
+</html>
